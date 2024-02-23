@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import LogoMandehLogin from "../image/logo-mandeh-login.png";
-import LogoMandeh from "../image/logo-hori.png";
+import LogoMandeh from "../image/logo-hori2.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FaAngleDoubleRight } from "react-icons/fa";

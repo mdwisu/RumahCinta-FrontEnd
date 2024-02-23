@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  // enable dark mode via class strategy
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -19,6 +21,11 @@ module.exports = {
         bgFunc4: "#CF2C57",
         "dark-purple": "#081A51",
         "light-white": "rgba(255,255,255,0.17)",
+        customPurple: {
+          light: '#B78BFF',
+          DEFAULT: '#7E22CE',
+          dark: '#4B0082',
+        },
       },
       fontSize: {
         sizePri: 28.5,

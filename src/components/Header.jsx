@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
-import LogoHori from "../image/logo-hori.png";
+import LogoHori from "../image/logo-hori2.png";
 import LogoMandeh from "../image/logo-mandeh.png";
 import LogoTulisanMandeh from "../image/logo-tulisan-lentera2.png";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,6 +17,20 @@ function Header() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
+  // !theme
+  // State untuk menyimpan status tema
+  const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "system");
+  const element = document.documentElement;
+  const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  console.log(darkQuery, "darkQuery");
+
+  const options = [
+    { icon: "sunny", text: "light" },
+    { icon: "moon", text: "dark" },
+    { icon: "desktop-outline", text: "system" },
+  ];
+  // !end
+
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -30,20 +44,56 @@ function Header() {
     setDropdownOpen(false);
     navigate("/");
   };
+  // !theme
+  function onWindowMatch() {
+    if (localStorage.theme === "dark" || (!("theme" in localStorage) && darkQuery.matches)) {
+      element.classList.add("dark");
+    } else {
+      element.classList.remove("dark");
+    }
+  }
+  onWindowMatch();
 
   useEffect(() => {
-    const handleOutsideClick = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDropdownOpen(false);
+    switch (theme) {
+      case "dark":
+        element.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+        break;
+      case "light":
+        element.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+        break;
+      default:
+        localStorage.removeItem("theme");
+        onWindowMatch();
+        break;
+    }
+  }, [theme]);
+
+  darkQuery
+    .addEventListener("change", (e) => {
+      if (!"theme" in localStorage) {
+        if (e.matches) {
+          element.classList.add("dark");
+        } else {
+          element.classList.remove("dark");
+        }
       }
-    };
+    })
+    // !end
 
-    document.addEventListener("click", handleOutsideClick);
-
-    return () => {
-      document.removeEventListener("click", handleOutsideClick);
-    };
-  }, []);
+    useEffect(() => {
+      const handleOutsideClick = (event) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+          setDropdownOpen(false);
+        }
+      };
+      document.addEventListener("click", handleOutsideClick);
+      return () => {
+        document.removeEventListener("click", handleOutsideClick);
+      };
+    }, []);
 
   let linkTo = "";
   // const role = authState?.user?.role || "N/A";
@@ -61,7 +111,7 @@ function Header() {
   console.log(user?.role);
 
   return (
-    <nav className="bg-bgSec shadow-xl z-10">
+    <nav className={`bg-bgSec shadow-xl z-10`}>
       <div className="flex flex-col lg:flex-row">
         <div className="flex justify-between items-center border-b lg:border-b-0">
           <div className="p-2">
@@ -181,16 +231,34 @@ function Header() {
               </div>
             ) : (
               <div className="mr-8 my-3 flex gap-3 flex-col items-baseline lg:flex-row">
-                <Link className="px-9 py-1 bg-bgOpt2 hover:bg-bgOpt text-white rounded-2xl" to="/login">
+                <Link
+                  className="px-9 py-1 bg-bgOpt2 dark:bg-gray-800 hover:bg-bgOpt dark:hover:bg-gray-600 text-white rounded-2xl"
+                  to="/login"
+                >
                   Masuk
                 </Link>
-                <Link className="px-9 py-1 bg-bgFunc hover:bg-bgFunc3 text-white rounded-2xl" to="/register">
+                <Link
+                  className="px-9 py-1 bg-bgFunc hover:bg-bgFunc3 dark:bg-gray-800 dark:hover:bg-gray-600 text-white rounded-2xl"
+                  to="/register"
+                >
                   Daftar
                 </Link>
               </div>
             )}
           </div>
         </div>
+      </div>
+      {/* Tombol untuk mengubah tema */}
+      <div className="fixed top-6 right-72 duration-100 dark:bg-slate-800 bg-gray-100 rounded">
+        {options?.map((opt) => (
+          <button
+            key={opt.text}
+            onClick={() => setTheme(opt.text)}
+            className={`w-8 h-8 leading-9 text-xl rounded-full m-1 ${theme === opt.text && "text-sky-600"}`}
+          >
+            <ion-icon name={opt.icon}></ion-icon>
+          </button>
+        ))}
       </div>
     </nav>
   );

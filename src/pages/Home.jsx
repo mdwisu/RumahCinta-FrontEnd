@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Foto7 from "../image2/7.png";
-import CloudDown from "../image/cloud-red-down.png";
+import CloudDown from "../image/cloud-red-down-Copy.svg";
 import CloudUp from "../image/cloud-red-up.png";
 import Chairs from "../image/8.png";
 import StarYellow from "../image/star-yellow.png";
@@ -14,6 +14,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import ContactAndLocation from "../components/contactAndLocation";
 
 function Home() {
   const token = useSelector((state) => state.auth.token);
@@ -49,6 +50,7 @@ function Home() {
   };
   return (
     <div>
+      <ContactAndLocation />
       <Header />
       <div className="flex flex-wrap">
         {/* bagian 1 */}
@@ -79,7 +81,7 @@ function Home() {
           <img className="absolute" src={CloudUp} alt="CloudUp" />
           <div className="">
             <div className="relative text-center text-textOpt mt-[100px]">
-              <p className="text-sizeSec font-bold">MeWell</p> <br />
+              <p className="text-sizeSec font-bold">Rumah Cinta</p> <br />
               <p className="text-sizeParagraph mx-[60px] leading-[14px]">
                 MeWell Mental Wellness merupakan konsultasi tentang Lorem ipsum dolor sit amet consectetur quas vel sint
                 commodi

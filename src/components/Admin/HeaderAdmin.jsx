@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 // import { FaUserCircle } from 'react-icons/fa';
-import LogoHori from "../../image/logo-hori.png";
+import LogoHori from "../../image/logo-hori2.png";
 import LogoMandeh from "../../image/logo-mandeh.png";
 import LogoTulisanMandeh from "../../image/logo-tulisan-lentera2.png";
 import { useSelector } from "react-redux";
