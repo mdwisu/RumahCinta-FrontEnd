@@ -3,10 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import LogoHori from "../image/logo-hori2.png";
 import LogoMandeh from "../image/logo-mandeh.png";
+import LogoRumahCinta from "../image/LogoRumahCinta.png";
 import LogoTulisanMandeh from "../image/logo-tulisan-lentera2.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/authSlice";
 import { RiAdminLine, RiLogoutBoxLine, RiProfileLine } from "react-icons/ri";
+import ContactAndLocation from "../components/contactAndLocation";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +29,6 @@ function Header() {
   const options = [
     { icon: "sunny", text: "light" },
     { icon: "moon", text: "dark" },
-    { icon: "desktop-outline", text: "system" },
   ];
   // !end
 
@@ -71,29 +72,28 @@ function Header() {
     }
   }, [theme]);
 
-  darkQuery
-    .addEventListener("change", (e) => {
-      if (!"theme" in localStorage) {
-        if (e.matches) {
-          element.classList.add("dark");
-        } else {
-          element.classList.remove("dark");
-        }
+  darkQuery.addEventListener("change", (e) => {
+    if ((!"theme") in localStorage) {
+      if (e.matches) {
+        element.classList.add("dark");
+      } else {
+        element.classList.remove("dark");
       }
-    })
-    // !end
+    }
+  });
+  // !end
 
-    useEffect(() => {
-      const handleOutsideClick = (event) => {
-        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-          setDropdownOpen(false);
-        }
-      };
-      document.addEventListener("click", handleOutsideClick);
-      return () => {
-        document.removeEventListener("click", handleOutsideClick);
-      };
-    }, []);
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("click", handleOutsideClick);
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
 
   let linkTo = "";
   // const role = authState?.user?.role || "N/A";
@@ -111,107 +111,121 @@ function Header() {
   console.log(user?.role);
 
   return (
-    <nav className={`bg-bgSec shadow-xl z-10`}>
-      <div className="flex flex-col lg:flex-row">
-        <div className="flex justify-between items-center border-b lg:border-b-0">
-          <div className="p-2">
-            <button onClick={toggleMenu} className="focus:outline bgOpt font-bold block lg:hidden">
-              <div className="">
-                <div className="w-[470px] p-2 flex flex-wrap items-center justify-around">
-                  <div className="">
-                    <Link to={"/"}>
-                      <div>
-                        <img className="h-[30px]" src={LogoMandeh} alt="LogoMandeh" />
-                      </div>
-                    </Link>
-                  </div>
-                  <div className="">
-                    <Link to={"/"}>
-                      <div>
-                        <img className="h-[30px]" src={LogoTulisanMandeh} alt="LogoTulisanMandeh" />
-                      </div>
-                    </Link>
-                  </div>
-                  <div className="">
-                    <svg
-                      className="w-6 h-10"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 20 20"
-                      strokeWidth="2"
-                      stroke="currentColor"
-                      color="#FFB803"
-                    >
-                      <path
-                        className={!isOpen ? "block" : "hidden"}
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                      />
-                      <path
-                        className={isOpen ? "block" : "hidden"}
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </div>
+    <nav className={`dark:text-bold z-10 w-full bg-bgSec text-textPri shadow-xl dark:bg-purple-dark dark:text-white`}>
+      <div className="my-3 flex flex-col items-center justify-between lg:flex-row">
+        <div className="flex items-center justify-between lg:border-b-0">
+          <div className="w-full p-2">
+            {/* <button onClick={toggleMenu} className="bgOpt block font-bold focus:outline lg:hidden"> */}
+            <div className="block font-bold focus:outline lg:hidden">
+              <div className="flex w-[470px] flex-wrap items-center justify-around p-2 md:justify-between">
+                <div className="">
+                  <Link to={"/"}>
+                    <div>
+                      <img className="h-[30px]" src={LogoRumahCinta} alt="LogoMandeh" />
+                    </div>
+                  </Link>
                 </div>
+                <div className="hidden lg:block">
+                  <Link to={"/"}>
+                    <div>
+                      <img className="h-[30px]" src={LogoHori} alt="LogoTulisanMandeh" />
+                    </div>
+                  </Link>
+                </div>
+                {/* Tombol untuk mengubah tema */}
+                <div
+                  className={`${isOpen ? "block" : "hidden"} rounded bg-gray-100 duration-100 dark:bg-slate-800 lg:hidden`}
+                >
+                  {options?.map((opt) => (
+                    <button
+                      key={opt.text}
+                      onClick={() => setTheme(opt.text)}
+                      className={`m-1 h-8 w-8 rounded-full text-xl leading-9 ${theme === opt.text && "text-sky-600"}`}
+                    >
+                      <ion-icon name={opt.icon}></ion-icon>
+                    </button>
+                  ))}
+                </div>
+                {/* tombol dropDown */}
+                <div className="">
+                  <svg
+                    className="h-10 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 20 20"
+                    strokeWidth="2"
+                    stroke="currentColor"
+                    color="#FFB803"
+                    onClick={toggleMenu}
+                  >
+                    {/* tombol garis 3 */}
+                    <path
+                      className={!isOpen ? "block" : "hidden"}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                    />
+                    {/* tombol x */}
+                    <path
+                      className={isOpen ? "block" : "hidden"}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </div>
+                {/* tombol dropDown */}
               </div>
-            </button>
+            </div>
+            {/* </button> */}
           </div>
         </div>
-
         <div
-          className={`${
-            isOpen ? "block" : "hidden"
-          } lg:flex flex-col lg:flex-row justify-between items-center w-full text-textSec`}
+          className={`${isOpen ? "block" : "hidden"} w-full flex-col items-center justify-between lg:flex lg:flex-row`}
         >
-          <div className="ml-3 flex flex-col lg:flex-row gap-4">
-            <Link to={"/"} className=" hover:font-bold ">
+          <div className="ml-3 flex flex-col items-center gap-4 lg:flex-row">
+            <Link to={"/"}>
+              <img src={LogoRumahCinta} alt="logoRumahCinta" className="w-8 lg:w-10" />
+            </Link>
+            <Link to={"/"} className="hover:text-gray-500">
               Home
             </Link>
-            <Link to={"/blog"} className=" hover:font-bold">
+            <Link to={"/blog"} className="hover:text-gray-500">
               Blog
             </Link>
-            <Link to={"/video"} className=" hover:font-bold">
+            <Link to={"/video"} className="hover:text-gray-500">
               Video
             </Link>
-            <Link to={"/tes"} className=" hover:font-bold">
+            <Link to={"/tes"} className="hover:text-gray-500">
               Tes Psikologi
             </Link>
-            <Link to={"/konsultasi"} className=" hover:font-bold">
+            <Link to={"/konsultasi"} className="hover:text-gray-500">
               Konsultasi
             </Link>
-            {/* <Link to={"/faq"} className=" hover:font-bold">
-              FAQ
-            </Link> */}
           </div>
           <div className={!isOpen ? "block" : "hidden"}>
             <img className="h-[30px]" src={LogoHori} alt="LogoHori" />
           </div>
           <div className="my-3 flex items-center lg:flex-row" ref={dropdownRef}>
             {isLogin ? (
-              <div className="mr-8 my-3 flex gap-3 flex-col items-baseline lg:flex-row">
+              <div className="my-3 mr-8 flex flex-col items-baseline gap-3 lg:flex-row">
                 <div className="relative">
                   <div
-                    className="flex gap-2 items-center text-textSec rounded-2xl cursor-pointer"
+                    className="flex cursor-pointer items-center gap-2 rounded-2xl text-textSec"
                     onClick={toggleDropdown}
                   >
-                    <FaUserCircle className="text-xl hover:text-textPrimary" />
+                    <FaUserCircle className="hover:text-textPrimary text-xl" />
                     {user.name}
                   </div>
                   {dropdownOpen && (
-                    <ul className="dropdown-menu text-textSec w-48 py-2 mt-2 ml-4 text-base text-left rounded-lg shadow-lg min-w-max items-center  bg-bgPri float-left  list-none   m-0 bg-clip-padding border-none dropdown-menu fixed right-5">
-                      {/* {user.role === "admin" && ( */}
+                    <ul className="dropdown-menu dropdown-menu fixed right-5 float-left m-0 mt-2 ml-4 w-48 min-w-max list-none items-center rounded-lg border-none bg-bgPri bg-clip-padding py-2 text-left text-base text-textSec shadow-lg">
                       <li>
-                        <Link className="px-4 flex gap-2 items-center py-2 hover:bg-gray-200" to={linkTo}>
+                        <Link className="flex items-center gap-2 px-4 py-2 hover:bg-gray-200" to={linkTo}>
                           <RiAdminLine /> Dashboard
                         </Link>
                       </li>
-                      {/* // )} */}
                       <li>
-                        <Link className="flex  gap-2 px-4 py-2  hover:bg-gray-200" to="/profile">
+                        <Link className="flex gap-2 px-4 py-2 hover:bg-gray-200" to="/profile">
                           <RiProfileLine />
                           Profile
                         </Link>
@@ -219,7 +233,7 @@ function Header() {
                       <li>
                         <Link
                           type="button"
-                          className="flex items-center gap-2 px-4 py-2  hover:bg-gray-200"
+                          className="flex items-center gap-2 px-4 py-2 hover:bg-gray-200"
                           onClick={handleLogout}
                         >
                           <RiLogoutBoxLine /> Logout
@@ -230,15 +244,27 @@ function Header() {
                 </div>
               </div>
             ) : (
-              <div className="mr-8 my-3 flex gap-3 flex-col items-baseline lg:flex-row">
+              <div className="my-3 mr-8 flex flex-col items-center gap-3 lg:flex-row">
+                {/* Tombol untuk mengubah tema */}
+                <div className=" hidden rounded bg-gray-100 duration-100 dark:bg-slate-800 lg:flex">
+                  {options?.map((opt) => (
+                    <button
+                      key={opt.text}
+                      onClick={() => setTheme(opt.text)}
+                      className={`m-1 h-8 w-8 rounded-full text-xl leading-9 ${theme === opt.text && "text-sky-600"}`}
+                    >
+                      <ion-icon name={opt.icon}></ion-icon>
+                    </button>
+                  ))}
+                </div>
                 <Link
-                  className="px-9 py-1 bg-bgOpt2 dark:bg-gray-800 hover:bg-bgOpt dark:hover:bg-gray-600 text-white rounded-2xl"
+                  className="rounded-2xl bg-bgOpt2 px-9 py-1 text-white hover:bg-bgOpt dark:bg-gray-800 dark:hover:bg-gray-600"
                   to="/login"
                 >
                   Masuk
                 </Link>
                 <Link
-                  className="px-9 py-1 bg-bgFunc hover:bg-bgFunc3 dark:bg-gray-800 dark:hover:bg-gray-600 text-white rounded-2xl"
+                  className="rounded-2xl bg-bgFunc px-9 py-1 text-white hover:bg-bgFunc3 dark:bg-gray-800 dark:hover:bg-gray-600"
                   to="/register"
                 >
                   Daftar
@@ -247,18 +273,6 @@ function Header() {
             )}
           </div>
         </div>
-      </div>
-      {/* Tombol untuk mengubah tema */}
-      <div className="fixed top-6 right-72 duration-100 dark:bg-slate-800 bg-gray-100 rounded">
-        {options?.map((opt) => (
-          <button
-            key={opt.text}
-            onClick={() => setTheme(opt.text)}
-            className={`w-8 h-8 leading-9 text-xl rounded-full m-1 ${theme === opt.text && "text-sky-600"}`}
-          >
-            <ion-icon name={opt.icon}></ion-icon>
-          </button>
-        ))}
       </div>
     </nav>
   );

@@ -26,6 +26,25 @@ module.exports = {
           DEFAULT: "#7E22CE",
           dark: "#4B0082",
         },
+        // Tambahkan warna ungu
+        purple: {
+          DEFAULT: "#7D3C98",
+          dark: "#6A0DAD",
+          light: "#9B30FF",
+        },
+        // Tambahkan warna-warna aksen
+        yellow: {
+          DEFAULT: "#FFD700",
+          dark: "#F2AF29",
+          light: "#FFFF66",
+        },
+        blueLight: {
+          DEFAULT: "#ADD8E6",
+          dark: "#EDEAE4",
+          light: "#E6E6E6",
+        },
+        primary: "#a855f7",
+        dark: "#0f172a",
       },
       fontSize: {
         sizePri: 28.5,

@@ -15,6 +15,10 @@ import Footer from "../components/Footer";
 import { FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import ContactAndLocation from "../components/contactAndLocation";
+import Carousel from "../components/Carousel";
+import LogoRumahCinta2 from "../image/logo-hori2.png";
+import ImgSmile from "../image/smile.png";
+import ImgSmile2 from "../image/image1.svg";
 
 function Home() {
   const token = useSelector((state) => state.auth.token);
@@ -49,108 +53,105 @@ function Home() {
     }
   };
   return (
-    <div>
+    <>
       <ContactAndLocation />
-      <Header />
+      <div className="mb-5 overflow-hidden lg:mb-0 lg:h-screen">
+        <Header />
+        <Carousel />
+      </div>
+      <div className="flex flex-col flex-wrap items-center px-4 lg:flex-row lg:p-10">
+        {/* Kolom Pertama */}
+        <div className="flex w-full flex-col items-center justify-center lg:w-1/2">
+          <img src={LogoRumahCinta2} alt="Logo Rumah Cinta" className="mb-4 h-auto w-1/2 lg:mb-0 lg:w-full" />{" "}
+          {/* Menggunakan w-full untuk memenuhi lebar kolom di perangkat kecil */}
+          <p className="text-center text-lg">
+            Selamat datang di Rumah Cinta Solusi Psikologi Klinis dan Terapi Mental
+          </p>{" "}
+          {/* Menambahkan ukuran teks yang lebih besar */}
+        </div>
+        {/* Kolom Kedua */}
+        <div className="-right-20 items-center justify-center sm:absolute sm:w-56 lg:flex lg:w-1/2">
+          <img src={ImgSmile} alt="Gambar Smile" className="h-auto w-auto lg:h-96" /> {/* Menyesuaikan tinggi gambar */}
+        </div>
+      </div>
+      <div class="relative flex h-screen flex-col items-center gap-4 lg:flex-row lg:px-8">
+        <div class="flex-1">
+          <div class="mb-4">
+            <h1 class="text-7xl font-bold">Layanan</h1>
+            <p className="mt-3 w-3/4">
+              Tuliskan peraturan sederhana yang harus dipatuhi siswa untuk kelancaran proses belajar di kelas. Panduan
+              singkat dan sederhana adalah yang terbaik.
+            </p>
+          </div>
+        </div>
+        <div class="flex-1">
+          <div class="grid grid-cols-2 grid-rows-5 items-center gap-3 text-center">
+            <a href="#" class="w-5/6 rounded-3xl bg-blue-500 py-6 font-bold text-white hover:bg-blue-700">
+              Psiko Edukasi
+            </a>
+            <a href="#" class="w-5/6 rounded bg-blue-500 py-6 font-bold text-white hover:bg-blue-700">
+              Psiko Edukasi
+            </a>
+            <a href="#" class="w-5/6 rounded bg-blue-500 py-6 font-bold text-white hover:bg-blue-700">
+              Psiko Edukasi
+            </a>
+            <a href="#" class="w-5/6 rounded bg-blue-500 py-6 font-bold text-white hover:bg-blue-700">
+              Psiko Edukasi
+            </a>
+            <a href="#" class="w-5/6 rounded bg-blue-500 py-6 font-bold text-white hover:bg-blue-700">
+              Psiko Edukasi
+            </a>
+            <a href="#" class="w-5/6 rounded bg-blue-500 py-6 font-bold text-white hover:bg-blue-700">
+              Psiko Edukasi
+            </a>
+            <a href="#" class="w-5/6 rounded bg-blue-500 py-6 font-bold text-white hover:bg-blue-700">
+              Psiko Edukasi
+            </a>
+            <a href="#" class="w-5/6 rounded bg-blue-500 py-6 font-bold text-white hover:bg-blue-700">
+              Psiko Edukasi
+            </a>
+            <a href="#" class="w-5/6 rounded bg-blue-500 py-6 font-bold text-white hover:bg-blue-700">
+              Psiko Edukasi
+            </a>
+            <a href="#" class="w-5/6 rounded bg-blue-500 py-6 font-bold text-white hover:bg-blue-700">
+              Psiko Edukasi
+            </a>
+          </div>
+        </div>
+        <div class="absolute left-8 bottom-3 col-span-2 row-start-5 flex items-end justify-start">
+          <img class="w-72" src={ImgSmile2} alt="Gambar" />
+        </div>
+      </div>
+
       <div className="flex flex-wrap">
-        {/* bagian 1 */}
-        <div className="w-1/3 ">
-          <div className="px-10 text-sizePri text-textPri font-bold">
-            <br />
-            <h1 className="leading-7">
-              Kelas Emosi <br /> Dibuka
-            </h1>
-          </div>
-          <p className="px-10 text-sizeParagraph mt-[15px]">
-            We are a company that manages various children's schools that focus on quality education.
-            <br />
-            <br />
-            We prioritize the quality of education in this country to improve your child's non-academic intelligence.
-          </p>
-          <br />
-          <div className="absolute md:w-[460px]">
-            <img className="" src={Foto7} alt="Foto7" />
-          </div>
-
-          <img src={CloudDown} alt="CloudDown" className="mt-[51px]" />
-        </div>
-
-        {/* bagian 1 */}
-        {/* bagian 2 */}
-        <div className="w-1/3 relative h-screen">
-          <img className="absolute" src={CloudUp} alt="CloudUp" />
-          <div className="">
-            <div className="relative text-center text-textOpt mt-[100px]">
-              <p className="text-sizeSec font-bold">Rumah Cinta</p> <br />
-              <p className="text-sizeParagraph mx-[60px] leading-[14px]">
-                MeWell Mental Wellness merupakan konsultasi tentang Lorem ipsum dolor sit amet consectetur quas vel sint
-                commodi
-              </p>
-            </div>
-          </div>
-          <img className="-mt-[62px]" src={Chairs} alt="Chairs" />
-        </div>
-
-        {/* bagian 2 */}
-        {/* bagian 3 */}
-        <div className="w-1/3">
-          <div className="mx-[20px] mt-[3px]">
-            <img src={StarYellow} className="h-[170px]" alt="StarYellow" />
-          </div>
-          <div className="mx-[100px]">
-            <span className="text-[24px] font-bold">
-              Konsultasi <br /> Permasalahan
-            </span>
-            <div className="my-[5px]">
-              <p className="font-bold">Website</p>
-              <p className="text-[12px]">www.mewellenteramandeh.com</p>
-            </div>
-            <div className="my-[5px]">
-              <p className="font-bold">Email</p>
-              <p className="text-[12px]">psikologilenteramandeh@gmail.com</p>
-            </div>
-            <div className="my-[5px]">
-              <p className="font-bold">Social Media</p>
-              <p className="text-[12px]">@lenteramandeh</p>
-            </div>
-          </div>
-          <div className="absolute -mt-[100px]">
-            <img src={CloudDown} alt="" className="" />
-          </div>
-          <div className="absolute mt-[200px] md:w-[429px] w-full text-textOpt text-center">
-            <p className="w-full text-[14px]">Open Admission</p>
-            <p className="text-[24px] font-bold">12 Februari 2023</p>
-          </div>
-        </div>
-        {/* bagian 3 */}
         {/* regis psikolog */}
-        <div className="absolute w-[300px] md:w-[700px] text-white mt-[500px] mx-[30px] md:mx-[100px] md:mt-[900px]">
+        <div className="absolute mt-[500px] w-full text-white md:mx-[100px] md:mt-[900px] md:w-[300px] lg:mx-[30px] lg:w-[700px]">
           <p className="text-sizeSec font-bold">
             Mulai Perjalanan Anda <br />
           </p>
-          <p className="text-sizeSec mt-9 font-bold">
+          <p className="mt-9 text-sizeSec font-bold">
             Bersama Kami <br />
           </p>
-          <p className="text-[16px] mt-7">
+          <p className="mt-7 text-[16px]">
             Ayo bergabung bersama kami menjadi psikolog Klinik Psikoloig Lentera Mandeh Bersama, kita dapat memberikan
             dampak positif pada kehidupan dan kesejahteraan mental.{" "}
           </p>
           <div className="mt-7">
             <button
               onClick={handleRegisPsikolog}
-              className="h-10 bg-bgOpt hover:bg-bgOpt2 text-textOpt p-3 font-bold rounded-md"
+              className="h-10 rounded-md bg-bgOpt p-3 font-bold text-textOpt hover:bg-bgOpt2"
             >
               DAFTAR SEKARANG
             </button>
           </div>
         </div>
         <div></div>
-        <img src={RegisPsikolog} alt="" className="w-full h-auto" />
+        <img src={RegisPsikolog} alt="" className="h-auto w-full" />
 
         {/* regis psikolog */}
       </div>
       <Footer />
-    </div>
+    </>
   );
 }
 

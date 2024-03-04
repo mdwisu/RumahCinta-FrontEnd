@@ -73,6 +73,7 @@ import DetailKonsulUser from "./components/User/DetailKonsulUser";
 import FaqPage from "./pages/FaqPage/FaqPage";
 import ListFaqAdmin from "./components/Admin/faqAdmin/ListFaqAdmin";
 import EditFaqAdmin from "./components/Admin/faqAdmin/EditFaqAdmin";
+import Header2 from "./components/Header2";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -92,6 +93,7 @@ function App() {
           </div>
         ) : (
           <Routes>
+            <Route path="/header2" element={<Header2 />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/register/psikolog" element={<RegisterPsikolog />} />
