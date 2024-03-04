@@ -49,13 +49,15 @@ function DetailBlogPage() {
     <div>
       <Header />
       <div className="container mx-auto ">
-        <div className="max-w-3xl mx-auto py-6">
-          <h1 className=" text-2xl sm:text-4xl font-bold text-textSec text-center">{blog.title}</h1>
-          <p className="font-semibold text-lg text-[#71717a] text-center">Author: {blog.author}</p>
-          <p className="justify font-semibold text-lg text-[#71717a] text-center">
+        <div className="mx-auto max-w-3xl py-6">
+          <h1 className=" text-center text-4xl font-bold text-dark sm:text-4xl">{blog.title}</h1>
+          <p className="text-center text-lg font-semibold text-[#71717a]">Author: {blog.author}</p>
+          <p className="justify text-center text-lg font-semibold text-[#71717a]">
             Updated at: {dayjs(blog.UpdatedAt).locale("id").format("dddd, DD MMMM YYYY")}
           </p>
-          <ReactQuill value={replacedContent} readOnly={true} theme={"bubble"} />
+          {/* <ReactQuill value={replacedContent} readOnly={true} theme={"bubble"} /> */}
+          <p className="text-lg" dangerouslySetInnerHTML={{ __html: replacedContent }} />
+
           <style>
             {`
             .prose img {
@@ -65,8 +67,8 @@ function DetailBlogPage() {
           `}
           </style>
         </div>
-        <Link to="/blog" className=" text-white my-4">
-          <div className="w-100 h-50 bg-bgOpt2 hover:bg-bgOpt cursor-pointer border border-1 rounded-2xl m-5 text-center p-2">
+        <Link to="/blog" className=" my-4 text-white">
+          <div className="w-100 h-50 border-1 m-5 cursor-pointer rounded-2xl border bg-bgOpt2 p-2 text-center hover:bg-bgOpt">
             Selesai
           </div>
         </Link>

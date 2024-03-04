@@ -123,24 +123,6 @@ function Home() {
         </div>
       </div>
 
-      <div className="flex flex-wrap">
-        {/* regis psikolog */}
-        <div className="absolute mt-[500px] w-full text-white md:mx-[100px] md:mt-[900px] md:w-[300px] lg:mx-[30px] lg:w-[700px]">
-          <p className="text-sizeSec font-bold">
-            Mulai Perjalanan Anda <br />
-          </p>
-          <p className="mt-9 text-sizeSec font-bold">
-            Bersama Kami <br />
-          </p>
-          <p className="mt-7 text-[16px]">
-            Ayo bergabung bersama kami menjadi psikolog Klinik Psikoloig Lentera Mandeh Bersama, kita dapat memberikan
-            dampak positif pada kehidupan dan kesejahteraan mental.{" "}
-          </p>
-        </div>
-        <div></div>
-        <img src={RegisPsikolog} alt="" className="h-auto w-full" />
-        {/* regis psikolog */}
-      </div>
       <Footer />
     </>
   );
