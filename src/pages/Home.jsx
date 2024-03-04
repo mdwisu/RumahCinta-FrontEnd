@@ -136,18 +136,9 @@ function Home() {
             Ayo bergabung bersama kami menjadi psikolog Klinik Psikoloig Lentera Mandeh Bersama, kita dapat memberikan
             dampak positif pada kehidupan dan kesejahteraan mental.{" "}
           </p>
-          <div className="mt-7">
-            <button
-              onClick={handleRegisPsikolog}
-              className="h-10 rounded-md bg-bgOpt p-3 font-bold text-textOpt hover:bg-bgOpt2"
-            >
-              DAFTAR SEKARANG
-            </button>
-          </div>
         </div>
         <div></div>
         <img src={RegisPsikolog} alt="" className="h-auto w-full" />
-
         {/* regis psikolog */}
       </div>
       <Footer />
