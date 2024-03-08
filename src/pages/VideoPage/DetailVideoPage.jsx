@@ -58,9 +58,10 @@ function DetailVideoPage() {
     <div>
       <Header />
       <div className="container mx-auto ">
-        <div className="max-w-3xl mx-auto py-6">
-          <div className="flex items-center justify-center my-5">
+        <div className="mx-auto max-w-3xl py-6">
+          <div className="my-5 flex items-center justify-center">
             <iframe
+              className="aspect-video"
               width="560"
               height="315"
               src={`https://www.youtube.com/embed/${video.videoLink}`}
@@ -71,9 +72,9 @@ function DetailVideoPage() {
             ></iframe>
           </div>
 
-          <h1 className=" text-2xl sm:text-4xl font-bold text-textSec text-center">{video.title}</h1>
-          <p className="font-semibold text-lg text-[#71717a] text-center">Author: {video.author}</p>
-          <p className="justify font-semibold text-lg text-[#71717a] text-center">
+          <h1 className=" text-center text-2xl font-bold text-textSec sm:text-4xl">{video.title}</h1>
+          <p className="text-center text-lg font-semibold text-[#71717a]">Author: {video.author}</p>
+          <p className="justify text-center text-lg font-semibold text-[#71717a]">
             Updated at: {dayjs(video.UpdatedAt).locale("id").format("dddd, DD MMMM YYYY")}
           </p>
           <ReactQuill value={replacedContent} readOnly={true} theme={"bubble"} />
@@ -90,7 +91,7 @@ function DetailVideoPage() {
           <button
             onClick={handleGoBack}
             type="button"
-            className="bg-bgOpt2 text-white my-4 w-full hover:bg-bgOpt cursor-pointer border border-1 rounded-2xl m-5 text-center p-2"
+            className="border-1 m-5 my-4 w-full cursor-pointer rounded-2xl border bg-bgOpt2 p-2 text-center text-white hover:bg-bgOpt"
           >
             Selesai
           </button>

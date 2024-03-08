@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .layanan-button {
+    @apply w-full rounded-2xl bg-blue-500 py-8 text-lg font-semibold text-black hover:opacity-90;
+  }
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 
 /* Tag Customize */

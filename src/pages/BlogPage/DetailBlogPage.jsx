@@ -48,15 +48,15 @@ function DetailBlogPage() {
   return (
     <div>
       <Header />
-      <div className="container mx-auto ">
-        <div className="mx-auto max-w-3xl py-6">
+      <div className="container mx-auto px-6">
+        <div className="mx-auto max-w-4xl py-6">
           <h1 className=" text-center text-4xl font-bold text-dark sm:text-4xl">{blog.title}</h1>
           <p className="text-center text-lg font-semibold text-[#71717a]">Author: {blog.author}</p>
           <p className="justify text-center text-lg font-semibold text-[#71717a]">
             Updated at: {dayjs(blog.UpdatedAt).locale("id").format("dddd, DD MMMM YYYY")}
           </p>
           {/* <ReactQuill value={replacedContent} readOnly={true} theme={"bubble"} /> */}
-          <p className="text-lg" dangerouslySetInnerHTML={{ __html: replacedContent }} />
+          <p className="text-xl leading-loose" dangerouslySetInnerHTML={{ __html: replacedContent }} />
 
           <style>
             {`

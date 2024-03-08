@@ -1,47 +1,41 @@
-import React from 'react';
-import LogoMandeh from '../image/logo-mandeh.png';
+import React from "react";
+import LogoMandeh from "../image/LogoRumahCinta.png";
 
 function Footer() {
   return (
     <div className="footer">
-      <div className="h-[250px] bg-bgSec bottom-0  w-full flex items-center justify-center gap-3 md:gap-10">
+      <div className="bottom-0 flex h-[250px]  w-full items-center justify-center gap-3 bg-bgSec md:gap-10">
         <div className="w-[100px]  md:w-[150px]">
           <img src={LogoMandeh} alt="LogoMandeh" />
         </div>
         <div className="text-textSec">
           <div className="my-[10px]">
-            <p className="font-bold text-[14px] md:text-[18px]">
-              Customer Service
-            </p>
-            <p className="text-[10px] md:text-[12px]">+628123456 (Whatsapp)</p>
-          </div>
-          <div className="my-[10px]">
-            <p className="font-bold text-[14px] md:text-[18px]">Ikuti Kami</p>
+            <p className="text-[14px] font-bold md:text-[18px]">Customer Service</p>
             <p className="text-[10px] md:text-[12px]">
-              @lenteramandeh (Instagram)
+              +0817-980-3739
+              <br /> +0857-1847-0247 (Whatsapp)
             </p>
           </div>
           <div className="my-[10px]">
-            <p className="font-bold text-[14px] md:text-[18px]">Email</p>
-            <p className="text-[10px] md:text-[12px]">
-              psikologilenteramandeh@gmail.com
-            </p>
+            <p className="text-[14px] font-bold md:text-[18px]">Ikuti Kami</p>
+            <p className="text-[10px] md:text-[12px]">@lenteramandeh (Instagram)</p>
+          </div>
+          <div className="my-[10px]">
+            <p className="text-[14px] font-bold md:text-[18px]">Email</p>
+            <p className="text-[10px] md:text-[12px]">psikologilenteramandeh@gmail.com</p>
           </div>
         </div>
 
-        <div className="text-textSec w-[180px] md:w-[300px]">
+        <div className="w-[180px] text-textSec md:w-[300px]">
           <div className="my-[10px]">
-            <p className="font-bold text-[14px] md:text-[18px]">Alamat</p>
+            <p className="text-[14px] font-bold md:text-[18px]">Alamat</p>
             <p className="text-[10px] md:text-[12px]">
-              Jl. Batang Marao No.1, Alai Parak Kopi, Kec. Padang Utara, Kota
-              Padang, Sumatera Barat 25173
+              Jalan Raya Pemda-Karadenan No. 25, RT 001/004, Kel. Karadenan, Kec. Cibinong, Kab. Bogor 16913
             </p>
           </div>
           <div className="my-[10px]">
-            <p className="font-bold text-[14px] md:text-[18px]">MeWell</p>
-            <p className="text-[10px] md:text-[12px]">
-              Copyright © 2023 Mental Wellness
-            </p>
+            <p className="text-[14px] font-bold md:text-[18px]">MeWell</p>
+            <p className="text-[10px] md:text-[12px]">Copyright © 2023 Mental Wellness</p>
           </div>
         </div>
       </div>

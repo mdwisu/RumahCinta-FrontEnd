@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import Courosel1 from "../courosel/Beranda.png";
 
 const images = [
-  "https://source.unsplash.com/1900x640?computer&text=Slide+1",
+  Courosel1,
   "https://source.unsplash.com/1900x640?computer&text=Slide+2",
   "https://source.unsplash.com/1900x640?computer&text=Slide+3",
 ];
@@ -9,21 +10,21 @@ const images = [
 export default function Carousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((currentSlide + 1) % images.length);
-    }, 3000); // Ganti 3000 dengan interval slide yang diinginkan (dalam milidetik)
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentSlide((currentSlide + 1) % images.length);
+  //   }, 7000); // Ganti 3000 dengan interval slide yang diinginkan (dalam milidetik)
 
-    return () => clearInterval(interval);
-  }, [currentSlide]);
+  //   return () => clearInterval(interval);
+  // }, [currentSlide]);
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
   };
 
   return (
-    <div className="relative overflow-hidden">
-      <div className="flex h-60 lg:h-auto">
+    <div id="default-carousel" className="relative w-full overflow-hidden bg-red-300">
+      <div className="flex h-auto overflow-hidden object-cover lg:h-[75%]">
         {images.map((image, index) => (
           <img
             key={index}
