@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/authSlice";
 import { RiAdminLine, RiLogoutBoxLine, RiProfileLine } from "react-icons/ri";
 import ContactAndLocation from "../components/contactAndLocation";
+import DropdownButton from "./DropdownButton";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +25,6 @@ function Header() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "system");
   const element = document.documentElement;
   const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
-  console.log(darkQuery, "darkQuery");
 
   const options = [
     { icon: "sunny", text: "light" },
@@ -36,10 +36,12 @@ function Header() {
     setDropdownOpen(!dropdownOpen);
   };
 
+  // theme button
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  // logout
   const handleLogout = () => {
     dispatch(logout());
     setDropdownOpen(false);
@@ -82,6 +84,25 @@ function Header() {
     }
   });
   // !end
+  // ! handle scroll nav
+  const [showHeader, setShowHeader] = useState(true);
+  // Function to handle scroll event
+  const handleScroll = () => {
+    const currentScrollY = window.pageYOffset;
+
+    if (prevScrollY.current > currentScrollY) {
+      // Scrolling up, show the header
+      setShowHeader(true);
+    } else {
+      // Scrolling down, hide the header
+      setShowHeader(false);
+    }
+
+    prevScrollY.current = currentScrollY;
+  };
+  // Reference to store previous scroll position
+  const prevScrollY = useRef(0);
+  // !end
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -90,8 +111,11 @@ function Header() {
       }
     };
     document.addEventListener("click", handleOutsideClick);
+    //! Add scroll event listener
+    window.addEventListener("scroll", handleScroll);
     return () => {
       document.removeEventListener("click", handleOutsideClick);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -110,8 +134,31 @@ function Header() {
   }
   console.log(user?.role);
 
+  const layanans = [
+    { label: "Option 1", href: "#" },
+    { label: "Option 2", href: "#" },
+    { label: "Option 3", href: "#" },
+    { label: "Option 3", href: "#" },
+    { label: "Option 3", href: "#" },
+    { label: "Option 3", href: "#" },
+    { label: "Option 3", href: "#" },
+    { label: "Option 3", href: "#" },
+    { label: "Option 3", href: "#" },
+    { label: "Option 3", href: "#" },
+  ];
+  const kontens = [
+    { label: "Blog", href: "/blog" },
+    { label: "Video", href: "/video" },
+  ];
+
   return (
-    <nav className={`dark:text-bold z-10 w-full bg-bgSec text-textPri shadow-xl dark:bg-purple-dark dark:text-white`}>
+    <nav
+      className={`${
+        showHeader
+          ? "lg:pointer-events-auto lg:opacity-100 lg:transition-opacity lg:duration-500"
+          : "lg:pointer-events-none lg:opacity-0 lg:duration-700"
+      } dark:text-bold z-50 w-full bg-bgSec text-textPri shadow-xl dark:bg-purple-dark dark:text-white`}
+    >
       <div className="my-3 flex flex-col items-center justify-between lg:flex-row">
         <div className="flex items-center justify-between lg:border-b-0">
           <div className="w-full p-2">
@@ -147,7 +194,7 @@ function Header() {
                   ))}
                 </div>
                 {/* tombol dropDown */}
-                <div className="">
+                <div className="relative">
                   <svg
                     className="h-10 w-6"
                     xmlns="http://www.w3.org/2000/svg"
@@ -183,23 +230,19 @@ function Header() {
         <div
           className={`${isOpen ? "block" : "hidden"} w-full flex-col items-center justify-between lg:flex lg:flex-row`}
         >
-          <div className="ml-3 flex flex-col items-center gap-4 lg:flex-row">
-            <Link to={"/"}>
+          <div className="ml-3 flex flex-col items-center gap-4 overflow-auto lg:flex-row">
+            <Link to={"/"} className="hidden self-center font-semibold lg:block">
               <img src={LogoRumahCinta} alt="logoRumahCinta" className="w-8 lg:w-10" />
             </Link>
-            <Link to={"/"} className="hover:text-gray-500">
+            <Link to={"/"} className="font-semibold hover:text-gray-500">
               Home
             </Link>
-            <Link to={"/blog"} className="hover:text-gray-500">
-              Blog
-            </Link>
-            <Link to={"/video"} className="hover:text-gray-500">
-              Video
-            </Link>
-            <Link to={"/tes"} className="hover:text-gray-500">
+            <DropdownButton title="Konten" items={kontens} />
+            <DropdownButton title="layanan" items={layanans} />
+            <Link to={"/tes"} className="font-semibold hover:text-gray-500">
               Tes Psikologi
             </Link>
-            <Link to={"/konsultasi"} className="hover:text-gray-500">
+            <Link to={"/konsultasi"} className="font-semibold hover:text-gray-500">
               Konsultasi
             </Link>
           </div>
@@ -218,7 +261,7 @@ function Header() {
                     {user.name}
                   </div>
                   {dropdownOpen && (
-                    <ul className="dropdown-menu dropdown-menu fixed right-5 float-left m-0 mt-2 ml-4 w-48 min-w-max list-none items-center rounded-lg border-none bg-bgPri bg-clip-padding py-2 text-left text-base text-textSec shadow-lg">
+                    <ul className="fixed right-5 z-50 float-left m-0 mt-2 ml-4 w-48 min-w-max list-none items-center overflow-y-auto rounded-lg border-none bg-bgPri bg-clip-padding py-2 text-left text-base text-textSec shadow-lg">
                       <li>
                         <Link className="flex items-center gap-2 px-4 py-2 hover:bg-gray-200" to={linkTo}>
                           <RiAdminLine /> Dashboard
@@ -244,31 +287,32 @@ function Header() {
                 </div>
               </div>
             ) : (
-              <div className="my-3 mr-8 flex flex-col items-center gap-3 lg:flex-row">
-                {/* Tombol untuk mengubah tema */}
-                <div className=" hidden rounded bg-gray-100 duration-100 dark:bg-slate-800 lg:flex">
-                  {options?.map((opt) => (
-                    <button
-                      key={opt.text}
-                      onClick={() => setTheme(opt.text)}
-                      className={`m-1 h-8 w-8 rounded-full text-xl leading-9 ${theme === opt.text && "text-sky-600"}`}
-                    >
-                      <ion-icon name={opt.icon}></ion-icon>
-                    </button>
-                  ))}
+              <div className="flex w-full justify-center">
+                <div className="my-3 flex flex-col justify-center gap-3 lg:flex-row">
+                  <div className="hidden rounded bg-gray-100 duration-100 dark:bg-slate-800 lg:flex">
+                    {options?.map((opt) => (
+                      <button
+                        key={opt.text}
+                        onClick={() => setTheme(opt.text)}
+                        className={`m-1 h-8 w-8 rounded-full text-xl leading-9 ${theme === opt.text && "text-sky-600"}`}
+                      >
+                        <ion-icon name={opt.icon}></ion-icon>
+                      </button>
+                    ))}
+                  </div>
+                  <Link
+                    className="rounded-2xl bg-bgOpt2 px-9 py-2 text-white hover:bg-bgOpt dark:bg-gray-800 dark:hover:bg-gray-600"
+                    to="/login"
+                  >
+                    Masuk
+                  </Link>
+                  <Link
+                    className="rounded-2xl bg-bgFunc px-9 py-2 text-white hover:bg-bgFunc3 dark:bg-gray-800 dark:hover:bg-gray-600"
+                    to="/register"
+                  >
+                    Daftar
+                  </Link>
                 </div>
-                <Link
-                  className="rounded-2xl bg-bgOpt2 px-9 py-1 text-white hover:bg-bgOpt dark:bg-gray-800 dark:hover:bg-gray-600"
-                  to="/login"
-                >
-                  Masuk
-                </Link>
-                <Link
-                  className="rounded-2xl bg-bgFunc px-9 py-1 text-white hover:bg-bgFunc3 dark:bg-gray-800 dark:hover:bg-gray-600"
-                  to="/register"
-                >
-                  Daftar
-                </Link>
               </div>
             )}
           </div>

@@ -75,24 +75,26 @@ import ListFaqAdmin from "./components/Admin/faqAdmin/ListFaqAdmin";
 import EditFaqAdmin from "./components/Admin/faqAdmin/EditFaqAdmin";
 import Header2 from "./components/Header2";
 import PsikoEdukasi from "./pages/LayananPage/PsikoEdukasi";
+import Konsultasi from "./pages/LayananPage/Konsultasi";
+import PotensiAkademik from "./pages/LayananPage/PotensiAkademik";
 
 function App() {
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+  // const [loading, setLoading] = useState(true);
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     setLoading(false);
+  //   }, 2000);
 
-    return () => clearTimeout(timeout);
-  }, []);
+  //   return () => clearTimeout(timeout);
+  // }, []);
 
   return (
     <div className="App">
-      {loading ? (
+      {/* {loading ? (
         <div className="flex h-screen items-center justify-center">
           <div className="loader mb-4 h-12 w-12 rounded-full border-4 border-t-4 border-bgFunc ease-linear"></div>
         </div>
-      ) : (
+      ) : ()} */}
         <Routes>
           <Route path="/header2" element={<Header2 />} />
           <Route path="/login" element={<Login />} />
@@ -124,7 +126,9 @@ function App() {
             }
           />
 
-          <Route path="/layanan/psikoedukasi" element={<PsikoEdukasi />} />
+          <Route path="/layanan/psiko-edukasi" element={<PsikoEdukasi />} />
+          <Route path="/layanan/konsultasi" element={<Konsultasi />} />
+          <Route path="/layanan/potensi-akademik" element={<PotensiAkademik />} />
           <Route path="/blog" element={<ListBlogPage />} />
           <Route path="/blog/:id" element={<DetailBlogPage />} />
           <Route path="/video" element={<ListVideo />} />
@@ -298,7 +302,7 @@ function App() {
 
           {/* psikolog router */}
         </Routes>
-      )}
+      
     </div>
   );
 }

@@ -45,6 +45,28 @@ module.exports = {
         },
         primary: "#a855f7",
         dark: "#0f172a",
+        lavender: {
+          100: "#F3F0FF", // Very light lavender
+          200: "#E5DBFF", // Light lavender
+          300: "#D8BDFF", // Lavender blue
+          400: "#C594FF", // Pale lavender
+          500: "#B370FF", // Medium lavender
+          600: "#9B51E0", // Rich lavender
+          700: "#7E3ABD", // Dark lavender
+          800: "#653399", // Deep lavender
+          900: "#4C2575", // Very dark lavender
+        },
+        "dark-mode": {
+          100: "#1B1B1B", // Dark gray
+          200: "#212121", // Slightly lighter dark gray
+          300: "#2D2D2D", // Slightly darker dark gray
+          400: "#383838", // Medium dark gray
+          500: "#444444", // Gray
+          600: "#5C5C5C", // Light gray
+          700: "#737373", // Slightly lighter gray
+          800: "#8B8B8B", // Even lighter gray
+          900: "#A3A3A3", // Very light gray
+        },
       },
       fontSize: {
         sizePri: 28.5,
@@ -54,5 +76,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/line-clamp'),],
 };

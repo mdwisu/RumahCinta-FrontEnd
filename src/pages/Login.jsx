@@ -78,8 +78,9 @@ const Login = () => {
         break;
       case "psikolog":
         navigate("/psikolog/dashboard");
-      default:
         break;
+      default:
+        navigate("/");
     }
   };
   useEffect(() => {
@@ -89,33 +90,33 @@ const Login = () => {
     <div>
       {/* image logo */}
       <div className="absolute opacity-25">
-        <img src={LogoMandehLogin} className="h-screen" />
+        <img src={LogoMandehLogin} className="h-screen" alt="logo mandeh login" />
       </div>
       {/* image logo */}
       {/* image logo lengkap */}
       <div className="relative">
-        <img src={LogoMandeh} className="w-[250px] absolute right-0 m-5" />
+        <img src={LogoMandeh} className="absolute right-0 m-5 w-[250px]" alt="logo mandeh" />
       </div>
       {/* image logo lengkap */}
       {/* card */}
-      <div className="flex flex-col h-screen justify-center">
-        <div className="m-auto bg-bgSec w-full max-w-sm p-4 border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
+      <div className="flex h-screen flex-col justify-center">
+        <div className="m-auto w-full max-w-sm rounded-lg border border-gray-200 bg-bgSec p-4 shadow sm:p-6 md:p-8">
           <form className="space-y-6" onSubmit={handleSubmit}>
-            <h5 className="text-[54px] font-semibold text-textPri text-center">Login</h5>
-            <p className="text-sm text-gray-500  text-center font-medium">Silahkan masukan email dan password</p>
+            <h5 className="text-center text-[54px] font-semibold text-textPri">Login</h5>
+            <p className="text-center text-sm  font-medium text-gray-500">Silahkan masukan email dan password</p>
             <div>
               <input
                 type="email"
                 name="email"
                 id="email"
-                className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-1 focus:outline-none focus:ring-bgOpt2 focus:border-bgOpt2 block w-full p-2.5"
+                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm focus:border-bgOpt2 focus:outline-none focus:ring-1 focus:ring-bgOpt2"
                 placeholder="name@company.com"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
               {error && error === "Cannot read properties of null (reading '_id')" && (
-                <span className="text-red-500 text-xs mt-1">*Email yang dimasukkan belum terdaftar.</span>
+                <span className="mt-1 text-xs text-red-500">*Email yang dimasukkan belum terdaftar.</span>
               )}
             </div>
 
@@ -125,23 +126,23 @@ const Login = () => {
                 name="password"
                 id="password"
                 placeholder="••••••••"
-                className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-1 focus:outline-none focus:ring-bgOpt2 focus:border-bgOpt2 block w-full p-2.5"
+                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm focus:border-bgOpt2 focus:outline-none focus:ring-1 focus:ring-bgOpt2"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
               {error && error === "Password is not correct" && (
-                <span className="text-red-500 text-xs mt-1">*Password yang dimasukkan salah.</span>
+                <span className="mt-1 text-xs text-red-500">*Password yang dimasukkan salah.</span>
               )}
             </div>
 
             <button
               type="submit"
-              className="w-full text-white bg-bgOpt hover:bg-bgOpt2 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              className="w-full rounded-lg bg-bgOpt px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-bgOpt2 focus:outline-none focus:ring-4 focus:ring-blue-300"
             >
               Masuk
             </button>
-            <div className="text-sm font-medium text-gray-500 text-center ">
+            <div className="text-center text-sm font-medium text-gray-500 ">
               Belum mempunyai akun? daftar{" "}
               <a href={"/register"} className="text-bgOpt2 hover:underline ">
                 disini
@@ -153,7 +154,7 @@ const Login = () => {
 
       {/* card */}
       {/* tombol back */}
-      <div className="flex items-center float-right mr-10 -mt-8 text-bgFunc hover:text-bgFunc2 font-medium ">
+      <div className="float-right mr-10 -mt-8 flex items-center font-medium text-bgFunc hover:text-bgFunc2 ">
         <div>
           <Link to={"/"} className="">
             Kembali{" "}

@@ -24,6 +24,8 @@ export const fetchUser = createAsyncThunk("auth/fetchUser", async (token, thunkA
 export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
     localStorage.removeItem("token");
+    localStorage.removeItem("userData");
+    localStorage.removeItem("user_id");
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
