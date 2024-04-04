@@ -10,7 +10,7 @@ const initialState = {
   isLogin: false,
 };
 
-// Membuat thunk untuk mengambil user
+// !Membuat thunk untuk mengambil user
 export const fetchUser = createAsyncThunk("auth/fetchUser", async (token, thunkAPI) => {
   try {
     const decodedToken = jwt_decode(token);
@@ -21,13 +21,42 @@ export const fetchUser = createAsyncThunk("auth/fetchUser", async (token, thunkA
   }
 });
 
+// !logout
 export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
     localStorage.removeItem("token");
-    localStorage.removeItem("userData");
+    localStorage.removeItem("user");
     localStorage.removeItem("user_id");
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+// !Thunk API untuk memvalidasi token JWT
+export const validateToken = createAsyncThunk("auth/validateToken", async (_, { rejectWithValue }) => {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    return rejectWithValue("Token tidak tersedia");
+  }
+
+  try {
+    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/auth/validate-token`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Token tidak valid");
+    }
+
+    return await response.json();
+  } catch (error) {
+    localStorage.removeItem("token");
+    return rejectWithValue(error.message);
   }
 });
 
@@ -76,6 +105,21 @@ export const authSlice = createSlice({
       })
       .addCase(logout.rejected, (state, action) => {
         state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(validateToken.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(validateToken.fulfilled, (state) => {
+        state.isLoading = false;
+        state.isAuthenticated = true;
+        localStorage.setItem("isAuthenticated", "true"); // Simpan ke localStorage
+      })
+      .addCase(validateToken.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isAuthenticated = false;
+        localStorage.removeItem("isAuthenticated"); // Hapus dari localStorage
         state.error = action.payload;
       });
   },
