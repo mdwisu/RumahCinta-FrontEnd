@@ -39,7 +39,6 @@ import EditKonsulAdminPage from "./pages/Admin/konsultasiAdminPage/EditKonsulAdm
 import ListBlogAdminPage from "./pages/Admin/blogAdminPage/ListBlogAdminPage";
 import EditBlogAdminPage from "./pages/Admin/blogAdminPage/EditBlogAdminPage";
 import CreateBlogAdminPage from "./pages/Admin/blogAdminPage/CreateBlogAdminPage";
-import BlogIcon from "./components/Admin/assets/BlogIcon";
 // user
 import ListUserAdminPage from "./pages/Admin/userAdminPage/ListUserAdminPage";
 import EditUserAdminPage from "./pages/Admin/userAdminPage/EditUserAdminPage";
@@ -74,9 +73,7 @@ import FaqPage from "./pages/FaqPage/FaqPage";
 import ListFaqAdmin from "./components/Admin/faqAdmin/ListFaqAdmin";
 import EditFaqAdmin from "./components/Admin/faqAdmin/EditFaqAdmin";
 import Header2 from "./components/Header2";
-import PsikoEdukasi from "./pages/LayananPage/PsikoEdukasi";
-import Konsultasi from "./pages/LayananPage/Konsultasi";
-import PotensiAkademik from "./pages/LayananPage/PotensiAkademik";
+import LayananDetail from "./pages/LayananPage/LayananDetail";
 
 function App() {
   // const [loading, setLoading] = useState(true);
@@ -95,214 +92,214 @@ function App() {
           <div className="loader mb-4 h-12 w-12 rounded-full border-4 border-t-4 border-bgFunc ease-linear"></div>
         </div>
       ) : ()} */}
-        <Routes>
-          <Route path="/header2" element={<Header2 />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/register/psikolog" element={<RegisterPsikolog />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/faq" element={<FaqPage />} />
-          {/* user router*/}
+      <Routes>
+        <Route path="/header2" element={<Header2 />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/register/psikolog" element={<RegisterPsikolog />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/faq" element={<FaqPage />} />
+        {/* user router*/}
 
-          <Route path="/user/dashboard" element={<DashboardUser />} />
-          <Route path="/user/konsul" element={<ListKonsulUser />} />
-          <Route path="/user/konsul/:id/chat" element={<ChatPasienUser />} />
-          <Route
-            path="/user/konsul/:id/detail"
-            element={
-              <UserDashboardGuard>
-                <DetailKonsulUser />
-              </UserDashboardGuard>
-            }
-          />
+        <Route path="/user/dashboard" element={<DashboardUser />} />
+        <Route path="/user/konsul" element={<ListKonsulUser />} />
+        <Route path="/user/konsul/:id/chat" element={<ChatPasienUser />} />
+        <Route
+          path="/user/konsul/:id/detail"
+          element={
+            <UserDashboardGuard>
+              <DetailKonsulUser />
+            </UserDashboardGuard>
+          }
+        />
 
-          <Route path="/user/status" element={<StatusPenerimaan />} />
-          <Route
-            path="/profile"
-            element={
-              <LoginGuard>
-                <ProfilePage />
-              </LoginGuard>
-            }
-          />
+        <Route path="/user/status" element={<StatusPenerimaan />} />
+        <Route
+          path="/profile"
+          element={
+            <LoginGuard>
+              <ProfilePage />
+            </LoginGuard>
+          }
+        />
 
-          <Route path="/layanan/psiko-edukasi" element={<PsikoEdukasi />} />
+        {/* <Route path="/layanan/psiko-edukasi" element={<PsikoEdukasi />} />
           <Route path="/layanan/konsultasi" element={<Konsultasi />} />
-          <Route path="/layanan/potensi-akademik" element={<PotensiAkademik />} />
-          <Route path="/blog" element={<ListBlogPage />} />
-          <Route path="/blog/:id" element={<DetailBlogPage />} />
-          <Route path="/video" element={<ListVideo />} />
-          <Route path="/video/:id" element={<DetailVideoPage />} />
-          <Route path="/konsultasi" element={<DetailKonsultasiPage />} />
-          <Route path="/konsultasi/form-konsultasi" element={<FormKonsultasiPage />} />
-          <Route
-            path="/konsultasi/:id/pilih-psikolog"
-            element={
-              <LoginGuard>
-                <ChoosePsikologPage />
-              </LoginGuard>
-            }
-          />
-          <Route path="/konsultasi/:id/detail-konsul" element={<DetailKonsultasiPasien />} />
-          <Route path="/konsultasi/:id/upload-payment" element={<UploadPayment />} />
-          <Route path="/konsultasi/success" element={<SuccessForm />} />
-          <Route path="/tes" element={<ListTes />} />
-          <Route path="/tes/detail-ie" element={<DetailTesIE />} />
-          <Route path="/tes/detail-gk" element={<DetailKetergantunganPage />} />
-          {/* user router*/}
+          <Route path="/layanan/potensi-akademik" element={<PotensiAkademik />} /> */}
+        <Route path="/layanan/:id" element={<LayananDetail />} />
+        <Route path="/blogs" element={<ListBlogPage />} />
+        <Route path="/blogs/:id" element={<DetailBlogPage />} />
+        <Route path="/videos" element={<ListVideo />} />
+        <Route path="/videos/:id" element={<DetailVideoPage />} />
+        <Route path="/konsultasi" element={<DetailKonsultasiPage />} />
+        <Route path="/konsultasi/form-konsultasi" element={<FormKonsultasiPage />} />
+        <Route
+          path="/konsultasi/:id/pilih-psikolog"
+          element={
+            <LoginGuard>
+              <ChoosePsikologPage />
+            </LoginGuard>
+          }
+        />
+        <Route path="/konsultasi/:id/detail-konsul" element={<DetailKonsultasiPasien />} />
+        <Route path="/konsultasi/:id/upload-payment" element={<UploadPayment />} />
+        <Route path="/konsultasi/success" element={<SuccessForm />} />
+        <Route path="/tes" element={<ListTes />} />
+        <Route path="/tes/detail-ie" element={<DetailTesIE />} />
+        <Route path="/tes/detail-gk" element={<DetailKetergantunganPage />} />
+        {/* user router*/}
 
-          {/* admin router */}
-          <Route
-            path="/admin/dashboard"
-            element={
-              <AdminDashboardGuard>
-                <DashboardAdminPage />
-              </AdminDashboardGuard>
-            }
-          />
-          <Route
-            path="/admin/blog"
-            element={
-              <AdminDashboardGuard>
-                <ListBlogAdminPage />
-              </AdminDashboardGuard>
-            }
-          />
-          <Route
-            path="/admin/video"
-            element={
-              <AdminDashboardGuard>
-                <ListVideoAdminPage />
-              </AdminDashboardGuard>
-            }
-          />
-          <Route
-            path="/admin/konsul"
-            element={
-              <AdminDashboardGuard>
-                <ListKonsulAdminPage />
-              </AdminDashboardGuard>
-            }
-          />
-          <Route
-            path="/admin/konsul/:id/detail"
-            element={
-              <AdminDashboardGuard>
-                <DetailKonsulAdminPage />
-              </AdminDashboardGuard>
-            }
-          />
-          <Route path="/admin/konsul/:id/edit" element={<EditKonsulAdminPage />} />
-          <Route
-            path="/admin/blog/create-blog"
-            element={
-              <AdminDashboardGuard>
-                <CreateBlogAdminPage />
-              </AdminDashboardGuard>
-            }
-          />
-          <Route
-            path="/admin/blog/:id/edit"
-            element={
-              <AdminDashboardGuard>
-                <EditBlogAdminPage />
-              </AdminDashboardGuard>
-            }
-          />
-          <Route
-            path="/admin/video"
-            element={
-              <AdminDashboardGuard>
-                <ListVideoAdminPage />
-              </AdminDashboardGuard>
-            }
-          />
-          <Route
-            path="/admin/video/create-video"
-            element={
-              <AdminDashboardGuard>
-                <CreateVideoAdminPage />
-              </AdminDashboardGuard>
-            }
-          />
-          <Route
-            path="/admin/video/:id/edit"
-            element={
-              <AdminDashboardGuard>
-                <EditVideoAdminPage />
-              </AdminDashboardGuard>
-            }
-          />
-          <Route path="/admin/user" element={<ListUserAdminPage />} />
-          <Route path="/admin/user/create-user" element={<CreateUserAdminPage />} />
-          <Route path="/admin/user/:id/edit" element={<EditUserAdminPage />} />
-          <Route path="/admin/user/:id/detail" element={<DetailUserAdminPage />} />
-          <Route
-            path="/admin/psikolog"
-            element={
-              <AdminDashboardGuard>
-                <ListPsikologAdminPage />
-              </AdminDashboardGuard>
-            }
-          />
-          <Route
-            path="/admin/psikolog/:psikolog_id/edit"
-            element={
-              <AdminDashboardGuard>
-                <EditPsikologAdminPage />
-              </AdminDashboardGuard>
-            }
-          />
-          <Route
-            path="/admin/psikolog/:psikolog_id/detail"
-            element={
-              <AdminDashboardGuard>
-                <DetailPsikologAdmin />
-              </AdminDashboardGuard>
-            }
-          />
-          {/* pembayaran */}
-          <Route
-            path="/admin/payment"
-            element={
-              <AdminDashboardGuard>
-                <ListPaymentAdminPage />
-              </AdminDashboardGuard>
-            }
-          />
-          <Route
-            path="/admin/payment/:id/edit"
-            element={
-              <AdminDashboardGuard>
-                <EditPaymentAdminPage />
-              </AdminDashboardGuard>
-            }
-          />
-          <Route
-            path="/admin/payment/:id/detail"
-            element={
-              <AdminDashboardGuard>
-                <DetailPaymentAdminPage />
-              </AdminDashboardGuard>
-            }
-          />
+        {/* admin router */}
+        <Route
+          path="/admin/dashboard"
+          element={
+            <AdminDashboardGuard>
+              <DashboardAdminPage />
+            </AdminDashboardGuard>
+          }
+        />
+        <Route
+          path="/admin/blog"
+          element={
+            <AdminDashboardGuard>
+              <ListBlogAdminPage />
+            </AdminDashboardGuard>
+          }
+        />
+        <Route
+          path="/admin/video"
+          element={
+            <AdminDashboardGuard>
+              <ListVideoAdminPage />
+            </AdminDashboardGuard>
+          }
+        />
+        <Route
+          path="/admin/konsul"
+          element={
+            <AdminDashboardGuard>
+              <ListKonsulAdminPage />
+            </AdminDashboardGuard>
+          }
+        />
+        <Route
+          path="/admin/konsul/:id/detail"
+          element={
+            <AdminDashboardGuard>
+              <DetailKonsulAdminPage />
+            </AdminDashboardGuard>
+          }
+        />
+        <Route path="/admin/konsul/:id/edit" element={<EditKonsulAdminPage />} />
+        <Route
+          path="/admin/blog/create-blog"
+          element={
+            <AdminDashboardGuard>
+              <CreateBlogAdminPage />
+            </AdminDashboardGuard>
+          }
+        />
+        <Route
+          path="/admin/blog/:id/edit"
+          element={
+            <AdminDashboardGuard>
+              <EditBlogAdminPage />
+            </AdminDashboardGuard>
+          }
+        />
+        <Route
+          path="/admin/video"
+          element={
+            <AdminDashboardGuard>
+              <ListVideoAdminPage />
+            </AdminDashboardGuard>
+          }
+        />
+        <Route
+          path="/admin/video/create-video"
+          element={
+            <AdminDashboardGuard>
+              <CreateVideoAdminPage />
+            </AdminDashboardGuard>
+          }
+        />
+        <Route
+          path="/admin/video/:id/edit"
+          element={
+            <AdminDashboardGuard>
+              <EditVideoAdminPage />
+            </AdminDashboardGuard>
+          }
+        />
+        <Route path="/admin/user" element={<ListUserAdminPage />} />
+        <Route path="/admin/user/create-user" element={<CreateUserAdminPage />} />
+        <Route path="/admin/user/:id/edit" element={<EditUserAdminPage />} />
+        <Route path="/admin/user/:id/detail" element={<DetailUserAdminPage />} />
+        <Route
+          path="/admin/psikolog"
+          element={
+            <AdminDashboardGuard>
+              <ListPsikologAdminPage />
+            </AdminDashboardGuard>
+          }
+        />
+        <Route
+          path="/admin/psikolog/:psikolog_id/edit"
+          element={
+            <AdminDashboardGuard>
+              <EditPsikologAdminPage />
+            </AdminDashboardGuard>
+          }
+        />
+        <Route
+          path="/admin/psikolog/:psikolog_id/detail"
+          element={
+            <AdminDashboardGuard>
+              <DetailPsikologAdmin />
+            </AdminDashboardGuard>
+          }
+        />
+        {/* pembayaran */}
+        <Route
+          path="/admin/payment"
+          element={
+            <AdminDashboardGuard>
+              <ListPaymentAdminPage />
+            </AdminDashboardGuard>
+          }
+        />
+        <Route
+          path="/admin/payment/:id/edit"
+          element={
+            <AdminDashboardGuard>
+              <EditPaymentAdminPage />
+            </AdminDashboardGuard>
+          }
+        />
+        <Route
+          path="/admin/payment/:id/detail"
+          element={
+            <AdminDashboardGuard>
+              <DetailPaymentAdminPage />
+            </AdminDashboardGuard>
+          }
+        />
 
-          <Route path="/admin/faq" element={<ListFaqAdmin />} />
-          <Route path="/admin/faq/:id/edit" element={<EditFaqAdmin />} />
-          {/* admin router*/}
+        <Route path="/admin/faq" element={<ListFaqAdmin />} />
+        <Route path="/admin/faq/:id/edit" element={<EditFaqAdmin />} />
+        {/* admin router*/}
 
-          {/* psikolog router */}
+        {/* psikolog router */}
 
-          <Route path="/psikolog/dashboard" element={<DashboardPsikologPage />} />
-          <Route path="/psikolog/status" element={<StatusPsikologPage />} />
-          <Route path="/psikolog/dashboard" element={<DashboardPsikologPage />} />
-          <Route path="/psikolog/konsul/:id/chat" element={<ChatPasienPsikologPage />} />
-          <Route path="/psikolog/konsul" element={<ListKonsulPsikologPage />} />
-          <Route path="/psikolog/konsul/:id/detail" element={<DetailKonsulPsikologPage />} />
+        <Route path="/psikolog/dashboard" element={<DashboardPsikologPage />} />
+        <Route path="/psikolog/status" element={<StatusPsikologPage />} />
+        <Route path="/psikolog/dashboard" element={<DashboardPsikologPage />} />
+        <Route path="/psikolog/konsul/:id/chat" element={<ChatPasienPsikologPage />} />
+        <Route path="/psikolog/konsul" element={<ListKonsulPsikologPage />} />
+        <Route path="/psikolog/konsul/:id/detail" element={<DetailKonsulPsikologPage />} />
 
-          {/* psikolog router */}
-        </Routes>
-      
+        {/* psikolog router */}
+      </Routes>
     </div>
   );
 }
