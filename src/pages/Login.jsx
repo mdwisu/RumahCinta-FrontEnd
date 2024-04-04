@@ -46,6 +46,7 @@ const Login = () => {
       const actionResult = await dispatch(fetchUser(token));
       const role = actionResult.payload.role;
       const user_id = actionResult.payload._id;
+      localStorage.setItem("user", JSON.stringify(actionResult.payload));
       localStorage.setItem("user_id", user_id);
       console.log(role, user_id);
       redirectToRolePage(role);
@@ -90,7 +91,7 @@ const Login = () => {
     <div>
       {/* image logo */}
       <div className="absolute opacity-25">
-        <img src={LogoMandehLogin} className="h-screen" alt="logo mandeh login" />
+        <img src={LogoMandehLogin} className="h-1/2 w-1/2" alt="logo mandeh login" />
       </div>
       {/* image logo */}
       {/* image logo lengkap */}
