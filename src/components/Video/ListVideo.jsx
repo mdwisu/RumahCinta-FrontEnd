@@ -1,35 +1,36 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { FaSearch } from "react-icons/fa";
-import HeaderVideo from "../../image/list-video.png";
-import HeaderVideo2 from "../../image/list-video2.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import "dayjs/locale/id";
+import piknik from "../../image/piknik.png";
+import VideoSearchBar from "../SearchBar/OnSubmitSearchBar";
+import OnChangeSearchBar from "../SearchBar/OnChangeSearchBar";
+import OnSubmitSearchBar from "../SearchBar/OnSubmitSearchBar";
 
 function ListVideo() {
   const navigate = useNavigate();
-  const [searching, setSearching] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     getVideos();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     getVideos();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searching]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchQuery]);
 
   const getVideos = async () => {
     try {
       let endpoint = `${process.env.REACT_APP_BASE_URL}/video`;
 
-      if (searching) {
-        endpoint = `${process.env.REACT_APP_BASE_URL}/video?title=${searching}`;
+      if (searchQuery) {
+        endpoint = `${process.env.REACT_APP_BASE_URL}/video?title=${searchQuery}`;
       }
       const response = await axios.get(endpoint);
       setVideos(response.data.video);
@@ -43,86 +44,50 @@ function ListVideo() {
     navigate(`/video/${id}`);
   };
 
-  const searchVideo = (e) => {
-    e.preventDefault();
-    axios(`${import.meta.env.VITE_BASE_URL}/video?title=${searching}`).then((res) => {
-      setVideos(res.data);
-    });
+  const handleSearch = (query) => {
+    setSearchQuery(query);
   };
+
+  console.log("ini vedeo", videos);
+
   return (
     <div className="bg-bgSec">
-      {/* Header List Video */}
-      <div className="absolute w-[300px] md:w-[700px] text-white mt-[150px] mx-[30px] md:mx-[200px] md:mt-[200px]">
-        <span className="text-sizeSec font-bold">VideoTime</span>
-        <p className="text-[16px] mt-3">Ayo cari tontonan menarik sesuai dengan perasaan kamu hari ini</p>
-        <p className="text-[16px]">Masalah, solusi dan tips dan trik untuk masalah hati kamu.</p>
-      </div>
-      {/* Header List Video */}
-
-      {/* Search List Video */}
-      <div className="">
-        <div className="absolute flex justify-center mt-[500px] md:mt-[500px] w-full ">
-          <div>
-            <div className="input-group relative flex flex-wrap items-stretch w-full mb-4">
-              <form className="flex" type="submit" onSubmit={searchVideo}>
-                <div className="relative flex-auto min-w-0 w-[350px] sm:w-[600px] lg:w-[800px]">
-                  <input
-                    className="form-control absolute inset-0 block w-full h-full py-4 px-3 pr-8 text-xs sm:text-base font-normal text-gray-700 bg-white bg-clip-padding border border-gray-200 rounded-xl md:rounded-3xl transition ease-in-out m-0 focus:text-black focus:bg-white focus:border-bgPrimary focus:outline-none"
-                    type="text"
-                    placeholder="Cari disini..."
-                    name="search"
-                    aria-label="Search"
-                    value={searching}
-                    onChange={(e) => setSearching(e.target.value)}
-                  />
-                  <div className="absolute inset-y-[17px] right-1 flex items-center pr-2 pointer-events-none">
-                    <FaSearch className="text-gray-400" />
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
+      <section className="flex flex-col items-center justify-center bg-green-700 py-16 px-16 sm:flex-row">
+        <div className="md:mr-8">
+          <h1 className="mb-4 text-3xl font-bold text-white md:text-5xl lg:text-6xl">Video Time</h1>
+          <p className="text-base text-white">
+            Ayo cari video sesuai dengan perasaan kamu hari ini Masalah, solusi dan tips dan trik untuk masalah hati
+            kamu.
+          </p>
         </div>
-      </div>
-      {/* Search List Video */}
-
-      <div>
-        <img className="w-full h-auto md:hidden" src={HeaderVideo} alt="Header for small screens" />
-        <img className="w-full h-auto hidden md:block" src={HeaderVideo2} alt="Header for medium and large screens" />
+        <div>
+          <img src={piknik} alt="" />
+        </div>
+      </section>
+      <div className="mx-auto mt-5 max-w-lg">
+        <OnChangeSearchBar onSearch={handleSearch} key={handleSearch} />
       </div>
 
       {/* Card List Video */}
-      <div className="flex flex-wrap justify-center mt-10">
+      <div className="container mx-auto grid grid-cols-1 gap-8 px-4 py-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
         {videos.map((video) => (
-          <div
+          <Link
+            to={`/videos/${video._id}`}
             key={video._id}
-            onClick={() => handleClick(video._id)}
-            className="max-w-sm m-5 bg-white hover:border shadow-sm hover:border-gray-200 rounded-lg cursor-pointer"
+            className="flex flex-col overflow-hidden rounded-lg bg-white shadow-md transition duration-300 hover:scale-105"
           >
-            <iframe
-              width="380"
-              src={`https://www.youtube.com/embed/${video.videoLink}`}
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            ></iframe>
-            <div className="rounded p-6">
-              <h1 className="text-xl font-bold text-textSec">{video.title}</h1>
-              <p className="text-gray-500 text-sizeParagraph"></p>
-              <p className="text-gray-500 text-sizeParagraph">
-                {dayjs(video.UpdatedAt).locale("id").format("dddd, DD MMMM YYYY")}
-              </p>
-              <div className="max-w-xs text-sizeParagraph text-textFunc">
-                <p className="truncate overflow-hidden">{video.description}</p>
-              </div>
-
-              <div className="flex items-center justify-between mt-2">
-                <p className="text-gray-500 text-sizeParagraph"></p>
-                <p className="text-gray-500 text-sizeParagraph">{video.author}</p>
-              </div>
+            <div className="relative">
+              <img
+                src={`https://img.youtube.com/vi/${video.videoLink}/maxresdefault.jpg`}
+                alt={video.title}
+                className="h-auto w-full object-cover"
+              />
             </div>
-          </div>
+            <div className="p-4">
+              <h3 className="mb-2 text-lg font-semibold line-clamp-2">{video.title}</h3>
+              <p className="text-gray-600 line-clamp-3">{video.description}</p>
+            </div>
+          </Link>
         ))}
       </div>
       {/* Card List Video */}
