@@ -6,16 +6,18 @@ import LogoMandeh from "../image/logo-mandeh.png";
 import LogoRumahCinta from "../image/LogoRumahCinta.png";
 import LogoTulisanMandeh from "../image/logo-tulisan-lentera2.png";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../features/authSlice";
+import { logout, setUser } from "../features/authSlice";
 import { RiAdminLine, RiLogoutBoxLine, RiProfileLine } from "react-icons/ri";
 import ContactAndLocation from "../components/contactAndLocation";
 import DropdownButton from "./DropdownButton";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, isLogin } = useSelector((state) => state.auth);
+  // const { user, isLogin } = useSelector((state) => state.auth);
+  const [user, setUser] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -135,21 +137,32 @@ function Header() {
   console.log(user?.role);
 
   const layanans = [
-    { label: "Option 1", href: "#" },
-    { label: "Option 2", href: "#" },
-    { label: "Option 3", href: "#" },
-    { label: "Option 3", href: "#" },
-    { label: "Option 3", href: "#" },
-    { label: "Option 3", href: "#" },
-    { label: "Option 3", href: "#" },
-    { label: "Option 3", href: "#" },
-    { label: "Option 3", href: "#" },
-    { label: "Option 3", href: "#" },
+    { label: "Psiko Edukasi", href: "/layanan/psiko-edukasi" },
+    { label: "Tes Potensi Akademik", href: "/layanan/tes-potensi-akademik" },
+    { label: "Konsultasi", href: "/layanan/konsultasi" },
+    { label: "Psikotes", href: "/layanan/psikotes" },
+    { label: "Konseling", href: "/layanan/konseling" },
+    { label: "Asesmen", href: "/layanan/asesmen" },
+    { label: "Terapi", href: "/layanan/terapi" },
+    { label: "Seminar Parenting", href: "/layanan/seminar-parenting" },
+    { label: "Observasi Diagnostik", href: "/layanan/observasi-diagnostik" },
+    { label: "Pelatihan Pengembangan Diri", href: "/layanan/pelatihan-pengembangan-diri" },
   ];
   const kontens = [
-    { label: "Blog", href: "/blog" },
-    { label: "Video", href: "/video" },
+    { label: "Blog", href: "/blogs" },
+    { label: "Video", href: "/videos" },
   ];
+
+  useEffect(() => {
+    const userDataJSON = localStorage.getItem("user");
+    if (userDataJSON) {
+      const user = JSON.parse(userDataJSON);
+      setUser(user);
+      console.log(user);
+    } else {
+      console.log("Data tidak ditemukan di local storage");
+    }
+  }, []);
 
   return (
     <nav
@@ -157,10 +170,10 @@ function Header() {
         showHeader
           ? "lg:pointer-events-auto lg:opacity-100 lg:transition-opacity lg:duration-500"
           : "lg:pointer-events-none lg:opacity-0 lg:duration-700"
-      } dark:text-bold z-50 w-full bg-bgSec text-textPri shadow-xl dark:bg-purple-dark dark:text-white`}
+      } dark:text-bold fixed z-50 w-full bg-bgSec text-textPri shadow-xl dark:bg-purple-dark dark:text-white`}
     >
       <div className="my-3 flex flex-col items-center justify-between lg:flex-row">
-        <div className="flex items-center justify-between lg:border-b-0">
+        <div className="relative flex items-center justify-between lg:border-b-0">
           <div className="w-full p-2">
             {/* <button onClick={toggleMenu} className="bgOpt block font-bold focus:outline lg:hidden"> */}
             <div className="block font-bold focus:outline lg:hidden">
@@ -227,6 +240,7 @@ function Header() {
             {/* </button> */}
           </div>
         </div>
+        {/* navbar desktop */}
         <div
           className={`${isOpen ? "block" : "hidden"} w-full flex-col items-center justify-between lg:flex lg:flex-row`}
         >
@@ -250,8 +264,19 @@ function Header() {
             <img className="h-[30px]" src={LogoHori} alt="LogoHori" />
           </div>
           <div className="my-3 flex items-center lg:flex-row" ref={dropdownRef}>
-            {isLogin ? (
+            {token ? (
               <div className="my-3 mr-8 flex flex-col items-baseline gap-3 lg:flex-row">
+                <div className="hidden rounded bg-gray-100 duration-100 dark:bg-slate-800 lg:flex">
+                  {options?.map((opt) => (
+                    <button
+                      key={opt.text}
+                      onClick={() => setTheme(opt.text)}
+                      className={`m-1 h-8 w-8 rounded-full text-xl leading-9 ${theme === opt.text && "text-sky-600"}`}
+                    >
+                      <ion-icon name={opt.icon}></ion-icon>
+                    </button>
+                  ))}
+                </div>
                 <div className="relative">
                   <div
                     className="flex cursor-pointer items-center gap-2 rounded-2xl text-textSec"
