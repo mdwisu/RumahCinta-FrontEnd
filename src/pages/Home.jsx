@@ -21,6 +21,8 @@ import ImgSmile from "../image/smile.png";
 import ImgSmile2 from "../image/smile2.png";
 import anggota1 from "../image/anggota1.png";
 import anggota2 from "../image/anggota2.png";
+import anggota3 from "../image/anggota3.png";
+import anggota4 from "../image/anggota4.png";
 import konsultasi1 from "../image/konsultasi1.png";
 import konsultasi2 from "../image/konsultasi2.png";
 import konsultasi3 from "../image/konsultasi3.png";
@@ -48,29 +50,29 @@ function Home() {
     makeRequest();
   }, []);
 
-  const handleRegisPsikolog = async () => {
-    if (authState.isLogin === false) {
-      try {
-        // Tampilkan pesan kesalahan menggunakan SweetAlert atau cara lain sesuai preferensi Anda
-        const result = await Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "You need to login first!",
-          showCancelButton: true,
-          cancelButtonText: "Cancel",
-          confirmButtonText: "Go to login",
-        });
+  // const handleRegisPsikolog = async () => {
+  //   if (authState.isLogin === false) {
+  //     try {
+  //       // Tampilkan pesan kesalahan menggunakan SweetAlert atau cara lain sesuai preferensi Anda
+  //       const result = await Swal.fire({
+  //         icon: "error",
+  //         title: "Oops...",
+  //         text: "You need to login first!",
+  //         showCancelButton: true,
+  //         cancelButtonText: "Cancel",
+  //         confirmButtonText: "Go to login",
+  //       });
 
-        if (result.isConfirmed) {
-          navigate("/login"); // Navigasi ke halaman login jika pengguna memilih "Go to login"
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    } else {
-      navigate("/register/psikolog");
-    }
-  };
+  //       if (result.isConfirmed) {
+  //         navigate("/login"); // Navigasi ke halaman login jika pengguna memilih "Go to login"
+  //       }
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   } else {
+  //     navigate("/register/psikolog");
+  //   }
+  // };
   let configLatestBlog = {
     method: "get",
     maxBodyLength: Infinity,
@@ -103,7 +105,7 @@ function Home() {
   };
 
   return (
-    <>
+    <div className="pt-28">
       <Header />
       <div className="block md:hidden">
         <ContactAndLocation />
@@ -122,13 +124,13 @@ function Home() {
             Daring / Langsung
           </h1>
           <p className="center self-center">Bimbingan Langsung Dari Ahli di Bidangnya dimana pun dan kapan pun</p>
-          <div className="mt-32 flex justify-center bg-yellow-400">
-            <div className="flex w-full flex-wrap justify-evenly">
-              <img src={konsultasi1} alt="Gambar 1" className="mt-10 h-44 w-60 rounded-md lg:mb-10" />
-              <img src={konsultasi2} alt="Gambar 2" className="mt-10 h-44 w-60 rounded-md" />
-              <img src={konsultasi3} alt="Gambar 3" className="mt-10 h-44 w-60 rounded-md" />
-              <img src={konsultasi4} alt="Gambar 4" className="mt-10 h-44 w-60 rounded-md" />
-              <img src={konsultasi5} alt="Gambar 5" className="mt-10 h-44 w-60 rounded-md" />
+          <div className="mt-32 flex justify-center bg-yellow-400 py-5">
+            <div className="flex w-full flex-wrap items-center justify-center gap-4 py-4">
+              <img src={konsultasi1} alt="Gambar 1" className="h-44 w-60 rounded-md" />
+              <img src={konsultasi2} alt="Gambar 2" className="h-44 w-60 rounded-md" />
+              <img src={konsultasi3} alt="Gambar 3" className="h-44 w-60 rounded-md" />
+              <img src={konsultasi4} alt="Gambar 4" className="h-44 w-60 rounded-md" />
+              <img src={konsultasi5} alt="Gambar 5" className="h-44 w-60 rounded-md" />
             </div>
           </div>
         </div>
@@ -136,12 +138,12 @@ function Home() {
       {/* end konsultasi daring atau langsung */}
       {/* slide 3 ketahuilah permasalahanmu */}
       <section className="flex w-full items-center justify-between overflow-hidden rounded-lg bg-white p-8 shadow-lg lg:min-h-screen">
-        <div className="w-1/2 flex-1">
+        <div className="z-10 w-1/2 flex-1">
           <h1 className="text-4xl font-bold text-black">Ketahuilah Permasalahanmu</h1>
-          <button className="mt-4 rounded bg-[#2A4674] px-4 py-2 text-white hover:bg-blue-600">BERSAMA KAMI</button>
+          <div className="mt-4 block w-fit rounded bg-[#2A4674] px-4 py-2 text-white">BERSAMA KAMI</div>
           <p className="mt-4 text-gray-600">www.rumahcinta.com</p>
         </div>
-        <div className="relative flex w-1/2 flex-1 flex-row">
+        <div className="relative z-0 flex w-1/2 flex-1 flex-row">
           <img src={ketahui1} alt="Gambar 1" className="absolute -left-20 -top-20 h-48 w-48 rounded-lg" />
           <img src={dudukkiri} alt="Gambar 1" className="h-auto w-[400px] rounded-lg" />
           <img src={dudukkanan} alt="Gambar 2" className="mt-4 h-auto w-80 rounded-lg" />
@@ -150,7 +152,7 @@ function Home() {
       {/* end slide 3 ketahuilah permasalahanmu */}
       {/* !layanan */}
       <section id="layanan">
-        <div className="relative flex flex-col items-center gap-4 overflow-hidden bg-yellow-500 py-6 lg:min-h-screen lg:flex-row">
+        <div className="relative flex flex-col items-center gap-4 overflow-hidden bg-yellow-500 py-6 pb-28 md:pb-0 lg:min-h-screen lg:flex-row">
           <div className="flex-1">
             <div className="mb-4 pl-16 lg:pb-64">
               <h1 className="text-4xl font-bold lg:text-7xl">Layanan</h1>
@@ -202,15 +204,18 @@ function Home() {
       {/* End Layanan */}
       {/* blogTime */}
       <section className="relative flex flex-col items-center md:w-full lg:min-h-screen lg:pb-20">
-        <h1 className="text-3xl font-bold md:mb-0 md:mr-8 lg:my-16 lg:mt-10 lg:text-7xl">BlogTime</h1>
+        <h1 className="py-10 text-3xl font-bold md:mb-0 md:mr-8 lg:my-16 lg:mt-10 lg:text-7xl">BlogTime</h1>
         <div className="flex flex-1 flex-wrap items-center justify-center">
           {blogs.map((blog, index) => (
-            <div className="mx-4 mb-8 max-w-xs rounded-2xl bg-yellow-400 shadow-md">
+            <Link
+              to={`blogs/${blog._id}`}
+              className="mx-4 mb-8 max-w-xs rounded-2xl bg-yellow-400 shadow-md transition-all duration-300 ease-in-out hover:scale-[102%]"
+            >
               <div className="p-4">
-                <h2 className="line-clamp-3 mb-2 min-h-[5rem] items-center justify-center text-xl font-semibold">
+                <h2 className="mb-2 min-h-[5rem] items-center justify-center text-xl font-semibold line-clamp-3">
                   {blog.title}
                 </h2>
-                <p className="line-clamp-6 text-gray-700">{blog.description}</p>
+                <p className="text-gray-700 line-clamp-6">{blog.description}</p>
                 <img
                   className="h-48 w-full rounded-md rounded-t-lg object-cover"
                   src={
@@ -224,10 +229,10 @@ function Home() {
                   }}
                 />
               </div>
-            </div>
+            </Link>
           ))}
         </div>
-        <a href="/blog" className="absolute right-9 bottom-3">
+        <a href="/blogs" className="absolute right-9 bottom-3">
           <BsThreeDots className="h-20 w-20" />
         </a>
       </section>
@@ -252,14 +257,14 @@ function Home() {
               </div>
               {/* Tulisan di sebelah kanan */}
               <div className="flex flex-1 flex-col">
-                <h2 className="line-clamp-2 text-xl font-bold">{video.title}</h2>
-                <p className="line-clamp-3 text-xs text-gray-600">{video.description}</p>
+                <h2 className="text-xl font-bold line-clamp-2">{video.title}</h2>
+                <p className="text-xs text-gray-600 line-clamp-3">{video.description}</p>
                 {/* Tambahkan elemen lainnya sesuai kebutuhan */}
               </div>
             </Link>
           ))}
         </div>
-        <a href="/video" className="absolute right-9 bottom-3 z-10">
+        <a href="/videos" className="absolute right-9 bottom-3 z-10">
           <BsThreeDots className="h-20 w-20 text-black" />
         </a>
       </div>
@@ -268,34 +273,34 @@ function Home() {
       <section className="flex flex-col bg-blue-900 text-center lg:min-h-screen">
         <h1 className="mt-24 text-6xl font-bold text-yellow-500">Anggota Tim Rumah Cinta</h1>
         <div className="mt-8 flex flex-1 flex-wrap items-baseline justify-center">
-          <div className="flex max-w-xs flex-col items-center">
+          <div className="flex max-w-xs flex-col items-center py-5">
             <img src={anggota1} alt="Foto Anggota 1" className="mb-4 h-48 w-48 rounded-md bg-yellow-500 object-cover" />
-            <h3 className="min-h-[6rem] w-56 text-lg font-semibold">
+            <h3 className="w-56 text-lg font-semibold sm:min-h-[6rem]">
               Retno Lelyani Dewi, S.Psi, M.Pd., Psikolog Kliniser di Sini
             </h3>
-            <p className="text-sm text-white">Deskripsi singkat mengenai Anggota 1</p>
+            <p className="px-3 text-sm text-white">Deskripsi singkat mengenai Anggota 1</p>
           </div>
-          <div className="flex max-w-xs flex-col items-center">
+          <div className="flex max-w-xs flex-col items-center py-5">
             <img src={anggota2} alt="Foto Anggota 2" className="mb-4 h-48 w-48 rounded-md bg-pink-300 object-cover" />
-            <h3 className="min-h-[6rem] w-56 text-lg font-semibold">Herly Novita Sari, M.Psi., Psikolog</h3>
-            <p className="text-sm text-white">Deskripsi singkat mengenai Anggota 2</p>
+            <h3 className="w-56 text-lg font-semibold sm:min-h-[6rem]">Herly Novita Sari, M.Psi., Psikolog</h3>
+            <p className="px-3 text-sm text-white">Deskripsi singkat mengenai Anggota 2</p>
           </div>
-          <div className="flex max-w-xs flex-col items-center">
-            <img src={anggota1} alt="Foto Anggota 3" className="mb-4 h-48 w-48 rounded-md bg-blue-300 object-cover" />
-            <h3 className="min-h-[6rem] w-56 text-lg font-semibold">Dra. Nino Suryani</h3>
-            <p className="text-sm text-white">Deskripsi singkat mengenai Anggota 3</p>
+          <div className="flex max-w-xs flex-col items-center py-5">
+            <img src={anggota3} alt="Foto Anggota 3" className="mb-4 h-48 w-48 rounded-md bg-blue-300 object-cover" />
+            <h3 className="w-56 text-lg font-semibold sm:min-h-[6rem]">Dra. Nino Suryani</h3>
+            <p className="px-3 text-sm text-white">Deskripsi singkat mengenai Anggota 3</p>
           </div>
-          <div className="flex max-w-xs flex-col items-center">
-            <img src={anggota2} alt="Foto Anggota 4" className="mb-4 h-48 w-48 rounded-md bg-green-400 object-cover" />
-            <h3 className="min-h-[6rem] w-56 text-lg font-semibold">Laela Chusnaeni, S.Psi,. Psikolog</h3>
-            <p className="text-sm text-white">Deskripsi singkat mengenai Anggota 4</p>
+          <div className="flex max-w-xs flex-col items-center py-5">
+            <img src={anggota4} alt="Foto Anggota 4" className="mb-4 h-48 w-48 rounded-md bg-green-400 object-cover" />
+            <h3 className="w-56 text-lg font-semibold sm:min-h-[6rem]">Laela Chusnaeni, S.Psi,. Psikolog</h3>
+            <p className="px-3 text-sm text-white">Deskripsi singkat mengenai Anggota 4</p>
           </div>
         </div>
       </section>
 
       {/* end anggota tim */}
       <Footer />
-    </>
+    </div>
   );
 }
 
