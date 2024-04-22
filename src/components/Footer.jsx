@@ -4,26 +4,26 @@ import LogoMandeh from "../image/LogoRumahCinta.png";
 function Footer() {
   return (
     <div className="footer">
-      <div className="bottom-0 flex h-auto w-full flex-col items-center justify-center gap-3 bg-bgSec py-10 md:flex-row md:gap-10">
+      <div className="bottom-0 flex h-auto w-full flex-col items-center justify-center bg-bgSec py-10 md:flex-row md:gap-10">
         <div className="w-[100px]  md:w-[150px]">
           <img src={LogoMandeh} alt="LogoMandeh" />
         </div>
         <div className="flex flex-col sm:flex-row">
-          <div className="flex flex-col text-textSec">
+          <div className="flex flex-col text-textSec sm:px-5">
             <div className="my-[10px]">
               <p className="text-[14px] font-bold md:text-[18px]">Customer Service</p>
               <p className="text-[10px] md:text-[12px]">
-                +0817-980-3739
-                <br /> +0857-1847-0247 (Whatsapp)
+                +62 817-9803-739
+                <br /> +62 857-1847-0247
               </p>
             </div>
             <div className="my-[10px]">
               <p className="text-[14px] font-bold md:text-[18px]">Ikuti Kami</p>
-              <p className="text-[10px] md:text-[12px]">@lenteramandeh (Instagram)</p>
+              <p className="text-[10px] md:text-[12px]">@biropsikologirumahcinta (Instagram)</p>
             </div>
             <div className="my-[10px]">
               <p className="text-[14px] font-bold md:text-[18px]">Email</p>
-              <p className="text-[10px] md:text-[12px]">psikologilenteramandeh@gmail.com</p>
+              <p className="text-[10px] md:text-[12px]">biropsikologi.rumahcinta@gmail.com</p>
             </div>
           </div>
 
@@ -36,7 +36,7 @@ function Footer() {
             </div>
             <div className="my-[10px]">
               <p className="text-[14px] font-bold md:text-[18px]">MeWell</p>
-              <p className="text-[10px] md:text-[12px]">Copyright © 2023 Mental Wellness</p>
+              <p className="text-[10px] md:text-[12px]">Copyright © 2024 Mental Wellness</p>
             </div>
           </div>
         </div>

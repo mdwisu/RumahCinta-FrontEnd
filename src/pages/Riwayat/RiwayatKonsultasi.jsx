@@ -19,11 +19,9 @@ export default function RiwayatKonsultasi() {
         maxBodyLength: Infinity,
         url: "http://localhost:5000/histories/user",
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGNkMjUzNThmODIyMjg1ZDI4Yzc3YTEiLCJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJnZW5kZXIiOiJMIiwiZGF0ZV9iaXJ0aCI6IjIwMTMtMTAtMTBUMDA6MDA6MDAuMDAwWiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwiaXNfdmVyaWZpZWQiOnRydWUsInBzaWtvbG9nU3RhdHVzIjpudWxsLCJpYXQiOjE3MTMyNzY1OTYsImV4cCI6MTcxMzM2Mjk5Nn0.eVxqhFCukZnrG35FncZg8FE_Ds1Gcmryd5waZXIoFYg",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       };
-
       const response = await axios.request(config);
       setHistories(response.data);
       setIsLoading(false);
@@ -33,6 +31,17 @@ export default function RiwayatKonsultasi() {
       setIsLoading(false);
     }
   };
+
+  function formatConsultationDate(consultationDate) {
+    const formattedDate = new Intl.DateTimeFormat("id-ID", {
+      weekday: "long", // Nama hari penuh (Senin, Selasa, ...)
+      day: "2-digit", // Dua digit angka hari
+      month: "long", // Nama bulan penuh (Januari, Februari, ...)
+      year: "numeric", // Tahun dalam bentuk numerik
+    }).format(new Date(consultationDate)); // Konversi dari tanggal asli ke format yang diinginkan
+
+    return `${formattedDate}`;
+  }
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -49,9 +58,21 @@ export default function RiwayatKonsultasi() {
           <div className="grid grid-cols-1 gap-4">
             {histories.map((history) => (
               <div key={history._id} className="rounded-lg bg-white p-4 shadow-md">
-                <h2 className="mb-2 text-xl font-bold">{history.title}</h2>
-                <p className="text-gray-600">{history.description}</p>
-                <p className="text-sm text-gray-500">Tanggal: {new Date(history.date).toLocaleDateString()}</p>
+                <h2 className="text-xl font-bold">Konsultasi dengan {history.psikologId.name}</h2>
+                <p className="mb-2 text-sm text-gray-500">
+                  Tanggal Konsultasi: {formatConsultationDate(history.consultationDate)}
+                </p>
+                <p className="mb-2 text-gray-600">
+                  <strong>Catatan:</strong> {history.notes}
+                </p>
+                <p className="mb-2 text-gray-600">
+                  <strong>Diagnosis:</strong> {history.diagnosis}
+                </p>
+                {history.prescription && (
+                  <p className="mb-2 text-gray-600">
+                    <strong>Resep:</strong> {history.prescription}
+                  </p>
+                )}
               </div>
             ))}
           </div>

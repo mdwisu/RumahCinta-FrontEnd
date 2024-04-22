@@ -242,11 +242,11 @@ function Home() {
       {/* VideoTime */}
       <div className="relative min-h-screen bg-green-500 p-8 text-center lg:pb-20">
         <h1 className="mb-8 text-3xl font-bold text-white lg:text-7xl">VideoTime</h1>
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="flex flex-wrap justify-center gap-4 sm:mt-16">
           {videos.map((video, index) => (
             <Link
               to={`/videos/${video._id}`}
-              className="flex max-w-xs flex-col rounded-xl bg-white p-4 sm:w-full sm:max-w-lg sm:flex-row"
+              className="flex max-w-xs flex-col items-center rounded-xl bg-white p-4 transition-all duration-300 ease-in-out hover:scale-[102%] sm:w-full sm:max-w-2xl sm:flex-row"
               key={index}
             >
               {/* Gambar di sebelah kiri */}
@@ -302,7 +302,9 @@ function Home() {
           </div>
           <div className="flex max-w-xs flex-col items-center py-5">
             <img src={anggota4} alt="Foto Anggota 4" className="mb-4 h-48 w-48 rounded-md bg-green-400 object-cover" />
-            <h3 className="w-56 text-lg font-semibold sm:min-h-[6rem] text-yellow-500">Laela Chusnaeni, S.Psi,. Psikolog</h3>
+            <h3 className="w-56 text-lg font-semibold text-yellow-500 sm:min-h-[6rem]">
+              Laela Chusnaeni, S.Psi,. Psikolog
+            </h3>
             <p className="px-3 text-sm text-white">Deskripsi singkat mengenai Anggota 4</p>
           </div>
         </div>

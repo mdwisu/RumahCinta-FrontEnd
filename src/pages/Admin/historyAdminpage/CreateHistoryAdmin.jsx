@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import Sidebar from "../../../components/Admin/Sidebar";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import AutoCompletePatient from "../../../components/Admin/AutoCompletePatient";
 
 function CreateHistoryAdmin() {
   const [activePage, setActivePage] = useState("History");
@@ -58,6 +59,10 @@ function CreateHistoryAdmin() {
     }
   };
 
+  const handlePatientSelect = (patientId) => {
+    setPatientUserId(patientId);
+  };
+
   return (
     <div className="flex">
       <Sidebar activePage={activePage} setActivePage={setActivePage} />
@@ -71,16 +76,9 @@ function CreateHistoryAdmin() {
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label htmlFor="patientUserId" className="mb-2 block font-bold text-gray-700">
-                  ID Pasien
+                  Pasien
                 </label>
-                <input
-                  type="text"
-                  id="patientUserId"
-                  className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
-                  value={patientUserId}
-                  onChange={(e) => setPatientUserId(e.target.value)}
-                  required
-                />
+                <AutoCompletePatient onSelect={handlePatientSelect} />
               </div>
               <div className="mb-4">
                 <label htmlFor="notes" className="mb-2 block font-bold text-gray-700">
