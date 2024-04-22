@@ -118,15 +118,15 @@ function Home() {
       </div>
       {/* konsultasi daring atau langsung */}
       <section id="konsultasi">
-        <div className="flex w-full flex-col bg-purple-500 pt-4 lg:min-h-screen">
-          <h1 className="mt-10 self-center text-4xl font-bold text-white lg:text-5xl">Konsultasi</h1>
+        <div className="flex w-full flex-col bg-purple-500 lg:min-h-screen">
+          <h1 className="mt-20 self-center text-4xl font-bold text-white lg:text-5xl">Konsultasi</h1>
           <h1 className="self-center rounded-lg bg-yellow-400 p-4 text-3xl font-bold text-primary lg:text-5xl">
             Daring / Langsung
           </h1>
-          <p className="center self-center text-white">
+          <p className="center mt-2 self-center text-white">
             Bimbingan Langsung Dari Ahli di Bidangnya dimana pun dan kapan pun
           </p>
-          <div className="mt-32 flex justify-center bg-yellow-400 py-5">
+          <div className="mt-10 flex justify-center bg-yellow-400 py-5">
             <div className="flex w-full flex-wrap items-center justify-center gap-4 py-4">
               <img src={konsultasi1} alt="Gambar 1" className="h-44 w-60 rounded-md" />
               <img src={konsultasi2} alt="Gambar 2" className="h-44 w-60 rounded-md" />
@@ -139,7 +139,7 @@ function Home() {
       </section>
       {/* end konsultasi daring atau langsung */}
       {/* slide 3 ketahuilah permasalahanmu */}
-      <section className="flex w-full items-center justify-between overflow-hidden rounded-lg bg-white p-8 shadow-lg lg:min-h-screen">
+      {/* <section className="flex w-full items-center justify-between overflow-hidden rounded-lg bg-white p-8 shadow-lg lg:min-h-screen">
         <div className="z-10 w-1/2 flex-1">
           <h1 className="text-4xl font-bold text-black">Ketahuilah Permasalahanmu</h1>
           <div className="mt-4 block w-fit rounded bg-[#2A4674] px-4 py-2 text-white">BERSAMA KAMI</div>
@@ -150,7 +150,7 @@ function Home() {
           <img src={dudukkiri} alt="Gambar 1" className="h-auto w-[400px] rounded-lg" />
           <img src={dudukkanan} alt="Gambar 2" className="mt-4 h-auto w-80 rounded-lg" />
         </div>
-      </section>
+      </section> */}
       {/* end slide 3 ketahuilah permasalahanmu */}
       {/* !layanan */}
       <section id="layanan">
@@ -159,8 +159,7 @@ function Home() {
             <div className="mb-4 pl-16 lg:pb-64">
               <h1 className="text-4xl font-bold lg:text-7xl">Layanan</h1>
               <p className="mt-10 w-3/4 text-base leading-relaxed sm:text-xl lg:text-2xl">
-                Tuliskan peraturan sederhana yang harus dipatuhi siswa untuk kelancaran proses belajar di kelas. Panduan
-                singkat dan sederhana adalah yang terbaik.
+                Beberapa layanan yang ada di Rumah Cinta. Klink layanan untuk mengetahui detail.
               </p>
             </div>
           </div>
@@ -194,7 +193,7 @@ function Home() {
                 Observasi Diagnostik
               </a>
               <a href="/layanan/pengembangan-diri" className="layanan-button bg-red-300">
-                Pelatihan Pengembangan Diri
+                Pelatihan Diri
               </a>
             </div>
           </div>
@@ -213,11 +212,11 @@ function Home() {
               to={`blogs/${blog._id}`}
               className="mx-4 mb-8 max-w-xs rounded-2xl bg-yellow-400 shadow-md transition-all duration-300 ease-in-out hover:scale-[102%]"
             >
-              <div className="p-4">
-                <h2 className="mb-2 min-h-[5rem] items-center justify-center text-xl font-semibold line-clamp-3">
+              <div className="px-6 py-4">
+                <h2 className="min-h-[5rem] items-center justify-center text-xl font-semibold line-clamp-3">
                   {blog.title}
                 </h2>
-                <p className="text-gray-700 line-clamp-6">{blog.description}</p>
+                <p className="mb-5 text-sm text-gray-700 line-clamp-3">{blog.description}</p>
                 <img
                   className="h-48 w-full rounded-md rounded-t-lg object-cover"
                   src={
@@ -241,8 +240,8 @@ function Home() {
       {/* end BlogTime */}
       {/* VideoTime */}
       <div className="relative min-h-screen bg-green-500 p-8 text-center lg:pb-20">
-        <h1 className="mb-8 text-3xl font-bold text-white lg:text-7xl">VideoTime</h1>
-        <div className="flex flex-wrap justify-center gap-4 sm:mt-16">
+        <h1 className="py-10 text-3xl font-bold text-white md:mb-0 md:mr-8 lg:my-16 lg:mt-10 lg:text-7xl">VideoTime</h1>
+        <div className="flex flex-wrap justify-center gap-4">
           {videos.map((video, index) => (
             <Link
               to={`/videos/${video._id}`}
@@ -264,48 +263,44 @@ function Home() {
               </div>
 
               {/* Tulisan di sebelah kanan */}
-              <div className="flex flex-1 flex-col">
-                <h2 className="text-xl font-bold line-clamp-2">{video.title}</h2>
+              <div className="flex flex-1 flex-col text-left">
+                <h2 className="text-xl font-bold ">{video.title}</h2>
                 <p className="text-xs text-gray-600 line-clamp-3">{video.description}</p>
                 {/* Tambahkan elemen lainnya sesuai kebutuhan */}
               </div>
             </Link>
           ))}
         </div>
-        <a href="/videos" className="absolute right-9 bottom-3 z-10">
-          <BsThreeDots className="h-20 w-20 text-black" />
+        <a href="/videos" className="absolute right-9 bottom-3">
+          <BsThreeDots className="h-20 w-20" />
         </a>
       </div>
       {/* end VideoTime */}
       {/* anggota tim */}
       <section className="flex flex-col bg-blue-900 text-center lg:min-h-screen">
         <h1 className="mt-24 text-6xl font-bold text-yellow-500">Anggota Tim Rumah Cinta</h1>
-        <div className="mt-8 flex flex-1 flex-wrap items-baseline justify-center">
+        <div className="mt-8 flex flex-1 flex-wrap items-baseline justify-center text-sm">
           <div className="flex max-w-xs flex-col items-center py-5">
             <img src={anggota1} alt="Foto Anggota 1" className="mb-4 h-48 w-48 rounded-md bg-yellow-500 object-cover" />
-            <h3 className="w-56 text-lg font-semibold text-yellow-500 sm:min-h-[6rem]">
+            <h3 className="w-56 font-semibold text-yellow-500 sm:min-h-[3rem]">
               Retno Lelyani Dewi, S.Psi, M.Pd., Psikolog Kliniser di Sini
             </h3>
-            <p className="px-3 text-sm text-white">Deskripsi singkat mengenai Anggota 1</p>
+            <p className="px-3 text-white">Deskripsi Anggota 1</p>
           </div>
           <div className="flex max-w-xs flex-col items-center py-5">
             <img src={anggota2} alt="Foto Anggota 2" className="mb-4 h-48 w-48 rounded-md bg-pink-300 object-cover" />
-            <h3 className="w-56 text-lg font-semibold text-yellow-500 sm:min-h-[6rem]">
-              Herly Novita Sari, M.Psi., Psikolog
-            </h3>
-            <p className="px-3 text-sm text-white">Deskripsi singkat mengenai Anggota 2</p>
+            <h3 className="w-56  font-semibold text-yellow-500 sm:min-h-[3rem]">Herly Novita Sari, M.Psi., Psikolog</h3>
+            <p className="px-3 text-white">Deskripsi Anggota 2</p>
           </div>
           <div className="flex max-w-xs flex-col items-center py-5">
             <img src={anggota3} alt="Foto Anggota 3" className="mb-4 h-48 w-48 rounded-md bg-blue-300 object-cover" />
-            <h3 className="w-56 text-lg font-semibold text-yellow-500 sm:min-h-[6rem]">Dra. Nino Suryani</h3>
-            <p className="px-3 text-sm text-white">Deskripsi singkat mengenai Anggota 3</p>
+            <h3 className="w-56 font-semibold text-yellow-500 sm:min-h-[3rem]">Dra. Nino Suryani</h3>
+            <p className="px-3 text-white">Deskripsi Anggota 3</p>
           </div>
           <div className="flex max-w-xs flex-col items-center py-5">
             <img src={anggota4} alt="Foto Anggota 4" className="mb-4 h-48 w-48 rounded-md bg-green-400 object-cover" />
-            <h3 className="w-56 text-lg font-semibold text-yellow-500 sm:min-h-[6rem]">
-              Laela Chusnaeni, S.Psi,. Psikolog
-            </h3>
-            <p className="px-3 text-sm text-white">Deskripsi singkat mengenai Anggota 4</p>
+            <h3 className="w-56  font-semibold text-yellow-500 sm:min-h-[3rem]">Laela Chusnaeni, S.Psi,. Psikolog</h3>
+            <p className="px-3  text-white">Deskripsi Anggota 4</p>
           </div>
         </div>
       </section>
