@@ -8,6 +8,7 @@ import { FaAngleDoubleRight } from "react-icons/fa";
 import axios from "axios";
 import { fetchUser, setToken } from "../features/authSlice";
 import Swal from "sweetalert2";
+import jwt_decode from "jwt-decode";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -38,8 +39,13 @@ const Login = () => {
     try {
       const response = await axios.request(config);
       const token = response.data.token;
-      console.log(token);
-      dispatch(setToken(token));
+      // dispatch(setToken(token));
+      const decodedToken = jwt_decode(token);
+      console.log(decodedToken);
+      const expirationTime = decodedToken.exp * 1000; // Ubah ke milidetik
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("expirationTime", expirationTime);
 
       // dispatch(setToken(payload));
 
@@ -48,7 +54,6 @@ const Login = () => {
       const user_id = actionResult.payload._id;
       localStorage.setItem("user", JSON.stringify(actionResult.payload));
       localStorage.setItem("user_id", user_id);
-      console.log(role, user_id);
       redirectToRolePage(role);
     } catch (error) {
       console.log(error);
@@ -90,18 +95,18 @@ const Login = () => {
   return (
     <div>
       {/* image logo */}
-      <div className="absolute opacity-25">
+      <div className="absolute top-0 left-0 z-0 opacity-25">
         <img src={LogoMandehLogin} className="h-1/2 w-1/2" alt="logo mandeh login" />
       </div>
       {/* image logo */}
       {/* image logo lengkap */}
-      <div className="relative">
-        <img src={LogoMandeh} className="absolute right-0 m-5 w-[250px]" alt="logo mandeh" />
+      <div className="absolute top-0 right-0 z-0 m-5">
+        <img src={LogoMandeh} className="w-[250px]" alt="logo mandeh" />
       </div>
       {/* image logo lengkap */}
       {/* card */}
-      <div className="flex h-screen flex-col justify-center">
-        <div className="m-auto w-full max-w-sm rounded-lg border border-gray-200 bg-bgSec p-4 shadow sm:p-6 md:p-8">
+      <div className="z-50 flex h-screen flex-col justify-center">
+        <div className="relative m-auto w-full max-w-sm rounded-lg border border-gray-200 bg-bgSec p-4 shadow sm:p-6 md:p-8">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <h5 className="text-center text-[54px] font-semibold text-textPri">Login</h5>
             <p className="text-center text-sm  font-medium text-gray-500">Silahkan masukan email dan password</p>

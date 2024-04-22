@@ -1,21 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import Sidebar from "../Sidebar";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import youtubeVideoId from "youtube-video-id";
+import { useSelector } from "react-redux";
 
 const EditVideoAdmin = () => {
   const [title, setTitle] = useState("");
   const [videoLink, setVideoLink] = useState("");
   const [description, setDescription] = useState("");
   const [author, setAuthor] = useState("");
-  const [content, setContent] = useState("");
   const [activePage, setActivePage] = useState("Video");
   const navigate = useNavigate();
   const { id } = useParams();
   const token = localStorage.getItem("token");
+  const textareaRef = useRef(null);
+  const open = useSelector((state) => state.sidebar.open);
+
+  useEffect(() => {
+    adjustTextareaHeight();
+  }, [description]);
 
   const handleGoBack = () => {
     navigate(-1);
@@ -28,9 +33,7 @@ const EditVideoAdmin = () => {
       videoLink,
       description,
       author,
-      content,
     };
-    console.log("ini data yang mau di update", data);
     let config = {
       method: "patch",
       maxBodyLength: Infinity,
@@ -43,8 +46,6 @@ const EditVideoAdmin = () => {
     };
 
     try {
-      // Navigasi ke halaman detail blog setelah berhasil update
-
       Swal.fire({
         title: "Do you want to save the changes?",
         showDenyButton: true,
@@ -52,7 +53,6 @@ const EditVideoAdmin = () => {
         confirmButtonText: "Save",
         denyButtonText: `Don't save`,
       }).then(async (result) => {
-        /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           const response = await axios.request(config);
           console.log(JSON.stringify(response.data));
@@ -74,10 +74,9 @@ const EditVideoAdmin = () => {
         const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/video/${id}`);
         const videoData = response.data.data;
         setTitle(videoData.title);
-        setVideoLink(videoData.videoLink);
+        setVideoLink(videoData.videoId);
         setDescription(videoData.description);
         setAuthor(videoData.author);
-        setContent(videoData.content);
       } catch (error) {
         console.log(error);
       }
@@ -86,35 +85,33 @@ const EditVideoAdmin = () => {
     fetchVideo();
   }, [id]);
 
-  const handleContentChange = (value) => {
-    const updatedContent = value.replace(
-      /src="(\/images\/[a-zA-Z0-9_]+\.[a-zA-Z]{3,4})"/g,
-      `src="${process.env.REACT_APP_BASE_URL}$1"`
-    );
-
-    setContent(updatedContent);
+  const adjustTextareaHeight = () => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
   };
 
   return (
     <div className="flex">
       <Sidebar activePage={activePage} setActivePage={setActivePage} />
-      <div className="w-[1000px] mx-auto mt-10 justify-center">
+      <div className={`${open ? "ml-72" : "ml-20"} container-dashboard`}>
         {/* judul */}
         <div>
-          <h1 className="text-sizeTri text-textSec font-bold">Edit Video</h1>
+          <h1 className="text-sizeTri font-bold text-textSec">Edit Video</h1>
           <p className="my-3 text-textFunc">Dashboard / Video / Edit</p>
         </div>
         {/* judul */}
         {/* content */}
-        <div className="w-[1000px] bg-bgTri mx-auto mt-5 justify-center rounded-md shadow-sm shadow-textFunc">
+        <div className="mx-auto mt-5 w-full justify-center rounded-md bg-bgTri shadow-sm shadow-textFunc">
           <div className="p-5">
             <div className="flex-1">
-              <div className="w-full ">
+              <div className="w-full">
                 <form onSubmit={handleUpdate} className="space-y-4">
                   <table className="w-full">
                     <tr>
                       <td className="py-3">
-                        <label htmlFor="title" className="block text-textSec mb-1">
+                        <label htmlFor="title" className="mb-1 block text-textSec">
                           Judul Video
                         </label>
                       </td>
@@ -124,13 +121,46 @@ const EditVideoAdmin = () => {
                           id="title"
                           value={title}
                           onChange={(e) => setTitle(e.target.value)}
-                          className="w-full py-2 px-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+                          className="w-full rounded-md border py-2 px-2 focus:outline-none focus:ring focus:ring-blue-300"
                         />
                       </td>
                     </tr>
                     <tr>
                       <td className="py-3">
-                        <label htmlFor="author" className="block text-textSec mb-1">
+                        <label htmlFor="videoLink" className="mb-1 block text-textSec">
+                          Link Video
+                        </label>
+                      </td>
+                      <td className="">
+                        <input
+                          type="text"
+                          id="videoLink"
+                          onChange={(e) => setVideoLink(e.target.value)}
+                          className="w-full rounded-md border py-2 px-2 focus:outline-none focus:ring focus:ring-blue-300"
+                          placeholder="https://www.youtube.com/watch?v=Lw0ZUa1vW5I"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-3">
+                        <label htmlFor="description" className="mb-1 block text-textSec">
+                          Deskripsi
+                        </label>
+                      </td>
+                      <td className="">
+                        <textarea
+                          id="description"
+                          value={description}
+                          onChange={(e) => setDescription(e.target.value)}
+                          className="w-full rounded-md border py-2 px-2 focus:outline-none focus:ring focus:ring-blue-300"
+                          rows="1"
+                          ref={textareaRef}
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="py-3">
+                        <label htmlFor="author" className="mb-1 block text-textSec">
                           Author
                         </label>
                       </td>
@@ -140,82 +170,7 @@ const EditVideoAdmin = () => {
                           id="author"
                           value={author}
                           onChange={(e) => setAuthor(e.target.value)}
-                          className="w-full py-2 px-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                        />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="py-3">
-                        <label htmlFor="videoLink" className="block text-textSec mb-1">
-                          Link Video
-                        </label>
-                      </td>
-                      <td className="">
-                        <input
-                          type="text"
-                          id="videoLink"
-                          value={videoLink}
-                          onChange={(e) => setVideoLink(e.target.value)}
-                          className="w-full px-2 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                        />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="py-3">
-                        <label htmlFor="description" className="block text-textSec mb-1">
-                          Deskripsi Singkat
-                        </label>
-                      </td>
-                      <td className="">
-                        <input
-                          type="text"
-                          id="description"
-                          value={description}
-                          onChange={(e) => setDescription(e.target.value)}
-                          className="w-full py-2 px-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
-                        />
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="py-3">
-                        <label htmlFor="content" className="block text-textSec mb-1">
-                          Konten
-                        </label>
-                      </td>
-                      <td className="py-3">
-                        <ReactQuill
-                          value={content}
-                          onChange={handleContentChange}
-                          modules={{
-                            toolbar: [
-                              [{ header: [1, 2, false] }],
-                              ["bold", "italic", "underline", "strike"],
-                              ["link", "image"],
-                              [{ list: "ordered" }, { list: "bullet" }],
-                              ["blockquote", "code-block"],
-                              [{ align: [] }],
-                              [{ indent: "-1" }, { indent: "+1" }],
-                              [{ direction: "rtl" }],
-                              ["clean"],
-                            ],
-                          }}
-                          formats={[
-                            "header",
-                            "bold",
-                            "italic",
-                            "underline",
-                            "strike",
-                            "link",
-                            "image",
-                            "list",
-                            "bullet",
-                            "blockquote",
-                            "code-block",
-                            "align",
-                            "indent",
-                            "direction",
-                          ]}
-                          className="h-[150px] border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+                          className="w-full rounded-md border py-2 px-2 focus:outline-none focus:ring focus:ring-blue-300"
                         />
                       </td>
                     </tr>
@@ -226,18 +181,18 @@ const EditVideoAdmin = () => {
                       justifyContent: "flex-end",
                       position: "relative",
                     }}
-                    className="p-5 flex flex-wrap gap-2"
+                    className="flex flex-wrap gap-2 p-5"
                   >
                     <button
                       onClick={handleGoBack}
                       type="button"
-                      className="w-[100px] px-4 py-2 mt-2 bg-bgFunc text-white rounded-md hover:bg-bgFunc3 focus:outline-none focus:ring focus:ring-gray-300"
+                      className="mt-2 w-[100px] rounded-md bg-bgFunc px-4 py-2 text-white hover:bg-bgFunc3 focus:outline-none focus:ring focus:ring-gray-300"
                     >
                       Batal
                     </button>
                     <button
                       type="submit"
-                      className="w-[100px] px-4 py-2 mt-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring focus:ring-blue-300"
+                      className="mt-2 w-[100px] rounded-md bg-green-600 px-4 py-2 text-white hover:bg-green-700 focus:outline-none focus:ring focus:ring-blue-300"
                     >
                       Simpan
                     </button>

@@ -6,6 +6,9 @@
   .layanan-button {
     @apply w-full rounded-2xl bg-blue-500 py-8 text-lg font-semibold text-black hover:opacity-90;
   }
+  .container-dashboard {
+    @apply mx-auto w-full justify-center px-10 py-10;
+  }
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");

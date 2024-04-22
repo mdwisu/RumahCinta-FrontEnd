@@ -3,11 +3,13 @@ import Sidebar from "../Sidebar";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
 
 function ListBlogAdmin() {
   const [activePage, setActivePage] = useState("Blog");
   const [blogs, setBlogs] = useState([]);
   const token = localStorage.getItem("token");
+  const open = useSelector((state) => state.sidebar.open);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -68,13 +70,13 @@ function ListBlogAdmin() {
   return (
     <div className="flex">
       <Sidebar activePage={activePage} setActivePage={setActivePage} />
-      <div className="w-[1000px] mx-auto mt-10 justify-center">
+      <div className={`${open ? "ml-72" : "ml-20"} container-dashboard`}>
         <div>
           <h1 className="text-sizeTri text-textSec font-bold">Blog</h1>
           <p className="my-3 text-textFunc">Dashboard / Blog</p>
         </div>
 
-        <div className="w-[1000px] bg-bgTri mx-auto mt-5 justify-center rounded-md shadow-sm shadow-textFunc">
+        <div className="w-full bg-bgTri mx-auto mt-5 justify-center rounded-md shadow-sm shadow-textFunc">
           <div className="flex items-center justify-between px-5 pt-5">
             <div>
               <Link
@@ -142,8 +144,8 @@ function ListBlogAdmin() {
                       <td className="px-6 py-4">{blog.title}</td>
                       <td className="px-6 py-4">{blog.description}</td>
                       <td className="px-6 py-4 flex gap-3">
-                        <Link to={`/admin/blog/${blog._id}/edit`}>Edit</Link>
-                        <button onClick={() => deleteBlog(blog._id)}>Delete</button>
+                        <Link to={`/admin/blog/${blog._id}/edit`} className="text-blue-500 hover:underline">Edit</Link>
+                        <button onClick={() => deleteBlog(blog._id)} className="text-red-500 hover:underline">Delete</button>
                       </td>
                     </tr>
                   ))}

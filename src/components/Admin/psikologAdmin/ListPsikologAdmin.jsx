@@ -3,11 +3,13 @@ import Sidebar from "../Sidebar";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
 
 function ListPsikologAdmin() {
   const [activePage, setActivePage] = useState("Psikolog");
   const [users, setUsers] = useState([]);
   const token = localStorage.getItem("token");
+  const open = useSelector((state) => state.sidebar.open);
 
   useEffect(() => {
     fetchPsikologRegister();
@@ -71,16 +73,16 @@ function ListPsikologAdmin() {
     <div className="flex">
       <Sidebar activePage={activePage} setActivePage={setActivePage} />
       {/* Content */}
-      <div className="w-[1000px] mx-auto mt-10 justify-center">
+      <div className={`${open ? "ml-72" : "ml-20"} container-dashboard`}>
         {/* judul */}
         <div>
-          <h1 className="text-sizeTri text-textSec font-bold">Psikolog</h1>
+          <h1 className="text-sizeTri font-bold text-textSec">Psikolog</h1>
           <p className="my-3 text-textFunc">Dashboard / Psikolog</p>
         </div>
         {/* judul */}
         {/* content */}
 
-        <div className="w-[1000px] bg-bgTri mx-auto mt-5 justify-center rounded-md shadow-sm shadow-textFunc">
+        <div className="mx-auto mt-5 w-full justify-center rounded-md bg-bgTri shadow-sm shadow-textFunc">
           <div className="flex items-center justify-between px-5 pt-5">
             {/* <div>
               <Link
@@ -122,8 +124,8 @@ function ListPsikologAdmin() {
           </div>
           <div className="">
             <div className="relative overflow-x-auto p-5">
-              <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead className=" text-textOpt  bg-bgFunc3 text-center">
+              <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
+                <thead className=" bg-bgFunc3  text-center text-textOpt">
                   <tr>
                     <th scope="col" className="px-6 py-3">
                       No
@@ -142,7 +144,7 @@ function ListPsikologAdmin() {
                 <tbody>
                   {users.map((user, index) => {
                     return (
-                      <tr key={index} className="bg-white border-b text-center ">
+                      <tr key={index} className="border-b bg-white text-center ">
                         <th scope="row" className="px-6 py-4 text-center">
                           {index + 1}
                         </th>
@@ -165,7 +167,7 @@ function ListPsikologAdmin() {
                           </div>
                         </td> */}
 
-                        <td className="px-6 py-4 flex gap-3 justify-center">
+                        <td className="flex justify-center gap-3 px-6 py-4">
                           <Link to={`/admin/psikolog/${user.psikolog_id}/detail`}>Detail </Link>
                           <Link to={`/admin/psikolog/${user.psikolog_id}/edit`}>Edit </Link>
                           <button onClick={() => deleteUser(user.psikolog_id)}>Delete</button>

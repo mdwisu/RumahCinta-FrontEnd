@@ -78,9 +78,14 @@ function ListVideo() {
           >
             <div className="relative">
               <img
-                src={`https://img.youtube.com/vi/${video.videoLink}/maxresdefault.jpg`}
+                src={`https://img.youtube.com/vi/${video.videoId}/maxresdefault.jpg`}
                 alt={video.title}
                 className="h-auto w-full object-cover"
+                onLoad={(e) => {
+                  if (e.target.naturalWidth === 120 && e.target.naturalHeight === 90) {
+                    e.target.src = "https://via.placeholder.com/1280x720?text=Thumbnail+Tidak+Tersedia";
+                  }
+                }}
               />
             </div>
             <div className="p-4">

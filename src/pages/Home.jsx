@@ -243,18 +243,24 @@ function Home() {
         <div className="flex flex-wrap justify-center gap-4">
           {videos.map((video, index) => (
             <Link
-              to={`/videos/${video.id}`}
+              to={`/videos/${video._id}`}
               className="flex max-w-xs flex-col rounded-xl bg-white p-4 sm:w-full sm:max-w-lg sm:flex-row"
               key={index}
             >
               {/* Gambar di sebelah kiri */}
               <div className="mb-4 flex flex-1 items-center sm:mb-0 sm:mr-4">
                 <img
-                  src={`https://img.youtube.com/vi/${video.videoLink}/maxresdefault.jpg`}
-                  alt={`Thumbnail ${index + 1}`}
+                  src={`https://img.youtube.com/vi/${video.videoId}/maxresdefault.jpg`}
+                  alt={video.title}
                   className="h-auto w-[300px] rounded-md lg:w-[600px]"
+                  onLoad={(e) => {
+                    if (e.target.naturalWidth === 120 && e.target.naturalHeight === 90) {
+                      e.target.src = "https://via.placeholder.com/1280x720?text=Thumbnail+Tidak+Tersedia";
+                    }
+                  }}
                 />
               </div>
+
               {/* Tulisan di sebelah kanan */}
               <div className="flex flex-1 flex-col">
                 <h2 className="text-xl font-bold line-clamp-2">{video.title}</h2>

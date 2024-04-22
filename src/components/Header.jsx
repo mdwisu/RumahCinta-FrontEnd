@@ -10,6 +10,7 @@ import { logout, setUser } from "../features/authSlice";
 import { RiAdminLine, RiLogoutBoxLine, RiProfileLine } from "react-icons/ri";
 import ContactAndLocation from "../components/contactAndLocation";
 import DropdownButton from "./DropdownButton";
+import Swal from "sweetalert2";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -242,7 +243,7 @@ function Header() {
         </div>
         {/* navbar desktop */}
         <div
-          className={`${isOpen ? "block" : "hidden"} w-full flex-col items-center justify-between lg:flex lg:flex-row`}
+          className={`${isOpen ? "block" : "hidden"} w-full flex-col items-center justify-evenly lg:flex lg:flex-row`}
         >
           <div className="ml-3 flex flex-col items-center gap-4 overflow-auto lg:flex-row">
             <Link to={"/"} className="hidden self-center font-semibold lg:block">
@@ -259,9 +260,25 @@ function Header() {
             <Link to={"/konsultasi"} className="font-semibold hover:text-gray-500">
               Konsultasi
             </Link>
-          </div>
-          <div className={!isOpen ? "block" : "hidden"}>
-            <img className="h-[30px]" src={LogoHori} alt="LogoHori" />
+            {token ? (
+              <Link to="/riwayat-konsultasi" className="font-semibold hover:text-gray-500">
+                Riwayat
+              </Link>
+            ) : (
+              <div
+                onClick={() =>
+                  Swal.fire({
+                    title: "Peringatan!",
+                    text: "Harap login terlebih dahulu",
+                    icon: "warning",
+                    confirmButtonText: "Ok",
+                  })
+                }
+                className="cursor-pointer font-semibold hover:text-gray-500"
+              >
+                Riwayat
+              </div>
+            )}
           </div>
           <div className="my-3 flex items-center lg:flex-row" ref={dropdownRef}>
             {token ? (

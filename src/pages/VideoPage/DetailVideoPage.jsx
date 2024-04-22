@@ -57,14 +57,12 @@ function DetailVideoPage() {
   return (
     <div>
       <Header />
-      <div className="container mx-auto ">
+      <div className="container mx-auto pt-24 lg:pt-36">
         <div className="mx-auto max-w-3xl py-6">
           <div className="my-5 flex items-center justify-center">
             <iframe
-              className="aspect-video"
-              width="560"
-              height="315"
-              src={`https://www.youtube.com/embed/${video.videoLink}`}
+              className="aspect-video w-full"
+              src={`https://www.youtube.com/embed/${video.videoId}`}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -72,12 +70,16 @@ function DetailVideoPage() {
             ></iframe>
           </div>
 
-          <h1 className=" text-center text-2xl font-bold text-textSec sm:text-4xl">{video.title}</h1>
-          <p className="text-center text-lg font-semibold text-[#71717a]">Author: {video.author}</p>
-          <p className="justify text-center text-lg font-semibold text-[#71717a]">
-            Updated at: {dayjs(video.UpdatedAt).locale("id").format("dddd, DD MMMM YYYY")}
-          </p>
-          <ReactQuill value={replacedContent} readOnly={true} theme={"bubble"} />
+          {/* <h1 className=" text-center text-2xl font-bold  sm:text-4xl">{video.title}</h1> */}
+          <h1 className="mb-2 text-3xl font-bold text-gray-800">{video.title}</h1>
+
+          <div className="mb-4 flex items-center justify-between space-x-4">
+            <p className="text-lg font-semibold text-gray-600">Penulis: {video.author}</p>
+            <p className="text-lg font-semibold text-gray-600">
+              Diperbarui pada: {dayjs(video.UpdatedAt).locale("id").format("dddd, DD MMMM YYYY")}
+            </p>
+          </div>
+          <p className="mt-5 text-xl leading-loose" dangerouslySetInnerHTML={{ __html: video.description }} />
           <style>
             {`
             .prose img {

@@ -3,11 +3,13 @@ import Sidebar from "../Sidebar";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
 
 function ListVideoAdmin() {
   const [activePage, setActivePage] = useState("Video");
   const [videos, setVideos] = useState([]);
   const token = localStorage.getItem("token");
+  const open = useSelector((state) => state.sidebar.open);
 
   useEffect(() => {
     fetchVideos();
@@ -23,8 +25,6 @@ function ListVideoAdmin() {
     try {
       const response = await axios.request(config);
       setVideos(response.data.video);
-      console.log(response);
-      console.log(JSON.stringify(response.data));
     } catch (error) {
       console.log(error);
     }
@@ -70,21 +70,21 @@ function ListVideoAdmin() {
     <div className="flex">
       <Sidebar activePage={activePage} setActivePage={setActivePage} />
       {/* Content */}
-      <div className="w-[1000px] mx-auto mt-10 justify-center">
+      <div className={`${open ? "ml-72" : "ml-20"} container-dashboard`}>
         {/* judul */}
         <div>
-          <h1 className="text-sizeTri text-textSec font-bold">Video</h1>
+          <h1 className="text-sizeTri font-bold text-textSec">Video</h1>
           <p className="my-3 text-textFunc">Dashboard / Video</p>
         </div>
         {/* judul */}
         {/* content */}
 
-        <div className="w-[1000px] bg-bgTri mx-auto mt-5 justify-center rounded-md shadow-sm shadow-textFunc">
+        <div className="mx-auto mt-5 w-full justify-center rounded-md bg-bgTri shadow-sm shadow-textFunc">
           <div className="flex items-center justify-between px-5 pt-5">
             <div>
               <Link
                 id="addVideo"
-                className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2 "
+                className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-5 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 "
                 type="button"
                 to={"/admin/video/create-video"}
               >
@@ -121,8 +121,8 @@ function ListVideoAdmin() {
           </div>
           <div className="">
             <div className="relative overflow-x-auto p-5">
-              <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead className=" text-textOpt  bg-bgFunc3 text-center">
+              <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
+                <thead className=" bg-bgFunc3  text-center text-textOpt">
                   <tr>
                     <th scope="col" className="px-6 py-3">
                       No
@@ -140,15 +140,15 @@ function ListVideoAdmin() {
                 </thead>
                 <tbody>
                   {videos.map((video, index) => (
-                    <tr key={video._id} className="bg-white border-b ">
+                    <tr key={video._id} className="border-b bg-white ">
                       <th scope="row" className="px-6 py-4 text-center">
                         {index + 1}
                       </th>
                       <td className="px-6 py-4">{video.title}</td>
                       <td className="px-6 py-4">{video.description}</td>
-                      <td className="px-6 py-4 flex gap-3">
-                        <Link to={`/admin/video/${video._id}/edit`}>Edit </Link>
-                        <button onClick={() => deleteVideo(video._id)}>Delete</button>
+                      <td className="flex gap-3 px-6 py-4">
+                        <Link to={`/admin/video/${video._id}/edit`} className="text-yellow-500 hover:underline">Edit </Link>
+                        <button onClick={() => deleteVideo(video._id)} className="text-red-500 hover:underline">Delete</button>
                       </td>
                     </tr>
                   ))}

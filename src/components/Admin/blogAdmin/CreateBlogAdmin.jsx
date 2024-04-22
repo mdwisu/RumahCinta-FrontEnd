@@ -6,6 +6,7 @@ import Sidebar from "../Sidebar";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import ImageCompress from "quill-image-compress";
+import { useSelector } from "react-redux";
 
 Quill.register("modules/imageCompress", ImageCompress);
 
@@ -20,6 +21,7 @@ const CreateBlogAdmin = () => {
 
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const open = useSelector((state) => state.sidebar.open);
 
   const handleGoBack = () => {
     navigate(-1);
@@ -59,11 +61,9 @@ const CreateBlogAdmin = () => {
           text: "Data berhasil disimpan.",
           icon: "success",
           confirmButtonText: "OK",
-        });
-
-        setTimeout(() => {
+        }).then(() => {
           navigate("/admin/blog");
-        }, 3000);
+        });
       } catch (error) {
         console.log(error);
       }
@@ -101,10 +101,10 @@ const CreateBlogAdmin = () => {
     img.onload = () => {
       const width = img.width;
       const height = img.height;
-      if (width !== 1080 || height !== 716) {
+      if (width !== 1280 || height !== 720) {
         Swal.fire({
           title: "Ukuran Gambar Salah",
-          text: "Ukuran gambar harus 1080x716 pixel.",
+          text: "Ukuran gambar harus 1280x720 pixel.",
           icon: "error",
         });
         setThumbnail(null); // Reset the selected thumbnail
@@ -116,15 +116,15 @@ const CreateBlogAdmin = () => {
   return (
     <div className="flex">
       <Sidebar activePage={activePage} setActivePage={setActivePage} />
-      <div className="w-[1000px] mx-auto mt-10 justify-center">
+      <div className={`${open ? "ml-72" : "ml-20"} container-dashboard`}>
         {/* judul */}
         <div>
-          <h1 className="text-sizeTri text-textSec font-bold">Tambah Blog</h1>
+          <h1 className="text-sizeTri font-bold text-textSec">Tambah Blog</h1>
           <p className="my-3 text-textFunc">Dashboard / Blog / Tambah</p>
         </div>
         {/* judul */}
         {/* content */}
-        <div className="w-[1000px] bg-bgTri mx-auto mt-5 justify-center rounded-md shadow-sm shadow-textFunc">
+        <div className="mx-auto mt-5 w-full justify-center rounded-md bg-bgTri shadow-sm shadow-textFunc">
           <div className="p-5">
             <div className="flex-1">
               <div className="w-full ">
@@ -132,7 +132,7 @@ const CreateBlogAdmin = () => {
                   <table className="w-full">
                     <tr>
                       <td className="py-3">
-                        <label htmlFor="title" className="block text-textSec mb-1">
+                        <label htmlFor="title" className="mb-1 block text-textSec">
                           Judul Blog
                         </label>
                       </td>
@@ -142,13 +142,13 @@ const CreateBlogAdmin = () => {
                           id="title"
                           value={title}
                           onChange={(e) => setTitle(e.target.value)}
-                          className="w-full py-2 px-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+                          className="w-full rounded-md border py-2 px-2 focus:outline-none focus:ring focus:ring-blue-300"
                         />
                       </td>
                     </tr>
                     <tr>
                       <td className="py-3">
-                        <label htmlFor="description" className="block text-textSec mb-1">
+                        <label htmlFor="description" className="mb-1 block text-textSec">
                           Deskripsi Singkat
                         </label>
                       </td>
@@ -159,13 +159,13 @@ const CreateBlogAdmin = () => {
                           placeholder="max 50 words"
                           value={description}
                           onChange={(e) => setDescription(e.target.value)}
-                          className="w-full py-2 px-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+                          className="w-full rounded-md border py-2 px-2 focus:outline-none focus:ring focus:ring-blue-300"
                         />
                       </td>
                     </tr>
                     <tr>
                       <td className="py-3">
-                        <label htmlFor="description" className="block text-textSec mb-1">
+                        <label htmlFor="description" className="mb-1 block text-textSec">
                           Author
                         </label>
                       </td>
@@ -175,23 +175,23 @@ const CreateBlogAdmin = () => {
                           id="author"
                           value={author}
                           onChange={(e) => setAuthor(e.target.value)}
-                          className="w-full py-2 px-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+                          className="w-full rounded-md border py-2 px-2 focus:outline-none focus:ring focus:ring-blue-300"
                         />
                       </td>
                     </tr>
                     <tr>
                       <td className="py-3">
-                        <label htmlFor="thumbnail" className="block text-textSec mb-1">
-                          Thumbnail Gambar (JPG/PNG format, maksimum 2MB)
+                        <label htmlFor="thumbnail" className="mb-1 block text-textSec">
+                          Thumbnail Gambar
                         </label>
                       </td>
                       <td>
                         <input
                           type="file"
                           id="thumbnail"
-                          accept=".jpg, .png"
+                          accept=".jpg, .jpeg, .png, .gif, .bmp, .tiff, .svg, .webp"
                           onChange={handleThumbnailChange}
-                          className="py-2 px-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+                          className="rounded-md border py-2 px-2 focus:outline-none focus:ring focus:ring-blue-300"
                         />
                         {thumbnailPreview && (
                           <div className="mt-2">
@@ -199,21 +199,21 @@ const CreateBlogAdmin = () => {
                             <img
                               src={thumbnailPreview}
                               alt="Thumbnail Preview"
-                              className="w-48 h-32 mt-2 border rounded-md object-cover"
+                              className="mt-2 h-32 w-48 rounded-md border object-cover"
                             />
                           </div>
                         )}
-                        {thumbnail && <p className="text-textFunc mt-2">Gambar terpilih: {thumbnail.name}</p>}
-                        {!thumbnail && (
-                          <p className="text-textFunc mt-2">
-                            Silakan pilih gambar dengan format JPG atau PNG, ukuran 1080x716 pixel, dan maksimum 2MB.
-                          </p>
-                        )}
+                        {thumbnail && <p className="mt-2 text-textFunc">Gambar terpilih: {thumbnail.name}</p>}
+                        <p className="mt-2 text-textFunc">
+                          Format gambar yang diizinkan: JPG, JPEG, PNG, GIF, BMP, TIFF, SVG, WebP.
+                          <br />
+                          Ukuran gambar harus 1280x720 piksel dengan batas maksimum 2MB.
+                        </p>
                       </td>
                     </tr>
                     <tr>
                       <td className="py-3">
-                        <label htmlFor="content" className="block text-textSec mb-1">
+                        <label htmlFor="content" className="mb-1 block text-textSec">
                           Konten
                         </label>
                       </td>
@@ -257,7 +257,7 @@ const CreateBlogAdmin = () => {
                             "indent",
                             "direction",
                           ]}
-                          className="h-[200px] border rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+                          className="h-[200px] rounded-md border focus:outline-none focus:ring focus:ring-blue-300"
                         />
                       </td>
                     </tr>
@@ -268,18 +268,18 @@ const CreateBlogAdmin = () => {
                       justifyContent: "flex-end",
                       position: "relative",
                     }}
-                    className="p-5 flex flex-wrap gap-2"
+                    className="flex flex-wrap gap-2 p-5"
                   >
                     <button
                       type="button"
-                      className="w-[100px] px-4 py-2 mt-2 bg-bgFunc text-white rounded-md hover:bg-bgFunc3 focus:outline-none focus:ring focus:ring-gray-300"
+                      className="mt-2 w-[100px] rounded-md bg-bgFunc px-4 py-2 text-white hover:bg-bgFunc3 focus:outline-none focus:ring focus:ring-gray-300"
                       onClick={handleGoBack}
                     >
                       Batal
                     </button>
                     <button
                       type="submit"
-                      className="w-[100px] px-4 py-2 mt-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring focus:ring-blue-300"
+                      className="mt-2 w-[100px] rounded-md bg-green-600 px-4 py-2 text-white hover:bg-green-700 focus:outline-none focus:ring focus:ring-blue-300"
                     >
                       Simpan
                     </button>

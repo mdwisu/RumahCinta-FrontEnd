@@ -5,6 +5,8 @@ import Online from "../../image2/35.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import ContactAndLocation from "../contactAndLocation";
+import FloatingIcons from "../FloatingIcons";
 
 function KonsultasiComponent() {
   const navigate = useNavigate();
@@ -41,6 +43,12 @@ function KonsultasiComponent() {
   };
   return (
     <div>
+      <div className="block md:hidden">
+        <ContactAndLocation />
+      </div>
+      <div className="hidden md:block">
+        <FloatingIcons />
+      </div>
       <div className="container mx-auto mt-28 flex flex-col">
         <div>
           <div class="w-full bg-white py-8">
@@ -59,11 +67,8 @@ function KonsultasiComponent() {
                     Jalan Raya Pemda-Karadenan No. 25, RT 001/004, Kel. Karadenan, Kec. Cibinong, Kab. Bogor 16913
                   </p>
                   <p class="mb-4">Selasa - Sabtu: 08:00 - 15:00</p>
-                  <button class="mt-4 rounded-md bg-black py-2 px-4 text-white transition-colors hover:bg-gray-800">
-                    TULIS KEPADA KAMI
-                  </button>
                 </div>
-                <div className="flex">
+                <div className="flex justify-center">
                   <a href="#" class="mr-4 text-gray-600 transition-colors hover:text-gray-800">
                     <FaFacebook className="h-10 w-10 text-black" />
                   </a>
@@ -88,69 +93,11 @@ function KonsultasiComponent() {
                 scrolling="no"
                 marginheight="0"
                 marginwidth="0"
+                title="lokasi rumah cinta"
               ></iframe>
             </div>
           </div>
         </div>
-        {/* Konsultasi Area */}
-        <div className="justify-center bg-bgFunc text-white">
-          <img className="" src={Online} />
-          <div className="mx-[100px] mt-[50px] ">
-            <div className="my-5 flex items-center gap-3">
-              <FaHandHoldingHeart className="h-10 w-10" />
-              <p className="text-[24px]">Konsultasi Area</p>
-            </div>
-            <p className="mb-4 text-sizePri font-bold leading-7">Penyelesaian secara online dan cepat</p>
-            <p className="text-sizeParagraph leading-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-            </p>
-            {/* ingat untuk konsultasi harus mempunyai akun, jikalau tidak maka di alihkan ke halaman login dan dengan alert anda harus login terlebih dahulu */}
-            <button
-              onClick={handleKonsultasi}
-              className="mt-5 mb-10 inline-block rounded-xl bg-bgOpt py-2 px-4 font-bold hover:bg-bgOpt2"
-            >
-              Konsultasi Sekarang
-            </button>
-          </div>
-        </div>
-
-        {/* Konsultasi Area */}
-
-        {/* Contact Us */}
-        <div className="mx-[100px] mt-[50px]">
-          <span className="text-sizePri font-bold">Contact Us</span>
-          <div className="my-[20px] flex items-center gap-3">
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-bgFunc2">
-              <FaPhoneAlt className="rounded-full text-textOpt" />
-            </div>
-            <div className="">
-              <p className="-mb-2 font-bold">Phonecall</p>
-              <p className="text-[12px]">www.mewellenteramandeh.com</p>
-            </div>
-          </div>
-          <div className="my-[20px] flex items-center gap-3">
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-bgFunc2">
-              <FaEnvelope className="text-textOpt" />
-            </div>
-            <div className="">
-              <p className="-mb-2 font-bold">Email Address</p>
-              <p className="text-[12px]">psikologilenteramandeh@gmail.com</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-bgFunc2">
-              <FaInstagram className="text-textOpt" />
-            </div>
-            <div className="">
-              <p className="-mb-2 font-bold">Instagram</p>
-              <p className="text-[12px] ">@lenteramandeh</p>
-            </div>
-          </div>
-          <div className="md:w-[500px]">
-            <img src={Konsultan} />
-          </div>
-        </div>
-        {/* Contact Us */}
       </div>
 
       {/* Why Choose Us */}

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { splitDate } from "../../util/Helper";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
@@ -14,6 +14,11 @@ function DetailBlogPage() {
   const [blog, setBlog] = useState([]);
   const [dateCreated, setDateCreated] = useState("");
   const [name, setName] = useState("");
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate(-1); // Kembali ke halaman sebelumnya
+  };
 
   useEffect(() => {
     getBlogsById(id);
@@ -43,12 +48,10 @@ function DetailBlogPage() {
   };
 
   const replacedContent = replaceImageSrc(blog.content);
-
-  console.log(blog);
   return (
     <div>
       <Header />
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 pt-36">
         <div className="mx-auto max-w-4xl py-6">
           <h1 className=" text-center text-4xl font-bold text-dark sm:text-4xl">{blog.title}</h1>
           <p className="text-center text-lg font-semibold text-[#71717a]">Author: {blog.author}</p>
@@ -56,7 +59,7 @@ function DetailBlogPage() {
             Updated at: {dayjs(blog.UpdatedAt).locale("id").format("dddd, DD MMMM YYYY")}
           </p>
           {/* <ReactQuill value={replacedContent} readOnly={true} theme={"bubble"} /> */}
-          <p className="text-xl leading-loose" dangerouslySetInnerHTML={{ __html: replacedContent }} />
+          <p className="mt-5 text-xl leading-loose" dangerouslySetInnerHTML={{ __html: replacedContent }} />
 
           <style>
             {`
@@ -67,11 +70,11 @@ function DetailBlogPage() {
           `}
           </style>
         </div>
-        <Link to="/blog" className=" my-4 text-white">
+        <div onClick={handleBack} className=" my-4 text-white">
           <div className="w-100 h-50 border-1 m-5 cursor-pointer rounded-2xl border bg-bgOpt2 p-2 text-center hover:bg-bgOpt">
             Selesai
           </div>
-        </Link>
+        </div>
       </div>
       <Footer />
     </div>

@@ -74,6 +74,11 @@ import ListFaqAdmin from "./components/Admin/faqAdmin/ListFaqAdmin";
 import EditFaqAdmin from "./components/Admin/faqAdmin/EditFaqAdmin";
 import Header2 from "./components/Header2";
 import LayananDetail from "./pages/LayananPage/LayananDetail";
+import RiwayatKonsultasi from "./pages/Riwayat/RiwayatKonsultasi";
+import ListHistoryAdmin from "./pages/Admin/historyAdminpage/ListHistoryAdmin";
+import CreateHistoryAdmin from "./pages/Admin/historyAdminpage/CreateHistoryAdmin";
+import DetailHistoryAdmin from "./pages/Admin/historyAdminpage/DetailHistoryAdmin";
+import EditHistoryAdmin from "./pages/Admin/historyAdminpage/EditHistoryAdmin";
 
 function App() {
   // const [loading, setLoading] = useState(true);
@@ -122,10 +127,6 @@ function App() {
             </LoginGuard>
           }
         />
-
-        {/* <Route path="/layanan/psiko-edukasi" element={<PsikoEdukasi />} />
-          <Route path="/layanan/konsultasi" element={<Konsultasi />} />
-          <Route path="/layanan/potensi-akademik" element={<PotensiAkademik />} /> */}
         <Route path="/layanan/:id" element={<LayananDetail />} />
         <Route path="/blogs" element={<ListBlogPage />} />
         <Route path="/blogs/:id" element={<DetailBlogPage />} />
@@ -133,6 +134,7 @@ function App() {
         <Route path="/videos/:id" element={<DetailVideoPage />} />
         <Route path="/konsultasi" element={<DetailKonsultasiPage />} />
         <Route path="/konsultasi/form-konsultasi" element={<FormKonsultasiPage />} />
+        <Route path="/riwayat-konsultasi" element={<RiwayatKonsultasi />} />
         <Route
           path="/konsultasi/:id/pilih-psikolog"
           element={
@@ -231,6 +233,11 @@ function App() {
             </AdminDashboardGuard>
           }
         />
+        <Route path="/admin/history" element={<ListHistoryAdmin />} />
+        <Route path="/admin/history/create-history" element={<CreateHistoryAdmin />} />
+        <Route path="/admin/history/:id" element={<DetailHistoryAdmin />} />
+        <Route path="/admin/history/:id/edit" element={<EditHistoryAdmin />} />
+
         <Route path="/admin/user" element={<ListUserAdminPage />} />
         <Route path="/admin/user/create-user" element={<CreateUserAdminPage />} />
         <Route path="/admin/user/:id/edit" element={<EditUserAdminPage />} />

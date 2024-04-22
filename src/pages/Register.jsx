@@ -121,24 +121,24 @@ function Register() {
         {/* image logo */}
         {/* image logo lengkap */}
         <div className="relative">
-          <img src={LogoMandeh} className="w-[250px] absolute right-0 mt-5" alt="Logo Mandeh" />
+          <img src={LogoMandeh} className="absolute right-0 mt-5 w-[250px]" alt="Logo Mandeh" />
         </div>
         {/* image logo lengkap */}
         {/* card */}
-        <div className="flex flex-col my-10 justify-center">
-          <div className="m-auto bg-bgSec w-full max-w-3xl p-4 border border-gray-200 rounded-lg shadow sm:p-6 md:p-8">
+        <div className="my-10 flex flex-col justify-center">
+          <div className="m-auto w-full max-w-3xl rounded-lg border border-gray-200 bg-bgSec p-4 shadow sm:p-6 md:p-8">
             <form className="space-y-6" onSubmit={handleSubmit}>
-              <h5 className="text-[54px] font-semibold text-textPri text-center">Registrasi</h5>
-              <p className="text-sm text-gray-500  text-center font-medium">Silahkan masukan data lengkap anda</p>
+              <h5 className="text-center text-[54px] font-semibold text-textPri">Registrasi</h5>
+              <p className="text-center text-sm  font-medium text-gray-500">Silahkan masukan data lengkap anda</p>
 
               {/* form */}
-              <div className="flex flex-wrap justify-center w-full h-[250px] max-w-3xl gap-5">
+              <div className="flex h-[250px] w-full max-w-3xl flex-wrap justify-center gap-5">
                 <div className="w-[300px]">
                   <div>
                     <input
                       type="text"
                       name="name"
-                      className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-1 focus:outline-none focus:ring-bgFunc3 focus:border-bgFunc3 block w-full p-2.5 mt-5 "
+                      className="mt-5 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm focus:border-bgFunc3 focus:outline-none focus:ring-1 focus:ring-bgFunc3 "
                       placeholder="Nama"
                       required
                       value={name}
@@ -149,7 +149,7 @@ function Register() {
                     <input
                       type="date"
                       name="dateOfBirth"
-                      className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-1 focus:outline-none focus:ring-bgFunc3 focus:border-bgFunc3 block w-full p-2.5 mt-5"
+                      className="mt-5 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm focus:border-bgFunc3 focus:outline-none focus:ring-1 focus:ring-bgFunc3"
                       value={dateOfBirth}
                       onChange={(e) => setDateOfBirth(e.target.value)}
                     />
@@ -159,7 +159,7 @@ function Register() {
                       type="text"
                       name="placeOfBirth"
                       placeholder="Tempat Lahir"
-                      className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-1 focus:outline-none focus:ring-bgFunc3 focus:border-bgFunc3 block w-full p-2.5 mt-5"
+                      className="mt-5 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm focus:border-bgFunc3 focus:outline-none focus:ring-1 focus:ring-bgFunc3"
                       value={placeOfBirth}
                       onChange={(e) => setPlaceOfBirth(e.target.value)}
                     />
@@ -167,7 +167,7 @@ function Register() {
                   <div>
                     <select
                       name="gender"
-                      className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-1 focus:outline-none focus:ring-bgFunc3 focus:border-bgFunc3 block w-full p-2.5 mt-5 "
+                      className="mt-5 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm focus:border-bgFunc3 focus:outline-none focus:ring-1 focus:ring-bgFunc3 "
                       value={gender}
                       onChange={(e) => setGender(e.target.value)}
                     >
@@ -183,7 +183,7 @@ function Register() {
                       type="email"
                       name="email"
                       id="email"
-                      className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-1 focus:outline-none focus:ring-bgFunc3 focus:border-bgFunc3 block w-full p-2.5 mt-5 "
+                      className="mt-5 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm focus:border-bgFunc3 focus:outline-none focus:ring-1 focus:ring-bgFunc3 "
                       placeholder="Email"
                       required
                       value={email}
@@ -195,7 +195,7 @@ function Register() {
                       type="password"
                       name="password"
                       id="password"
-                      className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-1 focus:outline-none focus:ring-bgFunc3 focus:border-bgFunc3 block w-full p-2.5 mt-5 "
+                      className="mt-5 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm focus:border-bgFunc3 focus:outline-none focus:ring-1 focus:ring-bgFunc3 "
                       placeholder="Password"
                       required
                       value={password}
@@ -207,14 +207,14 @@ function Register() {
                       type="password"
                       name="confPassword"
                       id="confPassword"
-                      className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-1 focus:outline-none focus:ring-bgFunc3 focus:border-bgFunc3 block w-full p-2.5 mt-5 "
+                      className="mt-5 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm focus:border-bgFunc3 focus:outline-none focus:ring-1 focus:ring-bgFunc3 "
                       placeholder="Konfirmasi Password"
                       required
                       value={confPassword}
                       onChange={(e) => setConfPassword(e.target.value)}
                     />
                     <div
-                      className="text-red-500 text-[10px] mb-1"
+                      className="mb-1 text-[10px] text-red-500"
                       style={{
                         position: "absolute",
                         visibility: password && !passwordMatch ? "visible" : "hidden",
@@ -229,7 +229,7 @@ function Register() {
                       name="profile"
                       accept=".jpg, .png"
                       id="profile"
-                      className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-1 focus:outline-none focus:ring-bgFunc3 focus:border-bgFunc3 block w-full p-2.5 mt-5 "
+                      className="mt-5 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm focus:border-bgFunc3 focus:outline-none focus:ring-1 focus:ring-bgFunc3 "
                       onChange={handleProfileChange}
                     />
                   </div>
@@ -239,11 +239,11 @@ function Register() {
 
               <button
                 type="submit"
-                className="w-full text-white bg-bgFunc3 hover:bg-bgFunc4 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                className="w-full rounded-lg bg-bgFunc3 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-bgFunc4 focus:outline-none focus:ring-4 focus:ring-blue-300"
               >
                 Daftar
               </button>
-              <div className="text-sm font-medium text-gray-500 text-center ">
+              <div className="text-center text-sm font-medium text-gray-500 ">
                 Sudah mempunyai akun? masuk{" "}
                 <a href="/login" className="text-bgFunc3 hover:underline ">
                   disini
@@ -255,7 +255,7 @@ function Register() {
 
         {/* card */}
         {/* tombol back */}
-        <div className="flex items-center float-right mr-10 -mt-8 text-bgFunc hover:text-bgFunc2 font-medium ">
+        <div className="float-right mr-10 -mt-8 flex items-center font-medium text-bgFunc hover:text-bgFunc2 ">
           <div>
             <Link to="/" className="">
               Kembali{" "}
