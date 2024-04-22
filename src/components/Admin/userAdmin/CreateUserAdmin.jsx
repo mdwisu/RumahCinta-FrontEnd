@@ -146,7 +146,7 @@ const CreateUserAdmin = () => {
                         >
                           <option value="user">User</option>
                           <option value="admin">Admin</option>
-                          <option value="psikolog">Psikolog</option>
+                  
                         </select>
                       </td>
                     </tr>

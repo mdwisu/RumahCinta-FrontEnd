@@ -253,12 +253,12 @@ function Header() {
               Home
             </Link>
             <DropdownButton title="Konten" items={kontens} />
-            <DropdownButton title="layanan" items={layanans} />
-            <Link to={"/tes"} className="font-semibold hover:text-gray-500">
+            <DropdownButton title="Layanan" items={layanans} />
+            {/* <Link to={"/tes"} className="font-semibold hover:text-gray-500">
               Tes Psikologi
-            </Link>
+            </Link> */}
             <Link to={"/konsultasi"} className="font-semibold hover:text-gray-500">
-              Konsultasi
+              Hubungi Kami
             </Link>
             {token ? (
               <Link to="/riwayat-konsultasi" className="font-semibold hover:text-gray-500">

@@ -119,11 +119,13 @@ function Home() {
       {/* konsultasi daring atau langsung */}
       <section id="konsultasi">
         <div className="flex w-full flex-col bg-purple-500 pt-4 lg:min-h-screen">
-          <h1 className="mt-10 self-center text-4xl font-bold text-white lg:text-5xl">konsultasi</h1>
+          <h1 className="mt-10 self-center text-4xl font-bold text-white lg:text-5xl">Konsultasi</h1>
           <h1 className="self-center rounded-lg bg-yellow-400 p-4 text-3xl font-bold text-primary lg:text-5xl">
             Daring / Langsung
           </h1>
-          <p className="center self-center">Bimbingan Langsung Dari Ahli di Bidangnya dimana pun dan kapan pun</p>
+          <p className="center self-center text-white">
+            Bimbingan Langsung Dari Ahli di Bidangnya dimana pun dan kapan pun
+          </p>
           <div className="mt-32 flex justify-center bg-yellow-400 py-5">
             <div className="flex w-full flex-wrap items-center justify-center gap-4 py-4">
               <img src={konsultasi1} alt="Gambar 1" className="h-44 w-60 rounded-md" />
@@ -281,24 +283,26 @@ function Home() {
         <div className="mt-8 flex flex-1 flex-wrap items-baseline justify-center">
           <div className="flex max-w-xs flex-col items-center py-5">
             <img src={anggota1} alt="Foto Anggota 1" className="mb-4 h-48 w-48 rounded-md bg-yellow-500 object-cover" />
-            <h3 className="w-56 text-lg font-semibold sm:min-h-[6rem]">
+            <h3 className="w-56 text-lg font-semibold text-yellow-500 sm:min-h-[6rem]">
               Retno Lelyani Dewi, S.Psi, M.Pd., Psikolog Kliniser di Sini
             </h3>
             <p className="px-3 text-sm text-white">Deskripsi singkat mengenai Anggota 1</p>
           </div>
           <div className="flex max-w-xs flex-col items-center py-5">
             <img src={anggota2} alt="Foto Anggota 2" className="mb-4 h-48 w-48 rounded-md bg-pink-300 object-cover" />
-            <h3 className="w-56 text-lg font-semibold sm:min-h-[6rem]">Herly Novita Sari, M.Psi., Psikolog</h3>
+            <h3 className="w-56 text-lg font-semibold text-yellow-500 sm:min-h-[6rem]">
+              Herly Novita Sari, M.Psi., Psikolog
+            </h3>
             <p className="px-3 text-sm text-white">Deskripsi singkat mengenai Anggota 2</p>
           </div>
           <div className="flex max-w-xs flex-col items-center py-5">
             <img src={anggota3} alt="Foto Anggota 3" className="mb-4 h-48 w-48 rounded-md bg-blue-300 object-cover" />
-            <h3 className="w-56 text-lg font-semibold sm:min-h-[6rem]">Dra. Nino Suryani</h3>
+            <h3 className="w-56 text-lg font-semibold text-yellow-500 sm:min-h-[6rem]">Dra. Nino Suryani</h3>
             <p className="px-3 text-sm text-white">Deskripsi singkat mengenai Anggota 3</p>
           </div>
           <div className="flex max-w-xs flex-col items-center py-5">
             <img src={anggota4} alt="Foto Anggota 4" className="mb-4 h-48 w-48 rounded-md bg-green-400 object-cover" />
-            <h3 className="w-56 text-lg font-semibold sm:min-h-[6rem]">Laela Chusnaeni, S.Psi,. Psikolog</h3>
+            <h3 className="w-56 text-lg font-semibold sm:min-h-[6rem] text-yellow-500">Laela Chusnaeni, S.Psi,. Psikolog</h3>
             <p className="px-3 text-sm text-white">Deskripsi singkat mengenai Anggota 4</p>
           </div>
         </div>
