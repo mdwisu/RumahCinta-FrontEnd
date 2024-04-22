@@ -118,8 +118,8 @@ function Home() {
       </div>
       {/* konsultasi daring atau langsung */}
       <section id="konsultasi">
-        <div className="flex w-full flex-col bg-purple-500">
-          <h1 className="mt-10 self-center text-4xl font-bold text-white lg:text-5xl">Konsultasi</h1>
+        <div className="flex w-full flex-col bg-purple-500 lg:min-h-screen">
+          <h1 className="mt-20 self-center text-4xl font-bold text-white lg:text-5xl">Konsultasi</h1>
           <h1 className="self-center rounded-lg bg-yellow-400 p-4 text-3xl font-bold text-primary lg:text-5xl">
             Daring / Langsung
           </h1>
@@ -139,7 +139,7 @@ function Home() {
       </section>
       {/* end konsultasi daring atau langsung */}
       {/* slide 3 ketahuilah permasalahanmu */}
-      <section className="flex w-full items-center justify-between overflow-hidden rounded-lg bg-white p-8 shadow-lg lg:min-h-screen">
+      {/* <section className="flex w-full items-center justify-between overflow-hidden rounded-lg bg-white p-8 shadow-lg lg:min-h-screen">
         <div className="z-10 w-1/2 flex-1">
           <h1 className="text-4xl font-bold text-black">Ketahuilah Permasalahanmu</h1>
           <div className="mt-4 block w-fit rounded bg-[#2A4674] px-4 py-2 text-white">BERSAMA KAMI</div>
@@ -150,7 +150,7 @@ function Home() {
           <img src={dudukkiri} alt="Gambar 1" className="h-auto w-[400px] rounded-lg" />
           <img src={dudukkanan} alt="Gambar 2" className="mt-4 h-auto w-80 rounded-lg" />
         </div>
-      </section>
+      </section> */}
       {/* end slide 3 ketahuilah permasalahanmu */}
       {/* !layanan */}
       <section id="layanan">
@@ -279,32 +279,28 @@ function Home() {
       {/* anggota tim */}
       <section className="flex flex-col bg-blue-900 text-center lg:min-h-screen">
         <h1 className="mt-24 text-6xl font-bold text-yellow-500">Anggota Tim Rumah Cinta</h1>
-        <div className="mt-8 flex flex-1 flex-wrap items-baseline justify-center">
+        <div className="mt-8 flex flex-1 flex-wrap items-baseline justify-center text-sm">
           <div className="flex max-w-xs flex-col items-center py-5">
             <img src={anggota1} alt="Foto Anggota 1" className="mb-4 h-48 w-48 rounded-md bg-yellow-500 object-cover" />
-            <h3 className="w-56 text-lg font-semibold text-yellow-500 sm:min-h-[6rem]">
+            <h3 className="w-56 font-semibold text-yellow-500 sm:min-h-[3rem]">
               Retno Lelyani Dewi, S.Psi, M.Pd., Psikolog Kliniser di Sini
             </h3>
-            <p className="px-3 text-sm text-white">Deskripsi singkat mengenai Anggota 1</p>
+            <p className="px-3 text-white">Deskripsi Anggota 1</p>
           </div>
           <div className="flex max-w-xs flex-col items-center py-5">
             <img src={anggota2} alt="Foto Anggota 2" className="mb-4 h-48 w-48 rounded-md bg-pink-300 object-cover" />
-            <h3 className="w-56 text-lg font-semibold text-yellow-500 sm:min-h-[6rem]">
-              Herly Novita Sari, M.Psi., Psikolog
-            </h3>
-            <p className="px-3 text-sm text-white">Deskripsi singkat mengenai Anggota 2</p>
+            <h3 className="w-56  font-semibold text-yellow-500 sm:min-h-[3rem]">Herly Novita Sari, M.Psi., Psikolog</h3>
+            <p className="px-3 text-white">Deskripsi Anggota 2</p>
           </div>
           <div className="flex max-w-xs flex-col items-center py-5">
             <img src={anggota3} alt="Foto Anggota 3" className="mb-4 h-48 w-48 rounded-md bg-blue-300 object-cover" />
-            <h3 className="w-56 text-lg font-semibold text-yellow-500 sm:min-h-[6rem]">Dra. Nino Suryani</h3>
-            <p className="px-3 text-sm text-white">Deskripsi singkat mengenai Anggota 3</p>
+            <h3 className="w-56 font-semibold text-yellow-500 sm:min-h-[3rem]">Dra. Nino Suryani</h3>
+            <p className="px-3 text-white">Deskripsi Anggota 3</p>
           </div>
           <div className="flex max-w-xs flex-col items-center py-5">
             <img src={anggota4} alt="Foto Anggota 4" className="mb-4 h-48 w-48 rounded-md bg-green-400 object-cover" />
-            <h3 className="w-56 text-lg font-semibold text-yellow-500 sm:min-h-[6rem]">
-              Laela Chusnaeni, S.Psi,. Psikolog
-            </h3>
-            <p className="px-3 text-sm text-white">Deskripsi singkat mengenai Anggota 4</p>
+            <h3 className="w-56  font-semibold text-yellow-500 sm:min-h-[3rem]">Laela Chusnaeni, S.Psi,. Psikolog</h3>
+            <p className="px-3  text-white">Deskripsi Anggota 4</p>
           </div>
         </div>
       </section>
