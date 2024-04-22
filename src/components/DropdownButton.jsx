@@ -24,7 +24,7 @@ const DropdownButton = ({ title, items }) => {
   return (
     <div className="relative block" ref={dropdownRef}>
       <button
-        className="flex items-center justify-between px-4 py-2 font-semibold text-black hover:text-gray-500 focus:outline-none dark:text-white"
+        className="flex items-center justify-between px-2 py-2 font-semibold text-black hover:text-gray-500 focus:outline-none dark:text-white"
         onClick={toggleDropdown}
       >
         {title}
