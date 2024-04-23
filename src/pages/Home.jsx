@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
-import Foto7 from "../image2/7.png";
-import CloudDown from "../image/cloud-red-down-Copy.svg";
-import CloudUp from "../image/cloud-red-up.png";
-import Chairs from "../image/8.png";
-import StarYellow from "../image/star-yellow.png";
-import Principal from "../image/7(1).png";
-import Child from "../image2/25.png";
-import Train from "../image2/24.png";
-import RegisPsikolog from "../image/daftarpsikolog.png";
-import Swal from "sweetalert2";
+// import Foto7 from "../image2/7.png";
+// import CloudDown from "../image/cloud-red-down-Copy.svg";
+// import CloudUp from "../image/cloud-red-up.png";
+// import Chairs from "../image/8.png";
+// import StarYellow from "../image/star-yellow.png";
+// import Principal from "../image/7(1).png";
+// import Child from "../image2/25.png";
+// import Train from "../image2/24.png";
+// import RegisPsikolog from "../image/daftarpsikolog.png";
+// import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { FaUser } from "react-icons/fa";
+// import { FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import ContactAndLocation from "../components/contactAndLocation";
 import Carousel from "../components/Carousel";
-import LogoRumahCinta2 from "../image/logo-hori2.png";
-import ImgSmile from "../image/smile.png";
+// import LogoRumahCinta2 from "../image/logo-hori2.png";
+// import ImgSmile from "../image/smile.png";
 import ImgSmile2 from "../image/smile2.png";
 import anggota1 from "../image/anggota1.png";
 import anggota2 from "../image/anggota2.png";
@@ -29,12 +29,12 @@ import konsultasi3 from "../image/konsultasi3.png";
 import konsultasi4 from "../image/konsultasi4.png";
 import konsultasi5 from "../image/konsultasi5.png";
 // image ketahuilah permasalahanmu
-import dudukkiri from "../image-home/duduk-kiri.png";
-import dudukkanan from "../image-home/duduk-kanan.png";
-import ketahui1 from "../image-home/bersamakami1.png";
+// import dudukkiri from "../image-home/duduk-kiri.png";
+// import dudukkanan from "../image-home/duduk-kanan.png";
+// import ketahui1 from "../image-home/bersamakami1.png";
 import axios from "axios";
 // image vido
-import imgVideo from "../image-video/default.png";
+// import imgVideo from "../image-video/default.png";
 import FloatingIcons from "../components/FloatingIcons";
 import { BsThreeDots } from "react-icons/bs";
 
@@ -245,7 +245,7 @@ function Home() {
           {videos.map((video, index) => (
             <Link
               to={`/videos/${video._id}`}
-              className="flex max-w-xs flex-col items-center rounded-xl bg-white p-4 transition-all duration-300 ease-in-out hover:scale-[102%] sm:w-full sm:max-w-2xl sm:flex-row"
+              className="flex max-w-xs flex-col items-center rounded-xl bg-white p-4 transition-all duration-300 ease-in-out hover:scale-[102%] sm:w-full sm:max-w-xl sm:flex-row"
               key={index}
             >
               {/* Gambar di sebelah kiri */}
