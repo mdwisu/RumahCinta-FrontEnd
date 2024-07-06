@@ -62,6 +62,15 @@ function Register() {
         } catch (error) {
           console.log(error);
           console.log(error.response.data.message);
+
+          // Show SweetAlert for failed registration
+          Swal.fire({
+            icon: "error",
+            title: "Registration Failed!",
+            text: error.response.data.message,
+            confirmButtonText: "OK",
+          });
+
         }
       };
       makeRequest();
