@@ -52,7 +52,7 @@ function DetailHistoryAdmin() {
               <div className="p-5">
                 <div className="mb-4">
                   <label className="mb-2 block font-bold text-gray-700">ID Pasien</label>
-                  <p>{history.patientUserId._id}</p>
+                  <p>{history.patientUserId ? history.patientUserId._id : 'User telah dihapus'}</p>
                 </div>
                 <div className="mb-4">
                   <label className="mb-2 block font-bold text-gray-700">Catatan</label>
@@ -63,8 +63,8 @@ function DetailHistoryAdmin() {
                   <p>{history.diagnosis}</p>
                 </div>
                 <div className="mb-4">
-                  <label className="mb-2 block font-bold text-gray-700">Resep</label>
-                  <p>{history.prescription}</p>
+                  <label className="mb-2 block font-bold text-gray-700">Treatment</label>
+                  <p>{history.treatment}</p>
                 </div>
                 <div className="mb-4">
                   <label className="mb-2 block font-bold text-gray-700">Tanggal Konsultasi</label>

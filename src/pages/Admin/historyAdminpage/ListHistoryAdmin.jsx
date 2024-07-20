@@ -8,6 +8,8 @@ import Swal from "sweetalert2";
 function ListHistoryAdmin() {
   const [activePage, setActivePage] = useState("Riwayat Kunjungan");
   const [histories, setHistories] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortOrder, setSortOrder] = useState("desc");
   const token = localStorage.getItem("token");
   const open = useSelector((state) => state.sidebar.open);
 
@@ -64,6 +66,35 @@ function ListHistoryAdmin() {
     }
   };
 
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+  const toggleSortOrder = () => {
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+  };
+  const formatDate = (date) => {
+    const options = { weekday: "long", day: "numeric", month: "long", year: "numeric" };
+    return new Date(date).toLocaleDateString("id-ID", options);
+  };
+
+  const filteredHistories = histories
+    .filter((history) => {
+      if (history.patientUserId) {
+        const patientName = history.patientUserId.name.toLowerCase();
+        const patientEmail = history.patientUserId.email.toLowerCase();
+        const searchTermLower = searchTerm.toLowerCase();
+        return patientName.includes(searchTermLower) || patientEmail.includes(searchTermLower);
+      }
+      return true;
+    })
+    .sort((a, b) => {
+      if (sortOrder === "asc") {
+        return new Date(a.consultationDate) - new Date(b.consultationDate);
+      } else {
+        return new Date(b.consultationDate) - new Date(a.consultationDate);
+      }
+    });
+
   return (
     <div className="flex">
       <Sidebar activePage={activePage} setActivePage={setActivePage} />
@@ -78,7 +109,7 @@ function ListHistoryAdmin() {
         {/* content */}
         <div className="mx-auto mt-5 w-full justify-center rounded-md bg-bgTri shadow-sm shadow-textFunc">
           <div className="flex items-center justify-between px-5 pt-5">
-            <div>
+            <div className="flex items-center space-x-4">
               <Link
                 id="addHistory"
                 className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-5 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200"
@@ -87,6 +118,13 @@ function ListHistoryAdmin() {
               >
                 Tambah
               </Link>
+              <input
+                type="text"
+                placeholder="Cari nama atau email pasien"
+                value={searchTerm}
+                onChange={handleSearch}
+                className="w-64 rounded-lg border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
             </div>
           </div>
           <div className="">
@@ -105,6 +143,7 @@ function ListHistoryAdmin() {
                     </th>
                     <th scope="col" className="px-6 py-3">
                       Tanggal
+                      <button onClick={toggleSortOrder}>{sortOrder === "asc" ? "▲" : "▼"}</button>
                     </th>
                     <th scope="col" className="px-6 py-3">
                       Aksi
@@ -112,14 +151,22 @@ function ListHistoryAdmin() {
                   </tr>
                 </thead>
                 <tbody>
-                  {histories.map((history, index) => (
+                  {filteredHistories.map((history, index) => (
                     <tr key={history._id} className="border-b bg-white">
                       <th scope="row" className="px-6 py-4 text-center">
                         {index + 1}
                       </th>
-                      <td className="px-6 py-4">{history.patientUserId.name}</td>
+                      <td className="px-6 py-4">
+                        {history.patientUserId ? (
+                          <>
+                            {history.patientUserId.name} - {history.patientUserId.email}
+                          </>
+                        ) : (
+                          "User tidak ditemukan"
+                        )}
+                      </td>
                       <td className="px-6 py-4">{history.psikologId.name}</td>
-                      <td className="px-6 py-4">{new Date(history.consultationDate).toLocaleDateString()}</td>
+                      <td className="px-6 py-4">{formatDate(history.consultationDate)}</td>
                       <td className="flex gap-3 px-6 py-4">
                         <Link to={`/admin/history/${history._id}`} className="text-blue-500 hover:underline">
                           Detail

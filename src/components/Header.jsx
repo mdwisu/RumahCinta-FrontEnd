@@ -249,7 +249,7 @@ function Header() {
             <Link to={"/"} className="hidden self-center font-semibold lg:block">
               <img src={LogoRumahCinta} alt="logoRumahCinta" className="w-8 lg:w-10" />
             </Link>
-            <Link to={"/"} className="mr-1 font-semibold hover:text-gray-500 ">
+            <Link to={"/"} className="mr-1 font-semibold hover:text-gray-500">
               Home
             </Link>
             <DropdownButton title="Konten" items={kontens} />

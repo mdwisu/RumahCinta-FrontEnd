@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Sidebar from "./Sidebar";
-import { FaUsers, FaFileVideo, FaBookOpen, FaUserMd, FaVideo } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
 const DashboardAdmin = () => {

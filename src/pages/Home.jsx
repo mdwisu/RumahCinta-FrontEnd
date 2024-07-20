@@ -137,21 +137,24 @@ function Home() {
           </div>
         </div>
       </section>
+      <section id="konsultasi" class="bg-purple-500 p-5">
+  <div class="text-center text-white">
+    <h1 class="text-3xl font-bold mb-3">Konsultasi</h1>
+    <h2 class="text-2xl mb-2">Daring / Langsung</h2>
+    <p class="mb-5">
+      Bimbingan Langsung Dari Ahli di Bidangnya dimana pun dan kapan pun
+    </p>
+  </div>
+  <div class="flex flex-wrap justify-center gap-4">
+    <img src={konsultasi1} alt="Gambar 1" class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5" />
+    <img src={konsultasi2} alt="Gambar 2" class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5" />
+    <img src={konsultasi3} alt="Gambar 3" class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5" />
+    <img src={konsultasi4} alt="Gambar 4" class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5" />
+    <img src={konsultasi5} alt="Gambar 5" class="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5" />
+  </div>
+</section>
+
       {/* end konsultasi daring atau langsung */}
-      {/* slide 3 ketahuilah permasalahanmu */}
-      {/* <section className="flex w-full items-center justify-between overflow-hidden rounded-lg bg-white p-8 shadow-lg lg:min-h-screen">
-        <div className="z-10 w-1/2 flex-1">
-          <h1 className="text-4xl font-bold text-black">Ketahuilah Permasalahanmu</h1>
-          <div className="mt-4 block w-fit rounded bg-[#2A4674] px-4 py-2 text-white">BERSAMA KAMI</div>
-          <p className="mt-4 text-gray-600">www.rumahcinta.com</p>
-        </div>
-        <div className="relative z-0 flex w-1/2 flex-1 flex-row">
-          <img src={ketahui1} alt="Gambar 1" className="absolute -left-20 -top-20 h-48 w-48 rounded-lg" />
-          <img src={dudukkiri} alt="Gambar 1" className="h-auto w-[400px] rounded-lg" />
-          <img src={dudukkanan} alt="Gambar 2" className="mt-4 h-auto w-80 rounded-lg" />
-        </div>
-      </section> */}
-      {/* end slide 3 ketahuilah permasalahanmu */}
       {/* !layanan */}
       <section id="layanan">
         <div className="relative flex flex-col items-center gap-4 overflow-hidden bg-yellow-500 py-6 pb-28 md:pb-0 lg:min-h-screen lg:flex-row">
