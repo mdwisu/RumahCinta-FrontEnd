@@ -124,7 +124,7 @@ function Register() {
     <div>
       <div>
         {/* image logo */}
-        <div className="absolute opacity-25">
+        <div className="absolute opacity-25 -z-50">
           <img src={LogoMandehLogin} className="h-screen" alt="Logo Mandeh" />
         </div>
         {/* image logo */}
