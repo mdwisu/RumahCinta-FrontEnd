@@ -61,16 +61,16 @@ function DetailKonsultasiPage() {
               <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
                 <div>
                   <h3 class="mb-2 text-lg font-semibold">TELEPON</h3>
-                  <p class="mb-4">+62 812 1838 6051</p>
+                  <p class="mb-4">+62 817-9803-739</p>
                   <h3 class="mb-2 text-lg font-semibold">EMAIL</h3>
-                  <p class="mb-4">rumahcinta@gmail.com</p>
+                  <p class="mb-4">biropsikologi.rumahcinta@gmail.com</p>
                 </div>
                 <div>
                   <h3 class="mb-2 text-lg font-semibold">ALAMAT DAN JAM OPERASIONAL</h3>
                   <p class="mb-2">
                     Jalan Raya Pemda-Karadenan No. 25, RT 001/004, Kel. Karadenan, Kec. Cibinong, Kab. Bogor 16913
                   </p>
-                  <p class="mb-4">Selasa - Sabtu: 08:00 - 15:00</p>
+                  <p class="mb-4">Selasa - Sabtu: 08:00 - 16:00</p>
                 </div>
                 <div className="flex justify-center">
                   <a href="#" class="mr-4 text-gray-600 transition-colors hover:text-gray-800">
