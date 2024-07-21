@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const OnChangeSearchBar = ({ onSearch }) => {
+const OnChangeSearchBar = ({ onSearch, placeholder }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleInputChange = (e) => {
@@ -13,7 +13,7 @@ const OnChangeSearchBar = ({ onSearch }) => {
       <input
         type="text"
         className="flex-1 px-4 py-2 outline-none"
-        placeholder="Cari video..."
+        placeholder={placeholder}
         value={searchQuery}
         onChange={handleInputChange}
       />

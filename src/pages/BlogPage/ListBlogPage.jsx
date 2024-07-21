@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import DefaultThumbnailBlog from "../../image/defaultThumbnailBlog.jpeg";
 import dayjs from "dayjs";
 import "dayjs/locale/id";
@@ -10,7 +10,6 @@ import imgBaca from "../../image-blog/baca.gif";
 import OnChangeSearchBar from "../../components/SearchBar/OnChangeSearchBar";
 
 function ListBlogPage() {
-  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [blogs, setBlogs] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -66,9 +65,12 @@ function ListBlogPage() {
         <div className="mx-auto mt-8 max-w-lg">
           <OnChangeSearchBar onSearch={handleSearch} key={handleSearch} placeholder="Cari blog..." />
         </div>
+
         <div className="container mx-auto grid grid-cols-1 gap-8 px-4 py-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
           {isLoading ? (
-            <p>Loading...</p>
+            <div className="col-span-full flex h-64 items-center justify-center">
+              <p>Loading...</p>
+            </div>
           ) : blogs.length > 0 ? (
             blogs.map((blog) => (
               <Link
@@ -94,7 +96,9 @@ function ListBlogPage() {
               </Link>
             ))
           ) : (
-            <p className="text-center text-xl font-semibold text-gray-500">Tidak ada blog yang ditemukan.</p>
+            <div className="col-span-full flex h-64 items-center justify-center">
+              <p className="text-center text-xl font-semibold text-gray-500">Tidak ada blog yang ditemukan.</p>
+            </div>
           )}
         </div>
       </div>

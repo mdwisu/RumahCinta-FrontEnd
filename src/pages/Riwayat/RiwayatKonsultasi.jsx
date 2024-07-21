@@ -32,16 +32,29 @@ export default function RiwayatKonsultasi() {
     }
   };
 
-  function formatConsultationDate(consultationDate) {
+  function formatConsultationDateTime(consultationDate, consultationTime) {
     const formattedDate = new Intl.DateTimeFormat("id-ID", {
-      weekday: "long", // Nama hari penuh (Senin, Selasa, ...)
-      day: "2-digit", // Dua digit angka hari
-      month: "long", // Nama bulan penuh (Januari, Februari, ...)
-      year: "numeric", // Tahun dalam bentuk numerik
-    }).format(new Date(consultationDate)); // Konversi dari tanggal asli ke format yang diinginkan
+      weekday: "long",
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    }).format(new Date(consultationDate));
 
-    return `${formattedDate}`;
+    return `${formattedDate}, ${consultationTime}`;
   }
+
+  const treatmentMap = {
+    psikoedukasi: "Psiko edukasi",
+    tespotensiakademik: "Tes Potensi Akademik",
+    konsultasi: "Konsultasi",
+    psikotes: "Psikotes",
+    konseling: "Konseling",
+    asesment: "Asesment",
+    terapi: "Terapi",
+    seminarparenting: "Seminar Parenting",
+    observasidijagnostik: "Observasi Dijagnostik",
+    pelatihanpengembangandiri: "Pelatihan Pengembangan Diri",
+  };
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -60,19 +73,18 @@ export default function RiwayatKonsultasi() {
               <div key={history._id} className="rounded-lg bg-white p-4 shadow-md">
                 <h2 className="text-xl font-bold">Konsultasi dengan {history.psikologId.name}</h2>
                 <p className="mb-2 text-sm text-gray-500">
-                  Tanggal Konsultasi: {formatConsultationDate(history.consultationDate)}
+                  Tanggal dan Waktu Konsultasi:{" "}
+                  {formatConsultationDateTime(history.consultationDate, history.consultationTime)}
                 </p>
                 <p className="mb-2 text-gray-600">
-                  <strong>Catatan:</strong> {history.notes}
+                  <strong>Treatment:</strong> {treatmentMap[history.treatment] || "-"}
                 </p>
                 <p className="mb-2 text-gray-600">
+                  <strong>Catatan:</strong> {history.notes || "-"}
+                </p>
+                {/* <p className="mb-2 text-gray-600">
                   <strong>Diagnosis:</strong> {history.diagnosis}
-                </p>
-                {history.prescription && (
-                  <p className="mb-2 text-gray-600">
-                    <strong>Resep:</strong> {history.prescription}
-                  </p>
-                )}
+                </p> */}
               </div>
             ))}
           </div>

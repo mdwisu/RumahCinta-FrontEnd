@@ -76,7 +76,7 @@ function DetailVideoPage() {
           <div className="mb-4 flex items-center justify-between space-x-4">
             <p className="text-lg font-semibold text-gray-600">Penulis: {video.author}</p>
             <p className="text-lg font-semibold text-gray-600">
-              Diperbarui pada: {dayjs(video.UpdatedAt).locale("id").format("dddd, DD MMMM YYYY")}
+              Diperbarui pada: {dayjs(video.updatedAt).locale("id").format("dddd, DD MMMM YYYY")}
             </p>
           </div>
           <p className="mt-5 text-xl leading-loose" dangerouslySetInnerHTML={{ __html: video.description }} />
