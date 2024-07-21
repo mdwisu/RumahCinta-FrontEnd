@@ -11,8 +11,9 @@ function CreateHistoryAdmin() {
   const [patientUserId, setPatientUserId] = useState("");
   const [notes, setNotes] = useState("");
   const [diagnosis, setDiagnosis] = useState("");
-  const [prescription, setPrescription] = useState("");
+  const [treatment, setTreatment] = useState("");
   const [consultationDate, setConsultationDate] = useState("");
+  const [consultationTime, setConsultationTime] = useState("");
   const [personalData, setPersonalData] = useState("");
   const [privateNotes, setPrivateNotes] = useState("");
 
@@ -34,7 +35,8 @@ function CreateHistoryAdmin() {
         patientUserId,
         notes,
         diagnosis,
-        prescription,
+        treatment,
+        consultationTime,
         consultationDate,
         personalData,
         privateNotes,
@@ -107,16 +109,39 @@ function CreateHistoryAdmin() {
                 ></textarea>
               </div>
               <div className="mb-4">
-                <label htmlFor="prescription" className="mb-2 block font-bold text-gray-700">
-                  Resep
+                <label htmlFor="treatment" className="mb-2 block font-bold text-gray-700">
+                  Treatment
                 </label>
-                <textarea
-                  id="prescription"
+                <select
+                  id="treatment"
                   className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
-                  rows="3"
-                  value={prescription}
-                  onChange={(e) => setPrescription(e.target.value)}
-                ></textarea>
+                  value={treatment}
+                  onChange={(e) => setTreatment(e.target.value)}
+                >
+                  <option value="">Pilih Treatment</option>
+                  <option value="psikoedukasi">Psiko edukasi</option>
+                  <option value="tespotensiakademik">Tes Potensi Akademik</option>
+                  <option value="konsultasi">Konsultasi</option>
+                  <option value="psikotes">Psikotes</option>
+                  <option value="konseling">Konseling</option>
+                  <option value="asesment">Asesment</option>
+                  <option value="terapi">Terapi</option>
+                  <option value="seminarparenting">Seminar Parenting</option>
+                  <option value="observasidijagnostik">Observasi Diagnostik</option>
+                  <option value="pelatihanpengembangandiri">Pelatihan Pengembangan Diri</option>
+                </select>
+              </div>
+              <div className="mb-4">
+                <label htmlFor="consultationTime" className="mb-2 block font-bold text-gray-700">
+                  Jam Konsultasi (optional)
+                </label>
+                <input
+                  type="time"
+                  id="consultationTime"
+                  className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
+                  value={consultationTime}
+                  onChange={(e) => setConsultationTime(e.target.value)}
+                />
               </div>
               <div className="mb-4">
                 <label htmlFor="consultationDate" className="mb-2 block font-bold text-gray-700">
@@ -128,7 +153,6 @@ function CreateHistoryAdmin() {
                   className="focus:shadow-outline w-full appearance-none rounded border py-2 px-3 leading-tight text-gray-700 shadow focus:outline-none"
                   value={consultationDate}
                   onChange={(e) => setConsultationDate(e.target.value)}
-                  required
                 />
               </div>
               <div className="mb-4">

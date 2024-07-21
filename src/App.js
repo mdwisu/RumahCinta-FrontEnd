@@ -79,6 +79,7 @@ import ListHistoryAdmin from "./pages/Admin/historyAdminpage/ListHistoryAdmin";
 import CreateHistoryAdmin from "./pages/Admin/historyAdminpage/CreateHistoryAdmin";
 import DetailHistoryAdmin from "./pages/Admin/historyAdminpage/DetailHistoryAdmin";
 import EditHistoryAdmin from "./pages/Admin/historyAdminpage/EditHistoryAdmin";
+import CreateUserAdminNoPassPage from "./pages/Admin/userAdminPage/CreateUserAdminNoPassPage";
 
 function App() {
   // const [loading, setLoading] = useState(true);
@@ -240,6 +241,7 @@ function App() {
 
         <Route path="/admin/user" element={<ListUserAdminPage />} />
         <Route path="/admin/user/create-user" element={<CreateUserAdminPage />} />
+        <Route path="/admin/user/create-user-with-auto-pass" element={<CreateUserAdminNoPassPage />} />
         <Route path="/admin/user/:id/edit" element={<EditUserAdminPage />} />
         <Route path="/admin/user/:id/detail" element={<DetailUserAdminPage />} />
         <Route
