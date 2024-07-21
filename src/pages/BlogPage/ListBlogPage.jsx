@@ -37,6 +37,8 @@ function ListBlogPage() {
       setBlogs(response.data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -47,7 +49,7 @@ function ListBlogPage() {
   return (
     <div>
       <Header />
-      <div className="bg-bgSec">
+      <div className="min-h-screen bg-bgSec">
         <section className="flex flex-col items-center justify-center bg-indigo-900 py-16 px-16 sm:flex-row">
           <div className="md:mr-8">
             <h1 className="mb-4 text-3xl font-bold text-white md:text-5xl lg:text-6xl">BlogTime</h1>
@@ -62,33 +64,38 @@ function ListBlogPage() {
         </section>
 
         <div className="mx-auto mt-8 max-w-lg">
-          <OnChangeSearchBar onSearch={handleSearch} key={handleSearch} />
+          <OnChangeSearchBar onSearch={handleSearch} key={handleSearch} placeholder="Cari blog..." />
         </div>
-
         <div className="container mx-auto grid grid-cols-1 gap-8 px-4 py-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-          {blogs.map((blog) => (
-            <Link
-              to={`/blogs/${blog._id}`}
-              key={blog._id}
-              className="flex flex-col overflow-hidden rounded-lg bg-white shadow-md transition duration-300 hover:scale-105"
-            >
-              <div className="relative">
-                <img
-                  src={blog.thumbnail ? `${process.env.REACT_APP_BASE_URL}${blog.thumbnail}` : DefaultThumbnailBlog}
-                  alt={blog.title}
-                  className="h-auto w-full object-cover"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="mb-2 text-lg font-semibold line-clamp-2">{blog.title}</h3>
-                <p className="mb-2 text-sm text-gray-500">
-                  {dayjs(blog.UpdatedAt).locale("id").format("dddd, DD MMMM YYYY")}
-                </p>
-                <p className="text-base text-textFunc line-clamp-3">{blog.description}</p>
-                <p className="mt-4 text-sm text-gray-500">{blog.author}</p>
-              </div>
-            </Link>
-          ))}
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : blogs.length > 0 ? (
+            blogs.map((blog) => (
+              <Link
+                to={`/blogs/${blog._id}`}
+                key={blog._id}
+                className="flex flex-col overflow-hidden rounded-lg bg-white shadow-md transition duration-300 hover:scale-105"
+              >
+                <div className="relative">
+                  <img
+                    src={blog.thumbnail ? `${process.env.REACT_APP_BASE_URL}${blog.thumbnail}` : DefaultThumbnailBlog}
+                    alt={blog.title}
+                    className="h-auto w-full object-cover"
+                  />
+                </div>
+                <div className="p-4">
+                  <h3 className="mb-2 text-lg font-semibold line-clamp-2">{blog.title}</h3>
+                  <p className="mb-2 text-sm text-gray-500">
+                    {dayjs(blog.UpdatedAt).locale("id").format("dddd, DD MMMM YYYY")}
+                  </p>
+                  <p className="text-base text-textFunc line-clamp-3">{blog.description}</p>
+                  <p className="mt-4 text-sm text-gray-500">{blog.author}</p>
+                </div>
+              </Link>
+            ))
+          ) : (
+            <p className="text-center text-xl font-semibold text-gray-500">Tidak ada blog yang ditemukan.</p>
+          )}
         </div>
       </div>
       <Footer />
