@@ -21,6 +21,10 @@ function CreateHistoryAdmin() {
   const open = useSelector((state) => state.sidebar.open);
   const navigate = useNavigate();
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -56,7 +60,7 @@ function CreateHistoryAdmin() {
       Swal.fire({
         icon: "error",
         title: "Gagal",
-        text: "Terjadi kesalahan saat menambahkan data riwayat.",
+        text: "Silakan lengkapi semua data yang diperlukan.",
       });
     }
   };
@@ -78,13 +82,13 @@ function CreateHistoryAdmin() {
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label htmlFor="patientUserId" className="mb-2 block font-bold text-gray-700">
-                  Pasien
+                  Pasien <span className="text-red-500">*</span>
                 </label>
                 <AutoCompletePatient onSelect={handlePatientSelect} />
               </div>
               <div className="mb-4">
                 <label htmlFor="notes" className="mb-2 block font-bold text-gray-700">
-                  Catatan
+                  Catatan <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   id="notes"
@@ -97,7 +101,7 @@ function CreateHistoryAdmin() {
               </div>
               <div className="mb-4">
                 <label htmlFor="diagnosis" className="mb-2 block font-bold text-gray-700">
-                  Diagnosis
+                  Diagnosis <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   id="diagnosis"
@@ -110,7 +114,7 @@ function CreateHistoryAdmin() {
               </div>
               <div className="mb-4">
                 <label htmlFor="treatment" className="mb-2 block font-bold text-gray-700">
-                  Treatment
+                  Treatment <span className="text-red-500">*</span>
                 </label>
                 <select
                   id="treatment"
@@ -180,6 +184,13 @@ function CreateHistoryAdmin() {
                 ></textarea>
               </div>
               <div className="flex items-center justify-between">
+                <button
+                  type="button"
+                  className="mt-2 w-[100px] rounded-md bg-bgFunc px-4 py-2 text-white hover:bg-bgFunc3 focus:outline-none focus:ring focus:ring-gray-300"
+                  onClick={handleGoBack}
+                >
+                  Batal
+                </button>
                 <button
                   type="submit"
                   className="focus:shadow-outline rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700 focus:outline-none"

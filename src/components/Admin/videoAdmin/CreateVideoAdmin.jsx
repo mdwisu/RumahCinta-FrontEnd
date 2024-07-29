@@ -57,7 +57,12 @@ const CreateVideoAdmin = () => {
           navigate("/admin/video");
         });
       } catch (error) {
-        console.log(error);
+        Swal.fire({
+          title: "Error!",
+          text: error.response?.data?.message || "Terjadi kesalahan saat menyimpan data.",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
       }
     }
 

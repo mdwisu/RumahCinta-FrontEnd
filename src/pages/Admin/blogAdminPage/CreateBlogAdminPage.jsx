@@ -54,6 +54,14 @@ export default function CreateBlogAdminPage() {
 
     async function makeRequest() {
       try {
+        if (content.trim() === "") {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Content is required!",
+          });
+          return;
+        }
         const response = await axios.request(config);
         console.log(JSON.stringify(response.data));
         Swal.fire({
@@ -133,7 +141,7 @@ export default function CreateBlogAdminPage() {
                       <tr>
                         <td className="py-3">
                           <label htmlFor="title" className="mb-1 block text-textSec">
-                            Judul Blog
+                            Judul Blog <span className="text-red-500">*</span>
                           </label>
                         </td>
                         <td className="">
@@ -142,6 +150,7 @@ export default function CreateBlogAdminPage() {
                             id="title"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
+                            required
                             className="w-full rounded-md border py-2 px-2 focus:outline-none focus:ring focus:ring-blue-300"
                           />
                         </td>
@@ -149,7 +158,7 @@ export default function CreateBlogAdminPage() {
                       <tr>
                         <td className="py-3">
                           <label htmlFor="description" className="mb-1 block text-textSec">
-                            Deskripsi Singkat
+                            Deskripsi Singkat <span className="text-red-500">*</span>
                           </label>
                         </td>
                         <td>
@@ -160,13 +169,14 @@ export default function CreateBlogAdminPage() {
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                             className="w-full rounded-md border py-2 px-2 focus:outline-none focus:ring focus:ring-blue-300"
+                            required
                           />
                         </td>
                       </tr>
                       <tr>
                         <td className="py-3">
                           <label htmlFor="description" className="mb-1 block text-textSec">
-                            Author
+                            Author <span className="text-red-500">*</span>
                           </label>
                         </td>
                         <td>
@@ -176,6 +186,7 @@ export default function CreateBlogAdminPage() {
                             value={author}
                             onChange={(e) => setAuthor(e.target.value)}
                             className="w-full rounded-md border py-2 px-2 focus:outline-none focus:ring focus:ring-blue-300"
+                            required
                           />
                         </td>
                       </tr>
@@ -214,7 +225,7 @@ export default function CreateBlogAdminPage() {
                       <tr>
                         <td className="py-3">
                           <label htmlFor="content" className="mb-1 block text-textSec">
-                            Konten
+                            Konten <span className="text-red-500">*</span>
                           </label>
                         </td>
                         <td className="py-3">

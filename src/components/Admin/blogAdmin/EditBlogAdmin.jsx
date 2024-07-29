@@ -32,10 +32,9 @@ const EditBlogAdmin = () => {
     try {
       Swal.fire({
         title: "Do you want to save the changes?",
-        showDenyButton: true,
         showCancelButton: true,
+        cancelButtonColor: "#d33",
         confirmButtonText: "Save",
-        denyButtonText: `Don't save`,
       }).then(async (result) => {
         if (result.isConfirmed) {
           let data = new FormData();

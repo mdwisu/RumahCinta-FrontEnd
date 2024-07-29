@@ -30,7 +30,7 @@ const EditVideoAdmin = () => {
     e.preventDefault();
     let data = {
       title,
-      videoLink,
+      videoLink: videoLink || undefined,
       description,
       author,
     };
@@ -48,8 +48,8 @@ const EditVideoAdmin = () => {
     try {
       Swal.fire({
         title: "Do you want to save the changes?",
-        showDenyButton: true,
         showCancelButton: true,
+        cancelButtonColor: "#d33",
         confirmButtonText: "Save",
         denyButtonText: `Don't save`,
       }).then(async (result) => {
