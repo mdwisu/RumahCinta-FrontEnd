@@ -80,6 +80,11 @@ import CreateHistoryAdmin from "./pages/Admin/historyAdminpage/CreateHistoryAdmi
 import DetailHistoryAdmin from "./pages/Admin/historyAdminpage/DetailHistoryAdmin";
 import EditHistoryAdmin from "./pages/Admin/historyAdminpage/EditHistoryAdmin";
 import CreateUserAdminNoPassPage from "./pages/Admin/userAdminPage/CreateUserAdminNoPassPage";
+import OwnerDashboardGuard from "./pages/owner/OwnerDashboardGuard";
+import DashboardOwnerPage from "./pages/owner/DashboardOwnerPage";
+import SummaryReport from "./pages/owner/historyOwnerPage/SummaryReport";
+import PsychologistPerformance from "./pages/owner/historyOwnerPage/PsychologistPerformance";
+import TrendsReport from "./pages/owner/historyOwnerPage/trendsReport";
 
 function App() {
   // const [loading, setLoading] = useState(true);
@@ -239,7 +244,14 @@ function App() {
         <Route path="/admin/history/:id" element={<DetailHistoryAdmin />} />
         <Route path="/admin/history/:id/edit" element={<EditHistoryAdmin />} />
 
-        <Route path="/admin/user" element={<ListUserAdminPage />} />
+        <Route
+          path="/admin/user"
+          element={
+            <AdminDashboardGuard>
+              <ListUserAdminPage />
+            </AdminDashboardGuard>
+          }
+        />
         <Route path="/admin/user/create-user" element={<CreateUserAdminPage />} />
         <Route path="/admin/user/create-user-with-auto-pass" element={<CreateUserAdminNoPassPage />} />
         <Route path="/admin/user/:id/edit" element={<EditUserAdminPage />} />
@@ -306,8 +318,42 @@ function App() {
         <Route path="/psikolog/konsul/:id/chat" element={<ChatPasienPsikologPage />} />
         <Route path="/psikolog/konsul" element={<ListKonsulPsikologPage />} />
         <Route path="/psikolog/konsul/:id/detail" element={<DetailKonsulPsikologPage />} />
-
         {/* psikolog router */}
+
+        {/* owner router */}
+        <Route
+          path="/owner/dashboard"
+          element={
+            <OwnerDashboardGuard>
+              <DashboardOwnerPage />
+            </OwnerDashboardGuard>
+          }
+        />
+        <Route
+          path="/owner/summary-report"
+          element={
+            <OwnerDashboardGuard>
+              <SummaryReport />
+            </OwnerDashboardGuard>
+          }
+        />
+        <Route
+          path="/owner/performance-psychologist"
+          element={
+            <OwnerDashboardGuard>
+              <PsychologistPerformance />
+            </OwnerDashboardGuard>
+          }
+        />
+        <Route
+          path="/owner/trends-report"
+          element={
+            <OwnerDashboardGuard>
+              <TrendsReport />
+            </OwnerDashboardGuard>
+          }
+        />
+        {/* owner router */}
       </Routes>
     </div>
   );

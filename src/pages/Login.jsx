@@ -82,8 +82,8 @@ const Login = () => {
       case "user":
         navigate("/");
         break;
-      case "psikolog":
-        navigate("/psikolog/dashboard");
+      case "owner":
+        navigate("/owner/dashboard");
         break;
       default:
         navigate("/");
