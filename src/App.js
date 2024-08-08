@@ -85,6 +85,9 @@ import DashboardOwnerPage from "./pages/owner/DashboardOwnerPage";
 import SummaryReport from "./pages/owner/historyOwnerPage/SummaryReport";
 import PsychologistPerformance from "./pages/owner/historyOwnerPage/PsychologistPerformance";
 import TrendsReport from "./pages/owner/historyOwnerPage/trendsReport";
+import PatientReport from "./pages/owner/historyOwnerPage/PatientReport";
+import BlogReport from "./pages/owner/blog/BlogReport";
+import VideoReport from "./pages/owner/video/VideoReport";
 
 function App() {
   // const [loading, setLoading] = useState(true);
@@ -350,6 +353,30 @@ function App() {
           element={
             <OwnerDashboardGuard>
               <TrendsReport />
+            </OwnerDashboardGuard>
+          }
+        />
+        <Route
+          path="/owner/patient-report"
+          element={
+            <OwnerDashboardGuard>
+              <PatientReport />
+            </OwnerDashboardGuard>
+          }
+        />
+        <Route
+          path="/owner/blog-report"
+          element={
+            <OwnerDashboardGuard>
+              <BlogReport />
+            </OwnerDashboardGuard>
+          }
+        />
+        <Route
+          path="/owner/video-report"
+          element={
+            <OwnerDashboardGuard>
+              <VideoReport />
             </OwnerDashboardGuard>
           }
         />

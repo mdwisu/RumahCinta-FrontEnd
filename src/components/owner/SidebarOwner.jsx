@@ -6,12 +6,15 @@ import LogoHori from "../../image/logo-tulisan-lentera2.png";
 import LogoTulisanRumahCinta from "../../image/logo-tulisan-rumah-cinta.png";
 import LogoRumahCinta from "../../image/LogoRumahCinta.png";
 import {
+  FaBlog,
   FaBookReader,
   FaChartLine,
   FaComment,
+  FaFileAlt,
   FaHistory,
   FaHome,
   FaMoneyBill,
+  FaNewspaper,
   FaRegChartBar,
   FaSignOutAlt,
   FaUserMd,
@@ -33,6 +36,9 @@ const SidebarOwner = ({ activePage, setActivePage }) => {
     { title: "Rangkuman laporan", icon: <FaRegChartBar />, link: "/owner/summary-report" },
     { title: "Kinerja Psikolog", icon: <FaUserTie />, link: "/owner/performance-psychologist" },
     { title: "Laporan Tren", icon: <FaChartLine />, link: "/owner/trends-report" },
+    { title: "Laporan Klient", icon: <FaFileAlt />, link: "/owner/patient-report" },
+    { title: "Laporan Blog", icon: <FaNewspaper />, link: "/owner/blog-report" },
+    { title: "Laporan Video", icon: <FaVideo />, link: "/owner/video-report" },
     // { title: "Psikolog", icon: <FaUserMd />, link: "/admin/psikolog" },
     // { title: "Blog", icon: <FaBookReader />, link: "/admin/blog" },
     // { title: "Video", icon: <FaVideo />, link: "/admin/video" },

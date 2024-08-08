@@ -19,6 +19,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 const TrendsReport = () => {
   const [trendsData, setTrendsData] = useState(null);
   const { open } = useSelector((state) => state.sidebar);
+  const [activePage, setActivePage] = useState("Laporan Tren");
   const [loading, setLoading] = useState(true);
   const [selectedPeriod, setSelectedPeriod] = useState("monthly");
 
@@ -78,7 +79,7 @@ const TrendsReport = () => {
 
   return (
     <div className="flex">
-      <SidebarOwner />
+      <SidebarOwner activePage={activePage} setActivePage={setActivePage} />
       <div className="flex w-full flex-wrap gap-5 rounded-md p-5 shadow-sm">
         <div className={`${open ? "ml-72" : "ml-20"} container-dashboard`}>
           <div className="mb-5 flex gap-5">

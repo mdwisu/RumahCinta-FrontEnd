@@ -34,8 +34,8 @@ const SummaryReport = () => {
         <div className={`${open ? "ml-72" : "ml-20"} container-dashboard`}>
           {/* judul */}
           <div>
-            <h1 className="text-sizeTri font-bold text-textSec">Dashboard</h1>
-            <p className="my-3 text-textFunc">Dashboard</p>
+            <h1 className="text-sizeTri font-bold text-textSec">Rangkuman Laporan</h1>
+            <p className="my-3 text-textFunc">Rangkuman Laporan</p>
           </div>
           {/* judul */}
           {/* content */}

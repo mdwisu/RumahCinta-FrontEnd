@@ -4,9 +4,9 @@ import SidebarOwner from "../../../components/owner/SidebarOwner";
 import { useSelector } from "react-redux";
 
 const PsychologistPerformance = () => {
-  const [performanceData, setPerformanceData] = useState(null);
+  const [activePage, setActivePage] = useState("Kinerja Psikologi");
   const { open } = useSelector((state) => state.sidebar);
-  const [activePage, setActivePage] = useState("kinerja psikologi");
+  const [performanceData, setPerformanceData] = useState(null);
 
   useEffect(() => {
     const fetchPerformanceData = async () => {

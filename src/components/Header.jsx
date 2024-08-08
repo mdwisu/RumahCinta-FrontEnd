@@ -127,13 +127,13 @@ function Header() {
 
   if (user?.role === "admin") {
     linkTo = "/admin/dashboard";
-  } else if (user?.role === "psikolog") {
-    linkTo = "/psikolog/dashboard";
+  } else if (user?.role === "owner") {
+    linkTo = "/owner/dashboard";
   } else if (user?.role === "user") {
     linkTo = "/user/dashboard";
   } else {
     // Jika role tidak sesuai, Anda bisa mengatur linkTo ke halaman lain yang sesuai.
-    linkTo = "/psikolog/dashboard";
+    linkTo = "/user/dashboard";
   }
   console.log(user?.role);
 
