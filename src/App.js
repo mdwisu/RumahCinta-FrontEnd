@@ -88,6 +88,7 @@ import TrendsReport from "./pages/owner/historyOwnerPage/trendsReport";
 import PatientReport from "./pages/owner/historyOwnerPage/PatientReport";
 import BlogReport from "./pages/owner/blog/BlogReport";
 import VideoReport from "./pages/owner/video/VideoReport";
+import PatientReportPie from "./pages/owner/historyOwnerPage/PatientReportPie";
 
 function App() {
   // const [loading, setLoading] = useState(true);
@@ -361,6 +362,14 @@ function App() {
           element={
             <OwnerDashboardGuard>
               <PatientReport />
+            </OwnerDashboardGuard>
+          }
+        />
+        <Route
+          path="/owner/patient-report-diagram"
+          element={
+            <OwnerDashboardGuard>
+              <PatientReportPie />
             </OwnerDashboardGuard>
           }
         />

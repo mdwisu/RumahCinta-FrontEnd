@@ -4,7 +4,7 @@ import SidebarOwner from "../../../components/owner/SidebarOwner";
 import { useSelector } from "react-redux";
 
 const PsychologistPerformance = () => {
-  const [activePage, setActivePage] = useState("Kinerja Psikologi");
+  const [activePage, setActivePage] = useState("Kinerja Psikolog");
   const { open } = useSelector((state) => state.sidebar);
   const [performanceData, setPerformanceData] = useState(null);
 

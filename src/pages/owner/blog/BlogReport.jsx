@@ -52,10 +52,6 @@ const BlogReport = () => {
     fetchData();
   }, []);
 
-  if (loading) {
-    return <div className="py-4 text-center">Loading blog report data...</div>;
-  }
-
   const trendData = {
     labels: trends.map((item) => item._id),
     datasets: [
@@ -74,40 +70,46 @@ const BlogReport = () => {
       <div className={`${open ? "ml-72" : "ml-20"} container-dashboard`}>
         <h2 className="mb-4 text-xl font-semibold">Blog Report</h2>
 
-        <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2">
-          <div className="rounded bg-white p-4 shadow">
-            <h3 className="mb-2 font-semibold">Summary</h3>
-            <p>Total Blogs: {summary.blogCount}</p>
-            <p>Total Authors: {summary.authorCount}</p>
-          </div>
+        {loading ? (
+          <div className="py-4 text-center">Loading blog report data...</div>
+        ) : (
+          <>
+            <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div className="rounded bg-white p-4 shadow">
+                <h3 className="mb-2 font-semibold">Summary</h3>
+                <p>Total Blogs: {summary.blogCount}</p>
+                <p>Total Authors: {summary.authorCount}</p>
+              </div>
 
-          <div className="rounded bg-white p-4 shadow">
-            <h3 className="mb-2 font-semibold">Top Authors</h3>
-            <ul>
-              {topAuthors.map((author, index) => (
-                <li key={index}>
-                  {author._id}: {author.count} posts
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+              <div className="rounded bg-white p-4 shadow">
+                <h3 className="mb-2 font-semibold">Top Authors</h3>
+                <ul>
+                  {topAuthors.map((author, index) => (
+                    <li key={index}>
+                      {author._id}: {author.count} posts
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
 
-        <div className="mb-4 rounded bg-white p-4 shadow">
-          <h3 className="mb-2 font-semibold">Blog Trends</h3>
-          <Line data={trendData} />
-        </div>
+            <div className="mb-4 rounded bg-white p-4 shadow">
+              <h3 className="mb-2 font-semibold">Blog Trends</h3>
+              <Line data={trendData} />
+            </div>
 
-        <div className="rounded bg-white p-4 shadow">
-          <h3 className="mb-2 font-semibold">Recent Blogs</h3>
-          <ul>
-            {recentBlogs.map((blog, index) => (
-              <li key={index}>
-                {blog.title} by {blog.author} on {new Date(blog.createdAt).toLocaleDateString()}
-              </li>
-            ))}
-          </ul>
-        </div>
+            <div className="rounded bg-white p-4 shadow">
+              <h3 className="mb-2 font-semibold">Recent Blogs</h3>
+              <ul>
+                {recentBlogs.map((blog, index) => (
+                  <li key={index}>
+                    {blog.title} by {blog.author} on {new Date(blog.createdAt).toLocaleDateString()}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

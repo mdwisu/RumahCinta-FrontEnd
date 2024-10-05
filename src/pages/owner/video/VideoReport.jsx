@@ -52,9 +52,9 @@ const VideoReport = () => {
     fetchData();
   }, []);
 
-  if (loading) {
-    return <div className="py-4 text-center">Loading video report data...</div>;
-  }
+  // if (loading) {
+  //   return <div className="py-4 text-center">Loading video report data...</div>;
+  // }
 
   const trendData = {
     labels: trends.map((item) => item._id),
@@ -74,40 +74,46 @@ const VideoReport = () => {
       <div className={`${open ? "ml-72" : "ml-20"} container-dashboard`}>
         <h2 className="mb-4 text-xl font-semibold">Video Report</h2>
 
-        <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2">
-          <div className="rounded bg-white p-4 shadow">
-            <h3 className="mb-2 font-semibold">Summary</h3>
-            <p>Total Videos: {summary.videoCount}</p>
-            <p>Total Authors: {summary.authorCount}</p>
-          </div>
+        {loading ? (
+          <div className="py-4 text-center">Loading video report data...</div>
+        ) : (
+          <>
+            <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div className="rounded bg-white p-4 shadow">
+                <h3 className="mb-2 font-semibold">Summary</h3>
+                <p>Total Videos: {summary.videoCount}</p>
+                <p>Total Authors: {summary.authorCount}</p>
+              </div>
 
-          <div className="rounded bg-white p-4 shadow">
-            <h3 className="mb-2 font-semibold">Top Authors</h3>
-            <ul>
-              {topAuthors.map((author, index) => (
-                <li key={index}>
-                  {author._id}: {author.count} videos
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+              <div className="rounded bg-white p-4 shadow">
+                <h3 className="mb-2 font-semibold">Top Authors</h3>
+                <ul>
+                  {topAuthors.map((author, index) => (
+                    <li key={index}>
+                      {author._id}: {author.count} videos
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
 
-        <div className="mb-4 rounded bg-white p-4 shadow">
-          <h3 className="mb-2 font-semibold">Video Trends</h3>
-          <Line data={trendData} />
-        </div>
+            <div className="mb-4 rounded bg-white p-4 shadow">
+              <h3 className="mb-2 font-semibold">Video Trends</h3>
+              <Line data={trendData} />
+            </div>
 
-        <div className="rounded bg-white p-4 shadow">
-          <h3 className="mb-2 font-semibold">Recent Videos</h3>
-          <ul>
-            {recentVideos.map((video, index) => (
-              <li key={index}>
-                {video.title} by {video.author} on {new Date(video.createdAt).toLocaleDateString()}
-              </li>
-            ))}
-          </ul>
-        </div>
+            <div className="rounded bg-white p-4 shadow">
+              <h3 className="mb-2 font-semibold">Recent Videos</h3>
+              <ul>
+                {recentVideos.map((video, index) => (
+                  <li key={index}>
+                    {video.title} by {video.author} on {new Date(video.createdAt).toLocaleDateString()}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

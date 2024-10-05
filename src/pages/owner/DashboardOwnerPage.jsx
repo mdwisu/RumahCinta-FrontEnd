@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import DashboardAdmin from "../../components/Admin/DashboardAdmin";
-import Sidebar from "../../components/Admin/Sidebar";
 import { useSelector } from "react-redux";
 import SidebarOwner from "../../components/owner/SidebarOwner";
 

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import dayjs from "dayjs";
-import "dayjs/locale/id";
 import piknik from "../../image/piknik.png";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
